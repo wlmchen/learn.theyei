@@ -1,2 +1,2 @@
 # yei-training-portal
-Training portal for the Youth Economics Initiative. 
+This is the training portal for the Youth Economics Initiative. 
