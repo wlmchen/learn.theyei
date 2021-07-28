@@ -3,8 +3,6 @@ import Head from 'next/head'
 import Navbar from '../global/Header/Navbar'
 import Footer from '../global/Footer/Footer'
 
-import { GA_TRACKING_ID } from './gtag'
-
 export default function Page({ fullTitle, title, desc, children }: PageProps) {
   let pageTitle = fullTitle
     ? fullTitle
@@ -55,25 +53,6 @@ export default function Page({ fullTitle, title, desc, children }: PageProps) {
         <meta name="theme-color" content="#ffffff" />
         {/* <meta property="og:image" content="" />
         <meta name="twitter:image" content="" /> */}
-        {/* google analytics */}
-
-        {/* Global Site Tag (gtag.js) - Google Analytics */}
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_TRACKING_ID}', {
-                page_path: window.location.pathname,
-              });
-          `,
-          }}
-        />
       </Head>
       <Navbar />
       {children}
