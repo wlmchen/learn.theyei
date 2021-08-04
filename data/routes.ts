@@ -1,54 +1,29 @@
 const routes = [
-  { href: '/', name: 'Home' },
   {
-    href: '/clubs',
-    name: 'EconClubs',
-    dropRoutes: [
-      { href: '/', name: 'Overview' },
-      {
-        href: '/current-clubs',
-        name: 'Current Clubs',
-      },
-      {
-        href: '/register',
-        name: 'Register',
-      },
+    name: 'General',
+    children: [
+      'Basic Economics Concepts',
+      'Production',
+      'Supply and Demand',
+      'Trade and Systems',
     ],
   },
   {
-    href: '/people',
-    name: 'People',
-    dropRoutes: [
-      { href: '/team', name: 'Team' },
-      {
-        href: '/advisory-board',
-        name: 'Advisory Board',
-      },
-      { href: '/apply', name: 'Join our Team' },
+    name: 'Micro',
+    children: [
+      'Elasticity and Consumer Choice',
+      'Costs',
+      'Perfect Competition',
     ],
   },
   {
-    href: '/events',
-    name: 'Events',
-    dropRoutes: [
-      { href: '/', name: 'Overview' },
-      { href: '/econbowl', name: 'EconBowl' },
-      { href: '/econolympiad', name: 'EconOlympiad' },
-      {
-        href: '/econtalks',
-        name: 'EconTalks',
-      },
+    name: 'Macro',
+    children: [
+      'A Healthy Economy',
+      'Inflaction and CPI',
+      'Aggregate Supply and Demand',
     ],
   },
-  {
-    href: '/programs',
-    name: 'Programs',
-    dropRoutes: [
-      { href: '/flip', name: 'FLIP' },
-      { href: '/earn', name: 'EARN' },
-    ],
-  },
-  { href: '/resources', name: 'Resources' },
 ]
 
 export default routes
