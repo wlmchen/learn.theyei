@@ -2,8 +2,8 @@ import router from 'next/router'
 import React, { useState } from 'react'
 import * as Yup from 'yup'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { useAuth } from '../lib/auth'
-import FocusError from '../components/utility/FocusError'
+import { useAuth } from '@/lib/auth'
+import FocusError from '@/components/utility/FocusError'
 
 export default function login() {
   const auth = useAuth()
@@ -30,7 +30,7 @@ export default function login() {
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <img
             className="mx-auto h-12 w-auto"
-            src="/img/logos/yei.png"
+            src="/img/logos/yei-logo-full.png"
             alt="Workflow"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -54,7 +54,7 @@ export default function login() {
                     name="email"
                     type="email"
                     placeholder="im@batman.com"
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-yei-primary-main focus:yei-primary-main sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-yei-primary-main-main focus:yei-primary-main-main sm:text-sm"
                     required
                   />
                   <ErrorMessage
@@ -77,7 +77,7 @@ export default function login() {
                     id="password"
                     name="password"
                     type="password"
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-yei-primary-main focus:border-yei-primary-main sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-yei-primary-main-main focus:border-yei-primary-main-main sm:text-sm"
                     required
                   />
                   <ErrorMessage
@@ -91,7 +91,7 @@ export default function login() {
               <div>
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yei-primary-darker hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main"
+                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yei-primary-main-darker hover:bg-yei-primary-main-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main-main"
                 >
                   Sign In
                 </button>
