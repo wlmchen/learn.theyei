@@ -19,7 +19,7 @@ function ChapterLayout({ categories, modules, slug, sectionType }) {
     <div className="flex flex-row min-h-full">
       <Sidebar categories={categories} modules={modules} />
 
-      <div className="w-full flex items-start justify-center pt-10 px-5">
+      <div className="mt-12 w-full flex items-start justify-center pt-10 px-5">
         <div className="max-w-3xl w-full">
           <h1 className="text-3xl font-bold">
             {

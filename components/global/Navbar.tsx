@@ -2,13 +2,6 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { useAuth } from '@/lib/auth'
-
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
   { name: 'Team', href: '#', current: false },
@@ -44,7 +37,7 @@ export default function Navbar() {
                   </div>
                 </div>
                 <div className="hidden h-full sm:ml-6 sm:flex sm:items-center ">
-                  <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8 sm:mr-8">
+                  <div className="hidden h-full sm:-my-px sm:ml-6 sm:flex sm:space-x-8 sm:mr-8">
                     {navigation.map((item) => (
                       <a
                         key={item.name}
@@ -70,7 +63,7 @@ export default function Navbar() {
                             <span className="sr-only">Open user menu</span>
                             <img
                               className="h-8 w-8 rounded-full"
-                              src={user.imageUrl}
+                              src={auth.user.photoUrl}
                               alt=""
                             />
                           </Menu.Button>
@@ -155,16 +148,16 @@ export default function Navbar() {
                   <div className="flex-shrink-0">
                     <img
                       className="h-10 w-10 rounded-full"
-                      src={user.imageUrl}
-                      alt=""
+                      src={auth.user.photoUrl}
+                      alt="Profile picture"
                     />
                   </div>
                   <div className="ml-3">
                     <div className="text-base font-medium text-gray-800">
-                      {user.name}
+                      {auth.user.name}
                     </div>
                     <div className="text-sm font-medium text-gray-500">
-                      {user.email}
+                      {auth.user.email}
                     </div>
                   </div>
                   <button className="ml-auto bg-white flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main">
@@ -180,7 +173,7 @@ export default function Navbar() {
                           className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
                           onClick={() => auth.signout()}
                         >
-                          {item.name}ih
+                          {item.name}
                         </button>
                       ) : (
                         <a

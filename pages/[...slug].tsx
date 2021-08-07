@@ -25,30 +25,32 @@ const Chapter = () => {
   }, [router])
 
   return (
-    <Layout showNav={slug.length === 1}>
+    <>
       {auth.user ? (
-        <div className="w-full">
-          {slug.length === 1 ? (
-            <UnitLayout unit={slug[0]} />
-          ) : (
-            <>
-              {kebabModules.indexOf(sectionType) !== -1 ? (
-                <ChapterLayout
-                  categories={categories}
-                  modules={modules}
-                  slug={slug}
-                  sectionType={sectionType}
-                />
-              ) : (
-                ''
-              )}
-            </>
-          )}
-        </div>
+        <Layout showNav={slug.length === 1}>
+          <div className="w-full">
+            {slug.length === 1 ? (
+              <UnitLayout unit={slug[0]} />
+            ) : (
+              <>
+                {kebabModules.indexOf(sectionType) !== -1 ? (
+                  <ChapterLayout
+                    categories={categories}
+                    modules={modules}
+                    slug={slug}
+                    sectionType={sectionType}
+                  />
+                ) : (
+                  ''
+                )}
+              </>
+            )}
+          </div>
+        </Layout>
       ) : (
         ''
       )}
-    </Layout>
+    </>
   )
 }
 

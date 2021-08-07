@@ -103,7 +103,11 @@ export default function Sidebar({ categories, modules }) {
     // </div>
     <div>
       {categoryIndex !== -1 && categoryIndex !== undefined ? (
-        <div className="h-screen flex overflow-hidden bg-white">
+        <div
+          className={`fixed md:static h-screen flex overflow-hidden ${
+            sidebarOpen ? 'bg-white' : ''
+          } transition duration-500`}
+        >
           <Transition.Root show={sidebarOpen} as={Fragment}>
             <Dialog
               as="div"
