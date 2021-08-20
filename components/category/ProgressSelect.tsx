@@ -9,7 +9,7 @@ import {
 } from '@heroicons/react/solid'
 import { useAuth } from '@/lib/auth'
 import useSWR, { mutate } from 'swr'
-import { createProgress, updateProgress } from '@/lib/db'
+import { createSlideProgress, updateSlideProgress } from '@/lib/db'
 import fetcher from '@/utils/fetcher'
 
 function classNames(...classes) {
@@ -42,70 +42,72 @@ options.forEach((item) => {
   kebabOptionsNames.push(kebabCase(item.name))
 })
 
-export default function ProgressSelect({ slug }) {
+export default function SlideSelect({ slug }) {
   const auth = useAuth()
-  const { data: progressData } = useSWR(
+  const { data: slideProgressData } = useSWR(
     auth.user
-      ? [`/api/progress/${slug.join('/')}/${auth.user.uid}`, auth.user.token]
+      ? [`/api/slides/${slug.join('/')}/${auth.user.uid}`, auth.user.token]
       : null,
     fetcher
   )
 
-  const onCreateProgress = (progress) => {
+  const onCreateSlideProgress = (progress) => {
     const newProgress = {
       category: slug[0],
       chapter: slug[1],
-      type: slug[2],
       progress: progress,
       createdAt: new Date().toISOString(),
       userId: auth.user.uid,
     }
-    createProgress(newProgress)
+    createSlideProgress(newProgress)
   }
 
-  const onUpdateProgress = (id, progress) => {
+  const onUpdateSlideProgress = (id, progress) => {
     const newProgress = {
       progress: progress,
       createdAt: new Date().toISOString(),
     }
-    updateProgress(id, newProgress)
+    updateSlideProgress(id, newProgress)
   }
 
   const [selected, setSelected] = useState(options[0])
   let lastChoice = ''
 
   useEffect(() => {
-    if (progressData) {
-      console.log(progressData, slug.join('/'))
+    if (slideProgressData) {
+      console.log(slideProgressData, slug.join('/'))
       setSelected(
         options[
           kebabOptionsNames.indexOf(
-            progressData.progress[0]?.progress || 'not-started'
+            slideProgressData.progress[0]?.progress || 'not-started'
           )
         ]
       )
-      lastChoice = progressData.progress[0]?.progress || 'not-started'
+      lastChoice = slideProgressData.progress[0]?.progress || 'not-started'
     }
-  }, [progressData])
+  }, [slideProgressData])
 
   const handleChange = (value) => {
     if (kebabCase(value.name) !== lastChoice) {
       setSelected(value)
       console.log(kebabCase(value.name))
       lastChoice = kebabCase(value.name)
-      if (progressData.progress.length === 0) {
-        onCreateProgress(kebabCase(value.name))
+      if (slideProgressData.progress.length === 0) {
+        onCreateSlideProgress(kebabCase(value.name))
         console.log('create')
       } else {
-        console.log('update', slug, value, progressData)
-        onUpdateProgress(progressData.progress[0].id, kebabCase(value.name))
+        console.log('update', slug, value, slideProgressData)
+        onUpdateSlideProgress(
+          slideProgressData.progress[0].id,
+          kebabCase(value.name)
+        )
       }
     }
   }
 
   return (
     <>
-      {progressData ? (
+      {slideProgressData ? (
         <div className="w-48">
           <Listbox value={selected} onChange={(value) => handleChange(value)}>
             {({ open }) => (

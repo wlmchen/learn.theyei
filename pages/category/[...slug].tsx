@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 
-import ChapterLayout from '@/components/chapter/ChapterLayout'
+import CategoryLayout from '@/components/category/CategoryLayout'
 import { kebabCase } from '@/lib/utils'
 import { useAuth } from '@/lib/auth'
 import { MDXRemote } from 'next-mdx-remote'
@@ -16,7 +16,7 @@ import {
 } from '@/lib/mdx'
 import { MDXLayoutRenderer } from '@/components/mdx/MDXComponents'
 import routes from '@/data/routes'
-import FRQLayout from '@/components/chapter/frq/FRQLayout'
+import FRQLayout from '@/components/category/frq/FRQLayout'
 
 export async function getStaticPaths() {
   const posts = await getFiles('content')
@@ -55,7 +55,7 @@ export async function getStaticProps({ params }) {
   return { props: { post } }
 }
 
-export default function Chapter({ post }) {
+export default function Category({ post }) {
   const auth = useAuth()
   const { mdxSource, frontMatter } = post
   const router = useRouter()
@@ -87,7 +87,7 @@ export default function Chapter({ post }) {
         <Layout showNav={slug.length === 1}>
           <div className="w-full">
             {kebabModules.indexOf(sectionType) !== -1 ? (
-              <ChapterLayout
+              <CategoryLayout
                 categories={categories}
                 modules={modules}
                 slug={slug}
@@ -103,7 +103,7 @@ export default function Chapter({ post }) {
                 ) : (
                   ''
                 )}
-              </ChapterLayout>
+              </CategoryLayout>
             ) : (
               ''
             )}

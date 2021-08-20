@@ -1,10 +1,18 @@
 import React, { Fragment } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import {
+  BellIcon,
+  ChevronDownIcon,
+  MenuIcon,
+  XIcon,
+} from '@heroicons/react/outline'
 import { useAuth } from '@/lib/auth'
-const navigation = [{ name: 'Dashboard', href: '#', current: true }]
-const chapterNavigation = [
+import { useRouter } from 'next/router'
+import { kebabCase } from '@/lib/utils'
+const navigation = [{ name: 'Dashboard', href: '/dashboard' }]
+const categoryNavigation = [
   { name: 'General', href: '/general' },
   { name: 'Micro', href: '/micro' },
   { name: 'Macro', href: '/macro' },
@@ -12,15 +20,17 @@ const chapterNavigation = [
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Sign out', href: '' },
 ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Navbar() {
+export default function Navbar({ page }) {
   const auth = useAuth()
+  const router = useRouter()
+  console.log(router.query.slug)
   return (
     <>
       <Disclosure as="nav" className="bg-white border-b border-gray-200">
@@ -44,12 +54,11 @@ export default function Navbar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current
+                          kebabCase(item.name) === page
                             ? 'border-yei-primary-main text-gray-900'
                             : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
                           'inline-flex items-center px-1 pt-1 border-b-4 text-lg font-medium'
                         )}
-                        aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
                       </a>
@@ -59,8 +68,22 @@ export default function Navbar() {
                     {({ open }) => (
                       <div className="h-full">
                         <div className="h-full">
-                          <Menu.Button className="h-full max-w-xs bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main inline-flex items-center px-1 pt-1 border-b-4 text-lg font-medium">
-                            Chapters
+                          <Menu.Button
+                            className={classNames(
+                              page === 'general' ||
+                                page === 'macro' ||
+                                page === 'micro'
+                                ? 'border-yei-primary-main text-gray-900'
+                                : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+                              'h-full inline-flex items-center px-1 pt-1 border-b-4 text-lg font-medium'
+                            )}
+                          >
+                            Categories{' '}
+                            <ChevronDownIcon
+                              strokeWidth={3}
+                              className="ml-2 h-5 w-5 text-inherit"
+                              aria-hidden="true"
+                            />
                           </Menu.Button>
                         </div>
                         <Transition
@@ -77,10 +100,13 @@ export default function Navbar() {
                             static
                             className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                           >
-                            {chapterNavigation.map((item) => (
+                            {categoryNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <div key={item.name}>
+                                  <div
+                                    key={item.name}
+                                    className="bg-white hover:bg-gray-200 transition-color duration-300"
+                                  >
                                     <a
                                       href={item.href}
                                       className="block px-4 py-2 text-md text-gray-700"
@@ -103,11 +129,17 @@ export default function Navbar() {
                         <div>
                           <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main">
                             <span className="sr-only">Open user menu</span>
-                            <img
-                              className="h-8 w-8 rounded-full"
-                              src={auth.user.photoUrl}
-                              alt=""
-                            />
+                            <div className="rounded-full w-10 h-10 overflow-hidden">
+                              <Image
+                                width={40}
+                                height={40}
+                                src={
+                                  auth.user.photoUrl ||
+                                  '/img/others/emptyUser.svg'
+                                }
+                                alt="Profile picture"
+                              />
+                            </div>
                           </Menu.Button>
                         </div>
                         <Transition
@@ -174,12 +206,14 @@ export default function Navbar() {
                     key={item.name}
                     href={item.href}
                     className={classNames(
-                      item.current
+                      kebabCase(item.name) === page
                         ? 'bg-indigo-50 border-yei-primary-main text-indigo-700'
                         : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800',
                       'block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
                     )}
-                    aria-current={item.current ? 'page' : undefined}
+                    aria-current={
+                      kebabCase(item.name) === page ? 'page' : undefined
+                    }
                   >
                     {item.name}
                   </a>
@@ -187,14 +221,12 @@ export default function Navbar() {
               </div>
               <div className="py-3 border-t border-gray-200">
                 <div className="space-y-1">
-                  {chapterNavigation.map((item) => (
-                    <div key={item.name}>
-                      <Link
-                        href={item.href}
-                        className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
-                      >
-                        {item.name}
-                      </Link>
+                  {categoryNavigation.map((item) => (
+                    <div
+                      key={item.name}
+                      className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                    >
+                      <Link href={item.href}>{item.name}</Link>
                     </div>
                   ))}
                 </div>
@@ -202,11 +234,14 @@ export default function Navbar() {
               <div className="pt-4 pb-3 border-t border-gray-200">
                 <div className="flex items-center px-4">
                   <div className="flex-shrink-0">
-                    <img
-                      className="h-10 w-10 rounded-full"
-                      src={auth.user.photoUrl}
-                      alt="Profile picture"
-                    />
+                    <div className="rounded-full w-10 h-10 overflow-hidden">
+                      <Image
+                        width={40}
+                        height={40}
+                        src={auth.user.photoUrl || '/img/others/emptyUser.svg'}
+                        alt="Profile picture"
+                      />
+                    </div>
                   </div>
                   <div className="ml-3">
                     <div className="text-base font-medium text-gray-800">

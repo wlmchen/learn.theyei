@@ -5,9 +5,9 @@ import MCQPage from './mcq/MCQPage'
 import Sidebar from './sidebar/Sidebar'
 import SlidesPage from './slides/SlidesPage'
 import { kebabCase } from '@/lib/utils'
-import ProgressSelect from './ProgressSelect'
+import SlidesSelect from './SlidesSelect'
 
-function ChapterLayout({ categories, modules, slug, sectionType, children }) {
+function CategoryLayout({ categories, modules, slug, sectionType, children }) {
   const kebabCategories = []
   categories.forEach((item) => kebabCategories.push(kebabCase(item)))
 
@@ -52,4 +52,4 @@ function ChapterLayout({ categories, modules, slug, sectionType, children }) {
   )
 }
 
-export default ChapterLayout
+export default CategoryLayout

@@ -13,10 +13,10 @@ export default function IndexPage() {
           </div>
         ) : (
           <div>
-            <span className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yei-primary-main-darker hover:bg-yei-primary-main-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main-main">
+            <span className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yei-primary-darker hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main">
               <Link href="/login">Log In</Link>
             </span>
-            <span className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yei-primary-main-darker hover:bg-yei-primary-main-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main-main">
+            <span className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yei-primary-darker hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main">
               <Link href="/signup">Create an Account</Link>
             </span>
           </div>

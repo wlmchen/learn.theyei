@@ -79,11 +79,13 @@ export default function Sidebar({ children, categories, modules }) {
                   </Transition.Child>
                   <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                     <div className="flex-shrink-0 py-5 flex justify-center px-4 text-center">
-                      <img
-                        className="w-32"
-                        src="/img/logos/yei-logo-full.png"
-                        alt="YEI Logo"
-                      />
+                      <Link href="/dashboard">
+                        <img
+                          className="w-32 cursor-pointer"
+                          src="/img/logos/yei-logo-full.png"
+                          alt="YEI Logo"
+                        />
+                      </Link>
                     </div>
                     <div className="w-full px-5">
                       <GroupSelect
@@ -142,7 +144,7 @@ export default function Sidebar({ children, categories, modules }) {
                                   {modules.map((subItem) => (
                                     <Link
                                       key={subItem}
-                                      href={`/chapter/${kebabCase(
+                                      href={`/category/${kebabCase(
                                         categories[categoryIndex]
                                       )}/${kebabCase(item)}/${kebabCase(
                                         subItem
@@ -183,11 +185,13 @@ export default function Sidebar({ children, categories, modules }) {
               <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
                 <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                   <div className="flex py-5 justify-center flex-shrink-0 px-4">
-                    <img
-                      className="w-32"
-                      src="/img/logos/yei-logo-full.png"
-                      alt="YEI Logo"
-                    />
+                    <Link href="/dashboard">
+                      <img
+                        className="w-32 cursor-pointer"
+                        src="/img/logos/yei-logo-full.png"
+                        alt="YEI Logo"
+                      />
+                    </Link>
                   </div>
                   <div className="w-full px-5">
                     <GroupSelect
@@ -244,7 +248,7 @@ export default function Sidebar({ children, categories, modules }) {
                                 {modules.map((subItem) => (
                                   <Link
                                     key={subItem}
-                                    href={`/chapter/${kebabCase(
+                                    href={`/category/${kebabCase(
                                       categories[categoryIndex]
                                     )}/${kebabCase(item)}/${kebabCase(
                                       subItem

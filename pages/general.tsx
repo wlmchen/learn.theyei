@@ -8,7 +8,7 @@ import DashboardLayout from '@/components/dashboard/DashboardLayout'
 import Layout from '../components/global/Layout'
 import routes from '@/data/routes'
 
-export default function Dashboard() {
+export default function general() {
   const auth = useAuth()
   const router = useRouter()
   const slug = router.query.slug || []
@@ -28,7 +28,7 @@ export default function Dashboard() {
   return (
     <>
       {auth.user ? (
-        <Layout page="dashboard" showNav={true}>
+        <Layout page="general" showNav={true}>
           <div className="w-full">
             <DashboardLayout />
           </div>

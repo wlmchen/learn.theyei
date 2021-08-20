@@ -26,7 +26,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/api/progress/[...slug].js"
+    "pages/api/slides/[...slug].js"
   ],
   "exclude": ["node_modules"]
 }

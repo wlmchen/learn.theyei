@@ -1,11 +1,11 @@
-import { getAllProgress } from '@/lib/db-admin'
+import { getAllSlideProgress } from '@/lib/db-admin'
 
 export default async (req, res) => {
   try {
     const path = req.query.slug.slice(0, 3)
     console.log(path)
     const userId = req.query.slug[3]
-    const { progress } = await getAllProgress(path, userId)
+    const { progress } = await getAllSlideProgress(path, userId)
     res.status(200).json({ progress })
   } catch (error) {
     res.status(500).json({ error })
