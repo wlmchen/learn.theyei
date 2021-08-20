@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useAuth } from '@/lib/auth'
 
-const IndexPage = () => {
+export default function IndexPage() {
   const auth = useAuth()
 
   return (
@@ -25,5 +25,3 @@ const IndexPage = () => {
     </div>
   )
 }
-
-export default IndexPage

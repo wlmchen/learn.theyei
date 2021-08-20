@@ -4,10 +4,11 @@ import React, { useEffect, useState } from 'react'
 import ChapterLayout from '@/components/chapter/ChapterLayout'
 import { kebabCase } from '@/lib/utils'
 import { useAuth } from '@/lib/auth'
-import UnitLayout from '@/components/unit/UnitLayout'
-import Layout from './../components/global/Layout'
+import DashboardLayout from '@/components/dashboard/DashboardLayout'
+import Layout from '../components/global/Layout'
+import routes from '@/data/routes'
 
-const Chapter = () => {
+export default function Dashboard() {
   const auth = useAuth()
   const router = useRouter()
   const slug = router.query.slug || []
@@ -27,24 +28,9 @@ const Chapter = () => {
   return (
     <>
       {auth.user ? (
-        <Layout showNav={slug.length === 1}>
+        <Layout showNav={true}>
           <div className="w-full">
-            {slug.length === 1 ? (
-              <UnitLayout unit={slug[0]} />
-            ) : (
-              <>
-                {kebabModules.indexOf(sectionType) !== -1 ? (
-                  <ChapterLayout
-                    categories={categories}
-                    modules={modules}
-                    slug={slug}
-                    sectionType={sectionType}
-                  />
-                ) : (
-                  ''
-                )}
-              </>
-            )}
+            <DashboardLayout />
           </div>
         </Layout>
       ) : (
@@ -53,5 +39,3 @@ const Chapter = () => {
     </>
   )
 }
-
-export default Chapter

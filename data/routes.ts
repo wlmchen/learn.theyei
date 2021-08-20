@@ -14,14 +14,21 @@ const routes = [
       'Elasticity and Consumer Choice',
       'Costs',
       'Perfect Competition',
+      'Monopoly',
+      'Imperfect Competition',
+      'Factor Markets',
+      'Effeciency',
     ],
   },
   {
     name: 'Macro',
     children: [
       'A Healthy Economy',
-      'Inflaction and CPI',
+      'Inflation and CPI',
       'Aggregate Supply and Demand',
+      'Fiscal Policy',
+      'Monetary Policy',
+      'International Trade',
     ],
   },
 ]

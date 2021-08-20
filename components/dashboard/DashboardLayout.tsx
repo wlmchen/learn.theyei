@@ -24,7 +24,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function UnitLayout({ slug }) {
+export default function DashboardLayout() {
   return (
     <div className="min-h-screen bg-white">
       <div className="py-10">

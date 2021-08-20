@@ -51,9 +51,6 @@ export default function ProgressSelect({ slug }) {
     fetcher
   )
 
-  // if (progressData.length === 0) {
-  // }
-
   const onCreateProgress = (progress) => {
     const newProgress = {
       category: slug[0],
@@ -79,6 +76,7 @@ export default function ProgressSelect({ slug }) {
 
   useEffect(() => {
     if (progressData) {
+      console.log(progressData, slug.join('/'))
       setSelected(
         options[
           kebabOptionsNames.indexOf(
@@ -99,7 +97,7 @@ export default function ProgressSelect({ slug }) {
         onCreateProgress(kebabCase(value.name))
         console.log('create')
       } else {
-        console.log('update', value, progressData)
+        console.log('update', slug, value, progressData)
         onUpdateProgress(progressData.progress[0].id, kebabCase(value.name))
       }
     }

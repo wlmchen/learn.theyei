@@ -5,7 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { useAuth } from '@/lib/auth'
 import FocusError from '@/components/utility/FocusError'
 
-export default function login() {
+export default function Login() {
   const auth = useAuth()
 
   if (auth.user) {

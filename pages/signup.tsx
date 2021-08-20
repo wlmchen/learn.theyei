@@ -5,7 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { useAuth } from '@/lib/auth'
 import FocusError from '@/components/utility/FocusError'
 
-function signup() {
+export default function Signup() {
   const auth = useAuth()
 
   if (auth.user) {
@@ -158,8 +158,6 @@ function signup() {
     </Formik>
   )
 }
-
-export default signup
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string().max(50, 'Name too long.').required('Name required.'),

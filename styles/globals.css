@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 .slant-up-left {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 4vw));
 }
@@ -38,6 +40,29 @@ input {
 
 .green-link {
   @apply text-yei-primary-main hover:text-yei-primary-darker font-semibold;
+}
+
+.alpha-list-mdx {
+  list-style-type: lower-alpha;
+}
+
+.alpha-list-mdx li {
+  margin: 1em 0;
+}
+
+.alpha-list-mdx ol {
+  list-style-type: lower-roman;
+  margin-left: 3em;
+}
+
+.alpha-list-mdx ul {
+  list-style-type: square;
+  margin-left: 3em;
+}
+
+.alpha-list-mdx ol li,
+.alpha-list-mdx ul li {
+  margin: 0.5em 0;
 }
 
 @keyframes slideInFromTop {

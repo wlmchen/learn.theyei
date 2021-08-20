@@ -8,8 +8,7 @@ function Slides({ categories, chapters, slug }) {
         slides[categories.indexOf(slug[0])][chapters.indexOf(slug[1])].source
       }
       width="100%"
-      height="400"
-      className="overflow-hidden rounded-xl"
+      className="overflow-hidden rounded-xl shadow-xl max-w-2xl h-60 md:h-96"
     ></iframe>
   )
 }

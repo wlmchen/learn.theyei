@@ -1,12 +1,13 @@
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
+import Link from 'next/link'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { useAuth } from '@/lib/auth'
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+const navigation = [{ name: 'Dashboard', href: '#', current: true }]
+const chapterNavigation = [
+  { name: 'General', href: '/general' },
+  { name: 'Micro', href: '/micro' },
+  { name: 'Macro', href: '/macro' },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -37,7 +38,7 @@ export default function Navbar() {
                   </div>
                 </div>
                 <div className="hidden h-full sm:ml-6 sm:flex sm:items-center ">
-                  <div className="hidden h-full sm:-my-px sm:ml-6 sm:flex sm:space-x-8 sm:mr-8">
+                  <div className="hidden h-full sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                     {navigation.map((item) => (
                       <a
                         key={item.name}
@@ -54,6 +55,47 @@ export default function Navbar() {
                       </a>
                     ))}
                   </div>
+                  <Menu as="div" className="ml-8 relative sm:mr-8 h-full">
+                    {({ open }) => (
+                      <div className="h-full">
+                        <div className="h-full">
+                          <Menu.Button className="h-full max-w-xs bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main inline-flex items-center px-1 pt-1 border-b-4 text-lg font-medium">
+                            Chapters
+                          </Menu.Button>
+                        </div>
+                        <Transition
+                          show={open}
+                          as={Fragment}
+                          enter="transition ease-out duration-200"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items
+                            static
+                            className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                          >
+                            {chapterNavigation.map((item) => (
+                              <Menu.Item key={item.name}>
+                                {({ active }) => (
+                                  <div key={item.name}>
+                                    <a
+                                      href={item.href}
+                                      className="block px-4 py-2 text-md text-gray-700"
+                                    >
+                                      {item.name}
+                                    </a>
+                                  </div>
+                                )}
+                              </Menu.Item>
+                            ))}
+                          </Menu.Items>
+                        </Transition>
+                      </div>
+                    )}
+                  </Menu>
                   {/* Profile dropdown */}
                   <Menu as="div" className="ml-3 relative">
                     {({ open }) => (
@@ -80,7 +122,7 @@ export default function Navbar() {
                         >
                           <Menu.Items
                             static
-                            className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            className="origin-top-right absolute right-0 mt-6 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                           >
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
@@ -88,7 +130,7 @@ export default function Navbar() {
                                   <div key={item.name}>
                                     {item.name === 'Sign out' ? (
                                       <button
-                                        className="block px-4 py-2 text-sm text-gray-700"
+                                        className="block px-4 py-2 text-md text-gray-700"
                                         onClick={() => auth.signout()}
                                       >
                                         {item.name}
@@ -96,7 +138,7 @@ export default function Navbar() {
                                     ) : (
                                       <a
                                         href={item.href}
-                                        className="block px-4 py-2 text-sm text-gray-700"
+                                        className="block px-4 py-2 text-md text-gray-700"
                                       >
                                         {item.name}
                                       </a>
@@ -143,6 +185,20 @@ export default function Navbar() {
                   </a>
                 ))}
               </div>
+              <div className="py-3 border-t border-gray-200">
+                <div className="space-y-1">
+                  {chapterNavigation.map((item) => (
+                    <div key={item.name}>
+                      <Link
+                        href={item.href}
+                        className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                      >
+                        {item.name}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
               <div className="pt-4 pb-3 border-t border-gray-200">
                 <div className="flex items-center px-4">
                   <div className="flex-shrink-0">
@@ -160,10 +216,6 @@ export default function Navbar() {
                       {auth.user.email}
                     </div>
                   </div>
-                  <button className="ml-auto bg-white flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main">
-                    <span className="sr-only">View notifications</span>
-                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
                 </div>
                 <div className="mt-3 space-y-1">
                   {userNavigation.map((item) => (

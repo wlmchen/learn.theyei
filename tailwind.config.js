@@ -11,6 +11,9 @@ module.exports = {
     outline: false,
   },
   theme: {
+    fontFamily: {
+      sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+    },
     extend: {
       colors: {
         yei: {
