@@ -21,7 +21,7 @@ export default function Login() {
       }}
       validationSchema={LoginSchema}
       onSubmit={(values, { setSubmitting, resetForm }) => {
-        auth.signinWithPassword(values.name, values.email, values.password)
+        auth.signinWithPassword(values.email, values.password)
         resetForm({})
         setSubmitting(false)
       }}
@@ -91,7 +91,7 @@ export default function Login() {
               <div>
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yei-primary-main-darker hover:bg-yei-primary-main-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main-main"
+                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yei-primary-main hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main-main"
                 >
                   Sign In
                 </button>
@@ -99,7 +99,7 @@ export default function Login() {
               <FocusError />
             </Form>
 
-            <span className="text-red-500 text-xs">{auth.authError}</span>
+            <span className="formik-error text-sm">{auth.authError}</span>
 
             <div className="mt-6">
               <div className="relative">
