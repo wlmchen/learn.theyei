@@ -13,4 +13,7 @@ module.exports = withMDX({
   experimental: { esmExternals: 'loose' },
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  images: {
+    domains: ['lh3.googleusercontent.com'],
+  },
 })

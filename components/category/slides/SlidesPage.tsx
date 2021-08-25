@@ -1,6 +1,6 @@
 import slides from '@/data/slides'
 import React from 'react'
-import ProgressSelect from '../ProgressSelect'
+import ProgressSelect from './ProgressSelect'
 import Slides from './Slides'
 
 function SlidesPage({ slug, categories, chapters }) {

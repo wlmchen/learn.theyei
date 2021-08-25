@@ -129,7 +129,7 @@ export default function Navbar({ page }) {
                         <div>
                           <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main">
                             <span className="sr-only">Open user menu</span>
-                            <div className="rounded-full w-10 h-10 overflow-hidden">
+                            <div className="rounded-full w-10 h-10 overflow-hidden border-2 border-yei-primary-gray shadow-xl">
                               <Image
                                 width={40}
                                 height={40}
@@ -234,7 +234,7 @@ export default function Navbar({ page }) {
               <div className="pt-4 pb-3 border-t border-gray-200">
                 <div className="flex items-center px-4">
                   <div className="flex-shrink-0">
-                    <div className="rounded-full w-10 h-10 overflow-hidden">
+                    <div className="rounded-full w-10 h-10 overflow-hidden border-2 border-yei-primary-gray shadow-xl">
                       <Image
                         width={40}
                         height={40}

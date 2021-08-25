@@ -98,6 +98,8 @@ export default function Category({ post }) {
                     <MDXLayoutRenderer
                       mdxSource={mdxSource}
                       frontMatter={frontMatter}
+                      slug={slug}
+                      auth={auth}
                     />
                   </FRQLayout>
                 ) : (

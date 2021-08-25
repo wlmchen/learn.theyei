@@ -2,7 +2,7 @@ import React from 'react'
 
 function FRQCheck({ points, children }) {
   return (
-    <li className="ml-3 text-sm">
+    <li className="ml-3 p-4 text-sm">
       <b>{points} points</b>
       <ul>{children}</ul>
     </li>
