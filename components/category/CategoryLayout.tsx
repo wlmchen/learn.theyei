@@ -21,7 +21,7 @@ function CategoryLayout({ categories, modules, slug, sectionType, children }) {
     <div className="flex flex-row min-h-full w-full">
       <Sidebar categories={categories} modules={modules}>
         <div className="my-14 w-full flex items-start justify-center px-5">
-          <div className="max-w-4xl w-full px-5 leading-relaxed">
+          <div className="max-w-4xl w-full px-3 sm:px-5 leading-relaxed">
             {children}
             {sectionType === 'slides' ? (
               <div>

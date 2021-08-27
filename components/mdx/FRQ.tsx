@@ -1,6 +1,7 @@
 import { useAuth } from '@/lib/auth'
-import { createFRQScore, updateFRQScore } from '@/lib/db'
+import { saveFRQScore, createFRQScore, updateFRQScore } from '@/lib/db'
 import fetcher from '@/utils/fetcher'
+import { SaveIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import useSWR from 'swr'
@@ -22,13 +23,13 @@ function FRQ({ totalPoints, children }) {
   useEffect(() => {
     if (frqScoreData) {
       console.log(frqScoreData)
-      setResponse(frqScoreData.score[0].response || '')
-      setPoints(frqScoreData.score[0].score || '')
+      setResponse(frqScoreData.score[0]?.response || '')
+      setPoints(frqScoreData.score[0]?.score || '')
     }
   }, [frqScoreData])
 
-  const onCreateFRQScore = () => {
-    const newScore = {
+  const onCreateFRQScore = (newScoreToSave: boolean) => {
+    let newScore = {
       category: slug[0],
       chapter: slug[1],
       response: response,
@@ -37,7 +38,13 @@ function FRQ({ totalPoints, children }) {
       createdAt: new Date().toISOString(),
       userId: auth.user.uid,
     }
+    if (newScoreToSave) {
+      newScore.score = '0'
+    }
     createFRQScore(newScore)
+  }
+  const onSaveFRQScore = (id, response) => {
+    saveFRQScore(id, response)
   }
 
   const onUpdateFRQScore = (id) => {
@@ -48,20 +55,29 @@ function FRQ({ totalPoints, children }) {
     }
     updateFRQScore(id, newScore)
   }
-  const handleCheck = () => {
-    setShowAnswers(!showAnswers)
-  }
 
   const handleSubmit = () => {
-    if (points <= 10 && points >= 0) {
+    if (parseInt(points) <= 10 && parseInt(points) >= 0) {
       if (frqScoreData.score.length === 0) {
-        onCreateFRQScore()
+        onCreateFRQScore(false)
         console.log('create')
       } else {
         console.log('update', slug, frqScoreData)
         onUpdateFRQScore(frqScoreData.score[0].id)
       }
     }
+  }
+  const handleSave = () => {
+    if (frqScoreData.score.length === 0) {
+      onCreateFRQScore(true)
+      console.log('create')
+    } else {
+      saveFRQScore(frqScoreData.score[0].id, response)
+      console.log('save', response)
+    }
+  }
+  const handleCheck = () => {
+    setShowAnswers(!showAnswers)
   }
 
   const handlePointsChange = (e) => {
@@ -78,6 +94,7 @@ function FRQ({ totalPoints, children }) {
         rows={8}
         value={response}
         onChange={handleResponseChange}
+        placeholder="Type your free response here. Once finished, you can check your answers and submit!"
         className="shadow-sm focus:ring-yei-primary-main focus:border-yei-primary-main block w-full sm:text-sm border-gray-300 rounded-md"
       ></textarea>
       <div
@@ -85,17 +102,26 @@ function FRQ({ totalPoints, children }) {
           showAnswers ? 'mb-32' : 'mb-0'
         } mt-2 sm:mb-0 sm:flex-row sm:space-x-2 sm:space-y-0 items-start space-x-0 flex-col h-10 space-y-2`}
       >
-        <button
-          type="button"
-          className={`h-full items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white ${
-            showAnswers ? 'opacity-50' : 'opacity-100'
-          } bg-yei-primary-main hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2`}
-          onClick={handleCheck}
-        >
-          {showAnswers ? 'Hide Answers' : 'Check Answers'}
-        </button>
+        <div className="w-full flex space-x-2">
+          <button
+            type="button"
+            className={`flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-indigo-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2`}
+            onClick={handleSave}
+          >
+            <SaveIcon className="text-indigo-800 w-6 mr-3" /> Save
+          </button>
+          <button
+            type="button"
+            className={`h-full items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white ${
+              showAnswers ? 'opacity-50' : 'opacity-100'
+            } bg-yei-primary-main hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2`}
+            onClick={handleCheck}
+          >
+            {showAnswers ? 'Hide Answers' : 'Check Answers'}
+          </button>
+        </div>
         {showAnswers ? (
-          <div className="w-40 h-full flex rounded-md shadow-sm">
+          <div className="w-36 sm:w-56 h-full flex rounded-md shadow-sm">
             <input
               type="number"
               name="company-website"
@@ -126,9 +152,11 @@ function FRQ({ totalPoints, children }) {
         )}
       </div>
       {showAnswers ? (
-        <ol className="alpha-list-mdx pl-8 bg-white rounded-xl shadow-xl">
-          {children}
-        </ol>
+        <div className="mt-8">
+          <ol className="alpha-list-mdx pl-8 bg-white rounded-xl shadow-xl">
+            {children}
+          </ol>
+        </div>
       ) : (
         ''
       )}

@@ -66,6 +66,26 @@ input {
   margin: 0.5em 0;
 }
 
+.mcq-radio-letter {
+  @apply bg-white border-2 border-gray-300 rounded-full h-10 w-10 flex items-center justify-center text-gray-600 font-bold mr-3 flex-shrink-0;
+}
+
+.mcq-radio-letter-selected {
+  @apply bg-white border-2 border-blue-500 rounded-full h-10 w-10 flex items-center justify-center text-blue-500 font-bold mr-3 flex-shrink-0;
+}
+
+.mcq-radio-letter-correct {
+  @apply bg-yei-primary-lighter border-2 border-yei-primary-lighter rounded-full h-10 w-10 flex items-center justify-center text-white font-bold mr-3 flex-shrink-0;
+}
+
+.mcq-radio-letter-correct-missed {
+  @apply bg-white border-2 border-yei-primary-lighter rounded-full h-10 w-10 flex items-center justify-center text-yei-primary-lighter font-bold mr-3 flex-shrink-0;
+}
+
+.mcq-radio-letter-wrong {
+  @apply bg-red-500 border-2 border-red-500 rounded-full h-10 w-10 flex items-center justify-center text-white font-bold mr-3 flex-shrink-0;
+}
+
 @keyframes slideInFromTop {
   from {
     transform: scale(2);
