@@ -1,5 +1,5 @@
 import { useAuth } from '@/lib/auth'
-import { saveFRQScore, createFRQScore, updateFRQScore } from '@/lib/db'
+import { createFRQScore, updateFRQScore } from '@/lib/db'
 import fetcher from '@/utils/fetcher'
 import { EyeIcon, EyeOffIcon, XCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
@@ -10,7 +10,7 @@ import FRQNotification from './FRQNotification'
 function FRQ({ totalPoints, children }) {
   const auth = useAuth()
   const router = useRouter()
-  const slug = router.query.slug || []
+  const slug: any = router.query.slug || []
   const [showAnswers, setShowAnswers] = useState(false)
   const [points, setPoints] = useState('0')
   const [pointsError, setPointsError] = useState('')
