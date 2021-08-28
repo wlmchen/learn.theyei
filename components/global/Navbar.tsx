@@ -2,12 +2,7 @@ import React, { Fragment } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import {
-  BellIcon,
-  ChevronDownIcon,
-  MenuIcon,
-  XIcon,
-} from '@heroicons/react/outline'
+import { ChevronDownIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { useAuth } from '@/lib/auth'
 import { useRouter } from 'next/router'
 import { kebabCase } from '@/lib/utils'

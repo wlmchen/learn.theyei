@@ -4,7 +4,6 @@ import { useAuth } from '@/lib/auth'
 import fetcher from '@/utils/fetcher'
 import useSWR from 'swr'
 import mcq from '@/data/mcq'
-import slides from '@/data/slides'
 import routes from '@/data/routes'
 
 function classNames(...classes) {

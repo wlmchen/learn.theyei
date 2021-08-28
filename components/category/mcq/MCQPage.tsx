@@ -1,4 +1,3 @@
-import mcq from '@/data/mcq'
 import routes from '@/data/routes'
 import React from 'react'
 import MCQ from './MCQ'

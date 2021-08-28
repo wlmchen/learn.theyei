@@ -2,7 +2,6 @@ import { Fragment, useEffect, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { useRouter } from 'next/router'
-import { kebabCase } from '@/lib/kebabCase'
 
 export default function GroupSelect({ routes, categoryIndex, onGroupChange }) {
   const router = useRouter()

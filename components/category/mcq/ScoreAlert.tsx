@@ -1,5 +1,4 @@
 import { EmojiHappyIcon, EmojiSadIcon } from '@heroicons/react/solid'
-import { useState } from 'react'
 
 export default function ScoreAlert({ score, totalPoints }) {
   const scorePercent = score / totalPoints

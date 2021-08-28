@@ -1,12 +1,7 @@
 import { useAuth } from '@/lib/auth'
 import { saveFRQScore, createFRQScore, updateFRQScore } from '@/lib/db'
 import fetcher from '@/utils/fetcher'
-import {
-  EyeIcon,
-  EyeOffIcon,
-  SaveIcon,
-  XCircleIcon,
-} from '@heroicons/react/outline'
+import { EyeIcon, EyeOffIcon, XCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import useSWR from 'swr'
