@@ -4,7 +4,6 @@ import MCQPage from './mcq/MCQPage'
 import Sidebar from './sidebar/Sidebar'
 import SlidesPage from './slides/SlidesPage'
 import { kebabCase } from '@/lib/utils'
-import SlidesSelect from './SlidesSelect'
 
 function CategoryLayout({ categories, modules, slug, sectionType, children }) {
   const kebabCategories = []

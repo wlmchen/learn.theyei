@@ -84,7 +84,7 @@ export default function Category({ post }) {
         />
       </Head>
       {auth.user ? (
-        <Layout showNav={slug.length === 1}>
+        <Layout page={slug[0]} showNav={slug.length === 1}>
           <div className="w-full">
             {kebabModules.indexOf(sectionType) !== -1 ? (
               <CategoryLayout
