@@ -4,9 +4,13 @@ export default function ScoreAlert({ score, totalPoints }) {
   const scorePercent = score / totalPoints
   return (
     <div
-      className={`rounded-md max-w-md bg-${
-        scorePercent >= 0.8 ? 'green' : scorePercent >= 0.6 ? 'yellow' : 'red'
-      }-500 p-4`}
+      className={`rounded-md max-w-md ${
+        scorePercent >= 0.8
+          ? 'bg-green-500'
+          : scorePercent >= 0.6
+          ? 'bg-yellow-500'
+          : 'bg-red-500'
+      } p-4`}
     >
       <div className="flex">
         <div className="flex-shrink-0">
