@@ -5,6 +5,7 @@ import fetcher from '@/utils/fetcher'
 import useSWR from 'swr'
 import mcq from '@/data/mcq'
 import routes from '@/data/routes'
+import Pathway from './Pathway'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -57,8 +58,8 @@ export default function DashboardLayout({ title, description, slug }) {
     if (slideProgressData && mcqScoreData) {
       console.log(slideProgressData, mcqScoreData, frqScoreData)
       setCompletedSlides(
-        slideProgressData?.progress.filter((item) => {
-          return (item.progress = 'completed')
+        slideProgressData.progress?.filter((item) => {
+          return item.progress === 'completed'
         }) || []
       )
       setCompletedMCQs(mcqScoreData?.score || [])
@@ -157,7 +158,19 @@ export default function DashboardLayout({ title, description, slug }) {
         </div>
         <main>
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div className="px-4 py-8 sm:px-0"></div>
+            <div className="relative w-full flex flex-col items-center px-4 sm:px-0">
+              <Pathway
+                slug={slug}
+                categories={kebabCategories}
+                chapters={kebabChapters}
+                title={title}
+                slideProgressData={slideProgressData}
+                mcqScoreData={mcqScoreData}
+                completedSlides={completedSlides}
+                completedMCQs={completedMCQs}
+                completedFRQs={completedFRQs}
+              />
+            </div>
           </div>
         </main>
       </div>
