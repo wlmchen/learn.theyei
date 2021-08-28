@@ -1,6 +1,5 @@
 import React from 'react'
 import routes from '@/data/routes'
-import FRQPage from './frq/FRQPage'
 import MCQPage from './mcq/MCQPage'
 import Sidebar from './sidebar/Sidebar'
 import SlidesPage from './slides/SlidesPage'

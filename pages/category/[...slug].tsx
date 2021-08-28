@@ -16,7 +16,7 @@ import {
 } from '@/lib/mdx'
 import { MDXLayoutRenderer } from '@/components/mdx/MDXComponents'
 import routes from '@/data/routes'
-import FRQLayout from '@/components/category/frq/FRQLayout'
+import FRQPage from '@/components/category/frq/FRQPage'
 
 export async function getStaticPaths() {
   const posts = await getFiles('content')
@@ -94,14 +94,14 @@ export default function Category({ post }) {
                 sectionType={sectionType}
               >
                 {mdxSource !== '' && frontMatter !== '' ? (
-                  <FRQLayout categories={categories} slug={slug}>
+                  <FRQPage categories={categories} slug={slug}>
                     <MDXLayoutRenderer
                       mdxSource={mdxSource}
                       frontMatter={frontMatter}
                       slug={slug}
                       auth={auth}
                     />
-                  </FRQLayout>
+                  </FRQPage>
                 ) : (
                   ''
                 )}

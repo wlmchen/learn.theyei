@@ -1,10 +1,16 @@
 import { useAuth } from '@/lib/auth'
 import { saveFRQScore, createFRQScore, updateFRQScore } from '@/lib/db'
 import fetcher from '@/utils/fetcher'
-import { SaveIcon } from '@heroicons/react/outline'
+import {
+  EyeIcon,
+  EyeOffIcon,
+  SaveIcon,
+  XCircleIcon,
+} from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import useSWR from 'swr'
+import FRQNotification from './FRQNotification'
 
 function FRQ({ totalPoints, children }) {
   const auth = useAuth()
@@ -12,7 +18,8 @@ function FRQ({ totalPoints, children }) {
   const slug = router.query.slug || []
   const [showAnswers, setShowAnswers] = useState(false)
   const [points, setPoints] = useState('0')
-  const [response, setResponse] = useState('')
+  const [pointsError, setPointsError] = useState('')
+  const [showNotification, setShowNotification] = useState(false)
   const { data: frqScoreData } = useSWR(
     auth.user
       ? [`/api/frqs/${slug.join('/')}/${auth.user.uid}`, auth.user.token]
@@ -23,57 +30,48 @@ function FRQ({ totalPoints, children }) {
   useEffect(() => {
     if (frqScoreData) {
       console.log(frqScoreData)
-      setResponse(frqScoreData.score[0]?.response || '')
       setPoints(frqScoreData.score[0]?.score || '')
     }
   }, [frqScoreData])
 
-  const onCreateFRQScore = (newScoreToSave: boolean) => {
+  const onCreateFRQScore = () => {
     let newScore = {
       category: slug[0],
       chapter: slug[1],
-      response: response,
       score: points,
       totalPoints: totalPoints,
       createdAt: new Date().toISOString(),
       userId: auth.user.uid,
     }
-    if (newScoreToSave) {
-      newScore.score = '0'
-    }
     createFRQScore(newScore)
-  }
-  const onSaveFRQScore = (id, response) => {
-    saveFRQScore(id, response)
   }
 
   const onUpdateFRQScore = (id) => {
     const newScore = {
       score: points,
-      response: response,
       createdAt: new Date().toISOString(),
     }
     updateFRQScore(id, newScore)
   }
 
   const handleSubmit = () => {
-    if (parseInt(points) <= 10 && parseInt(points) >= 0) {
-      if (frqScoreData.score.length === 0) {
-        onCreateFRQScore(false)
-        console.log('create')
+    const userPoints = parseInt(points)
+    if (userPoints <= 10 && userPoints >= 0) {
+      if (userPoints % 1 === 0) {
+        setPointsError('')
+        setShowNotification(true)
+        if (frqScoreData.score.length === 0) {
+          onCreateFRQScore()
+          console.log('create')
+        } else {
+          onUpdateFRQScore(frqScoreData.score[0].id)
+          console.log('update', slug, frqScoreData)
+        }
       } else {
-        console.log('update', slug, frqScoreData)
-        onUpdateFRQScore(frqScoreData.score[0].id)
+        setPointsError(`Cannot be a decimal.`)
       }
-    }
-  }
-  const handleSave = () => {
-    if (frqScoreData.score.length === 0) {
-      onCreateFRQScore(true)
-      console.log('create')
     } else {
-      saveFRQScore(frqScoreData.score[0].id, response)
-      console.log('save', response)
+      setPointsError(`Must be a number 0 through ${totalPoints}.`)
     }
   }
   const handleCheck = () => {
@@ -84,19 +82,9 @@ function FRQ({ totalPoints, children }) {
     setPoints(e.target.value)
   }
 
-  const handleResponseChange = (e) => {
-    setResponse(e.target.value)
-  }
-
   return (
     <div className="mb-10">
-      <textarea
-        rows={8}
-        value={response}
-        onChange={handleResponseChange}
-        placeholder="Type your free response here. Once finished, you can check your answers and submit!"
-        className="shadow-sm focus:ring-yei-primary-main focus:border-yei-primary-main block w-full sm:text-sm border-gray-300 rounded-md"
-      ></textarea>
+      <FRQNotification showNotification={showNotification} />
       <div
         className={`flex ${
           showAnswers ? 'mb-32' : 'mb-0'
@@ -105,60 +93,73 @@ function FRQ({ totalPoints, children }) {
         <div className="w-full flex space-x-2">
           <button
             type="button"
-            className={`flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-800 bg-indigo-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2`}
-            onClick={handleSave}
-          >
-            <SaveIcon className="text-indigo-800 w-6 mr-3" /> Save
-          </button>
-          <button
-            type="button"
-            className={`h-full items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white ${
-              showAnswers ? 'opacity-50' : 'opacity-100'
-            } bg-yei-primary-main hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2`}
+            className={`flex h-full items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-yei-primary-main hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2`}
             onClick={handleCheck}
           >
-            {showAnswers ? 'Hide Answers' : 'Check Answers'}
+            {showAnswers ? (
+              <EyeOffIcon className="mr-2 h-5 w-5 text-white" />
+            ) : (
+              <EyeIcon className="mr-2 h-5 w-5 text-white" />
+            )}
+            {showAnswers ? `Hide Solutions` : `Show Solutions`}
           </button>
         </div>
         {showAnswers ? (
-          <div className="w-36 sm:w-56 h-full flex rounded-md shadow-sm">
-            <input
-              type="number"
-              name="company-website"
-              id="company-website"
-              min="0"
-              max={totalPoints.toString()}
-              value={points}
-              onChange={handlePointsChange}
-              className="h-full z-10 appearence-none focus:ring-0 flex-1 block w-full px-3 py-2 rounded-none rounded-l-md sm:text-sm border-gray-300 focus:ring-yei-primary-main focus:border-yei-primary-main"
-            />
-            <span className="h-full inline-flex items-center px-3 rounded-r-md border border-r-md border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
-              out of {totalPoints}
-            </span>
-          </div>
-        ) : (
-          ''
-        )}
-        {showAnswers ? (
-          <button
-            type="button"
-            className="h-full  items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-yei-primary-main hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2"
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
+          <>
+            <div className="w-36 sm:w-56 h-full flex rounded-md shadow-sm">
+              <input
+                type="number"
+                name="company-website"
+                id="company-website"
+                min="0"
+                max={totalPoints.toString()}
+                value={points}
+                onChange={handlePointsChange}
+                className="h-full z-10 appearence-none focus:ring-0 flex-1 block w-full px-3 py-2 rounded-none rounded-l-md sm:text-sm border-gray-300 focus:ring-yei-primary-main focus:border-yei-primary-main"
+              />
+              <span className="h-full inline-flex items-center px-3 rounded-r-md border border-r-md border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
+                out of {totalPoints}
+              </span>
+            </div>
+
+            <button
+              type="button"
+              className="h-full  items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-yei-primary-main hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          </>
         ) : (
           ''
         )}
       </div>
-      {showAnswers ? (
-        <div className="mt-8">
-          <ol className="alpha-list-mdx pl-8 bg-white rounded-xl shadow-xl">
-            {children}
-          </ol>
+      {showAnswers && (
+        <div>
+          {pointsError !== '' && (
+            <div className="mt-4 rounded-md bg-red-500 p-4">
+              <div className="flex">
+                <div className="flex-shrink-0">
+                  <XCircleIcon
+                    className="h-5 w-5 text-white"
+                    aria-hidden="true"
+                  />
+                </div>
+                <div className="ml-3">
+                  <h3 className="text-sm font-medium text-white">
+                    {pointsError}
+                  </h3>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="mt-8">
+            <ol className="alpha-list-mdx pl-8 bg-white rounded-xl shadow-xl">
+              {children}
+            </ol>
+          </div>
         </div>
-      ) : (
-        ''
       )}
     </div>
   )

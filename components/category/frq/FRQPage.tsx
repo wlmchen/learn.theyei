@@ -2,7 +2,7 @@ import routes from '@/data/routes'
 import { kebabCase } from '@/lib/utils'
 import React from 'react'
 
-function FRQLayout({ slug, categories, children }) {
+function FRQPage({ slug, categories, children }) {
   const kebabCategories = []
   categories.forEach((item) => kebabCategories.push(kebabCase(item)))
 
@@ -30,4 +30,4 @@ function FRQLayout({ slug, categories, children }) {
   )
 }
 
-export default FRQLayout
+export default FRQPage
