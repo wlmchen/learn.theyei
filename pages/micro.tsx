@@ -31,7 +31,7 @@ export default function general() {
         <Layout page="general" showNav={true}>
           <div className="w-full">
             <DashboardLayout
-              title="General"
+              title="Micro"
               description="This section covers the basics of economics. Here's to the start of your adventure in economics!"
               slug={slug}
             />

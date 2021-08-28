@@ -86,6 +86,11 @@ input {
   @apply bg-red-500 border-2 border-red-500 rounded-full h-10 w-10 flex items-center justify-center text-white font-bold mr-3 flex-shrink-0;
 }
 
+.circle-chart__circle {
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
 @keyframes slideInFromTop {
   from {
     transform: scale(2);
