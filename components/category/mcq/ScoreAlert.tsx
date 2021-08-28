@@ -25,7 +25,7 @@ export default function ScoreAlert({ score, totalPoints }) {
               {score}/{totalPoints}
             </b>
           </h3>
-          <div
+          <p
             className={`mt-2 text-sm text-${
               scorePercent >= 0.8
                 ? 'green'
@@ -34,14 +34,12 @@ export default function ScoreAlert({ score, totalPoints }) {
                 : 'red'
             }-100`}
           >
-            <p>
-              {scorePercent >= 0.8
-                ? "Keep up the great work! Let's keep this thing moving!"
-                : scorePercent >= 0.6
-                ? 'Hey, no problem at all. Want to try again?'
-                : "Don't sweat it. You'll get there. Want to give it another go?"}
-            </p>
-          </div>
+            {scorePercent >= 0.8
+              ? "Keep up the great work! Let's keep this thing moving!"
+              : scorePercent >= 0.6
+              ? 'Hey, no problem at all. Want to try again?'
+              : "Don't sweat it. You'll get there. Want to give it another go?"}
+          </p>
         </div>
       </div>
     </div>
