@@ -16,6 +16,16 @@ module.exports = {
     fontFamily: {
       sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
     },
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      black: colors.black,
+      white: colors.white,
+      gray: colors.trueGray,
+      indigo: colors.indigo,
+      red: colors.rose,
+      yellow: colors.amber,
+    },
     extend: {
       colors: {
         yei: {
@@ -35,14 +45,6 @@ module.exports = {
             blackVibrant: '#010915',
           },
         },
-        transparent: 'transparent',
-        current: 'currentColor',
-        black: colors.black,
-        white: colors.white,
-        gray: colors.trueGray,
-        indigo: colors.indigo,
-        red: colors.rose,
-        yellow: colors.amber,
       },
       boxShadow: {
         xlGreen: '0 20px 25px -5px #27936166, 0 10px 10px -5px #27936133',
