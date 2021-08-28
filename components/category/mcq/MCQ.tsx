@@ -5,7 +5,8 @@ import { CheckIcon, InformationCircleIcon } from '@heroicons/react/outline'
 import { useAuth } from '@/lib/auth'
 import { createMCQScore, removeMCQScore } from '@/lib/db'
 import fetcher from '@/utils/fetcher'
-import useSWR from 'swr'
+import useSWR, { mutate } from 'swr'
+import ScoreAlert from './ScoreAlert'
 
 function MCQ({ categories, chapters, slug }) {
   const auth = useAuth()
@@ -31,6 +32,7 @@ function MCQ({ categories, chapters, slug }) {
   )
   const [missedProblems, setMissedProblems] = useState(0)
   const [showAnswers, setShowAnswers] = useState(false)
+  const [newId, setNewId] = useState('')
 
   const handleChoice = (letterIndex, questionNumber) => {
     let newUserChoices = userChoices.slice()
@@ -46,7 +48,7 @@ function MCQ({ categories, chapters, slug }) {
         mcqScoreData.score[0]?.userChoices ||
           new Array(filteredMcqs.length).fill(null)
       )
-      setShowAnswers(mcqScoreData.score[0]?.userChoices || false)
+      setShowAnswers(mcqScoreData.score[0]?.userChoices !== undefined || false)
     }
   }, [mcqScoreData])
 
@@ -63,7 +65,8 @@ function MCQ({ categories, chapters, slug }) {
       userId: auth.user.uid,
     }
     console.log(newScore)
-    createMCQScore(newScore)
+    const { id } = createMCQScore(newScore)
+    setNewId(id)
   }
   const handleSubmit = () => {
     if (userChoices.filter((item) => item === null).length === 0) {
@@ -77,32 +80,37 @@ function MCQ({ categories, chapters, slug }) {
     }
   }
   const handleRedo = () => {
-    removeMCQScore(mcqScoreData.score[0].id)
+    setShowAnswers(false)
+    setUserChoices(new Array(filteredMcqs.length).fill(null))
+    removeMCQScore(mcqScoreData.score[0]?.id || newId)
   }
   return (
     <>
       {mcqScoreData && (
         <div>
-          <div className="mb-8 bg-white p-5 rounded-lg border-2 border-gray-200">
-            <p>
-              Looks like you've already taken this practice quiz. Would you like
-              to try again?
-            </p>
-            <button
-              type="submit"
-              className="inline-flex items-center px-4 mt-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-400 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main"
-              onClick={handleRedo}
-            >
-              Yes, retry.
-            </button>
-          </div>
+          {showAnswers && (
+            <div className="mb-8 bg-white p-5 rounded-lg border-2 border-gray-200">
+              <p className="text-gray-700 text-sm sm:text-base">
+                Looks like you've already taken this practice quiz. Would you
+                like to try again?
+              </p>
+              <button
+                type="submit"
+                className="inline-flex items-center px-4 mt-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-400 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main"
+                onClick={handleRedo}
+              >
+                Yes, retry.
+              </button>
+            </div>
+          )}
+
           {filteredMcqs.map(
             ({ question, a, b, c, d, correct, source }, index) => (
               <div key={index} className="mb-12">
                 <div className="inline-block uppercase px-4 py-2 rounded-lg bg-indigo-200 text-indigo-500 font-bold text-sm mb-2">
                   Problem #{index + 1}
                 </div>
-                <p className="text-lg italic">{question}</p>
+                <p className="text-base sm:text-lg italic">{question}</p>
                 {showAnswers ? (
                   <ul className="list-none my-4 ml-4 space-y-3">
                     <li className="flex items-center">
@@ -281,14 +289,25 @@ function MCQ({ categories, chapters, slug }) {
             )
           )}
           <div>
-            {showAnswers || mcqScoreData.score.length !== 0 ? (
-              <button
-                type="submit"
-                className="inline-flex items-center px-4 py-2 mb-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-400 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main"
-                onClick={handleRedo}
-              >
-                Redo?
-              </button>
+            {showAnswers ? (
+              <div>
+                <button
+                  type="submit"
+                  className="inline-flex items-center px-4 py-2 mb-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-400 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main"
+                  onClick={handleRedo}
+                >
+                  Redo?
+                </button>
+                <ScoreAlert
+                  score={
+                    userChoices?.filter(
+                      (item, index) =>
+                        item === letterToNum(filteredMcqs[index].correct)
+                    ).length
+                  }
+                  totalPoints={filteredMcqs?.length}
+                />
+              </div>
             ) : (
               <button
                 type="submit"
