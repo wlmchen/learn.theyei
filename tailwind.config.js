@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   purge: [
     './pages/**/*.{js,jsx,ts,tsx}',
@@ -33,6 +35,14 @@ module.exports = {
             blackVibrant: '#010915',
           },
         },
+        transparent: 'transparent',
+        current: 'currentColor',
+        black: colors.black,
+        white: colors.white,
+        gray: colors.trueGray,
+        indigo: colors.indigo,
+        red: colors.rose,
+        yellow: colors.amber,
       },
       boxShadow: {
         xlGreen: '0 20px 25px -5px #27936166, 0 10px 10px -5px #27936133',
