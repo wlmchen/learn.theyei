@@ -30,7 +30,7 @@ export default function Dashboard() {
       {auth.user ? (
         <Layout page="dashboard" showNav={true}>
           <div className="w-full">
-            <DashboardLayout />
+            <DashboardLayout title="Dashboard" description="" slug={slug} />
           </div>
         </Layout>
       ) : (
