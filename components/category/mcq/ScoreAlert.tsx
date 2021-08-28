@@ -5,7 +5,7 @@ export default function ScoreAlert({ score, totalPoints }) {
   return (
     <div
       className={`rounded-md max-w-md ${
-        scorePercent >= 0.8
+        scorePercent >= 0.8 
           ? 'bg-green-500'
           : scorePercent >= 0.6
           ? 'bg-yellow-500'
