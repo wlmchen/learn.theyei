@@ -19,7 +19,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Sidebar({ children, categories, modules }) {
+export function getInitialProps(c) {
+  return {
+    id: String(c.query.id),
+    key: String(c.query.id),
+  }
+}
+
+export default function Sidebar({ id, key, children, categories, modules }) {
+  console.log(id, key)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const router = useRouter()
   const slug = router.query.slug || []
@@ -111,8 +119,7 @@ export default function Sidebar({ children, categories, modules }) {
                             key={item}
                             className="space-y-1"
                             defaultOpen={
-                              true
-                              // kebabCase(item) === slug[1] ? true : false
+                              kebabCase(item) === slug[1] ? true : false
                             }
                           >
                             {({ open }) => (
@@ -134,7 +141,7 @@ export default function Sidebar({ children, categories, modules }) {
                                   />
                                 </Disclosure.Button>
                                 <Transition
-                                  show={open}
+                                  show={kebabCase(item) === slug[1] || open}
                                   enter="transition duration-100 ease-out"
                                   enterFrom="transform scale-95 opacity-0"
                                   enterTo="transform scale-100 opacity-100"
@@ -221,8 +228,7 @@ export default function Sidebar({ children, categories, modules }) {
                           key={item}
                           className="space-y-1"
                           defaultOpen={
-                            true
-                            // kebabCase(item) === slug[1] ? true : false
+                            kebabCase(item) === slug[1] ? true : false
                           }
                         >
                           {({ open }) => (
@@ -244,7 +250,7 @@ export default function Sidebar({ children, categories, modules }) {
                                 />
                               </Disclosure.Button>
                               <Transition
-                                show={open}
+                                show={kebabCase(item) === slug[1] || open}
                                 enter="transition duration-100 ease-out"
                                 enterFrom="transform scale-95 opacity-0"
                                 enterTo="transform scale-100 opacity-100"
