@@ -20,7 +20,6 @@ function classNames(...classes) {
 }
 
 export default function Sidebar({ children, categories, modules }) {
-  console.log(id, key)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const router = useRouter()
   const slug = router.query.slug || []
