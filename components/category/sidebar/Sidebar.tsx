@@ -19,14 +19,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export function getInitialProps(c) {
-  return {
-    id: String(c.query.id),
-    key: String(c.query.id),
-  }
-}
-
-export default function Sidebar({ id, key, children, categories, modules }) {
+export default function Sidebar({ children, categories, modules }) {
   console.log(id, key)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const router = useRouter()
