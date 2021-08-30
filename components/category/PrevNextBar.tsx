@@ -44,12 +44,23 @@ function PrevNextBar({ kebabCategories, kebabChapters, slug }) {
           )}
         </>
       ) : (
-        <Link href={`/category/${slug[0]}/${slug[1]}/${prevModule}`}>
-          <span className="flex items-center font-semibold text-gray-600 cursor-pointer">
-            <ChevronLeftIcon className="w-5 h-5 mr-1" />
-            Prev
-          </span>
-        </Link>
+        <>
+          {prevModule === 'frq-practice' ? (
+            <Link href={`/category/${slug[0]}/${prevChapter}/${prevModule}`}>
+              <span className="flex items-center font-semibold text-gray-600 cursor-pointer">
+                <ChevronLeftIcon className="w-5 h-5 mr-1" />
+                Prev
+              </span>
+            </Link>
+          ) : (
+            <Link href={`/category/${slug[0]}/${slug[1]}/${prevModule}`}>
+              <span className="flex items-center font-semibold text-gray-600 cursor-pointer">
+                <ChevronLeftIcon className="w-5 h-5 mr-1" />
+                Prev
+              </span>
+            </Link>
+          )}
+        </>
       )}
       {nextChapter === undefined && nextModule === 'frq-practice' ? (
         <>
@@ -72,12 +83,23 @@ function PrevNextBar({ kebabCategories, kebabChapters, slug }) {
           )}
         </>
       ) : (
-        <Link href={`/category/${slug[0]}/${slug[1]}/${nextModule}`}>
-          <span className="flex items-center font-bold text-gray-600 cursor-pointer">
-            Next
-            <ChevronRightIcon className="w-5 h-5 ml-1" />
-          </span>
-        </Link>
+        <>
+          {nextModule === 'slides' ? (
+            <Link href={`/category/${slug[0]}/${nextCategory}/${nextModule}`}>
+              <span className="flex items-center font-semibold text-gray-600 cursor-pointer">
+                <ChevronLeftIcon className="w-5 h-5 mr-1" />
+                Prev
+              </span>
+            </Link>
+          ) : (
+            <Link href={`/category/${slug[0]}/${slug[1]}/${nextModule}`}>
+              <span className="flex items-center font-semibold text-gray-600 cursor-pointer">
+                <ChevronLeftIcon className="w-5 h-5 mr-1" />
+                Prev
+              </span>
+            </Link>
+          )}
+        </>
       )}
     </div>
   )
