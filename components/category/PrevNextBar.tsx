@@ -26,7 +26,7 @@ function PrevNextBar({ kebabCategories, kebabChapters, slug }) {
       {prevChapter === undefined && prevModule === 'frq-practice' ? (
         <>
           {prevCategory !== undefined ? (
-            <Link
+            <a
               href={`/category/${prevCategory}/${kebabCase(
                 routes[kebabCategories.indexOf(slug[0]) - 1].children[
                   routes[kebabCategories.indexOf(slug[0]) - 1].children.length -
@@ -38,7 +38,7 @@ function PrevNextBar({ kebabCategories, kebabChapters, slug }) {
                 <ChevronLeftIcon className="w-5 h-5 mr-1" />
                 Prev
               </span>
-            </Link>
+            </a>
           ) : (
             <span></span>
           )}
@@ -46,26 +46,26 @@ function PrevNextBar({ kebabCategories, kebabChapters, slug }) {
       ) : (
         <>
           {prevModule === 'frq-practice' ? (
-            <Link href={`/category/${slug[0]}/${prevChapter}/${prevModule}`}>
+            <a href={`/category/${slug[0]}/${prevChapter}/${prevModule}`}>
               <span className="flex items-center font-semibold text-gray-600 cursor-pointer">
                 <ChevronLeftIcon className="w-5 h-5 mr-1" />
                 Prev
               </span>
-            </Link>
+            </a>
           ) : (
-            <Link href={`/category/${slug[0]}/${slug[1]}/${prevModule}`}>
+            <a href={`/category/${slug[0]}/${slug[1]}/${prevModule}`}>
               <span className="flex items-center font-semibold text-gray-600 cursor-pointer">
                 <ChevronLeftIcon className="w-5 h-5 mr-1" />
                 Prev
               </span>
-            </Link>
+            </a>
           )}
         </>
       )}
       {nextChapter === undefined && nextModule === 'frq-practice' ? (
         <>
           {nextCategory !== undefined ? (
-            <Link
+            <a
               href={`/category/${nextCategory}/${kebabCase(
                 routes[kebabCategories.indexOf(slug[0]) + 1].children[
                   routes[kebabCategories.indexOf(slug[0]) + 1].children.length -
@@ -77,7 +77,7 @@ function PrevNextBar({ kebabCategories, kebabChapters, slug }) {
                 Next
                 <ChevronRightIcon className="w-5 h-5 ml-1" />
               </span>
-            </Link>
+            </a>
           ) : (
             <span></span>
           )}
@@ -85,19 +85,19 @@ function PrevNextBar({ kebabCategories, kebabChapters, slug }) {
       ) : (
         <>
           {nextModule === 'slides' ? (
-            <Link href={`/category/${slug[0]}/${nextChapter}/${nextModule}`}>
+            <a href={`/category/${slug[0]}/${nextChapter}/${nextModule}`}>
               <span className="flex items-center font-semibold text-gray-600 cursor-pointer">
                 Next
                 <ChevronRightIcon className="w-5 h-5 ml-1" />
               </span>
-            </Link>
+            </a>
           ) : (
-            <Link href={`/category/${slug[0]}/${slug[1]}/${nextModule}`}>
+            <a href={`/category/${slug[0]}/${slug[1]}/${nextModule}`}>
               <span className="flex items-center font-semibold text-gray-600 cursor-pointer">
                 Next
                 <ChevronRightIcon className="w-5 h-5 ml-1" />
               </span>
-            </Link>
+            </a>
           )}
         </>
       )}
