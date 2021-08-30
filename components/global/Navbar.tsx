@@ -36,8 +36,8 @@ export default function Navbar({ page }) {
                 <div className="flex">
                   <div className="flex-shrink-0 flex items-center">
                     <img
-                      className="h-9 w-auto"
-                      src="/img/logos/yei-logo-full.png"
+                      className="h-10 w-auto"
+                      src="/img/logos/yei-training-logo.svg"
                       alt="YEI Logo"
                     />
                   </div>
