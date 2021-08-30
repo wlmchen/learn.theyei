@@ -111,7 +111,8 @@ export default function Sidebar({ children, categories, modules }) {
                             key={item}
                             className="space-y-1"
                             defaultOpen={
-                              kebabCase(item) === slug[1] ? true : false
+                              true
+                              // kebabCase(item) === slug[1] ? true : false
                             }
                           >
                             {({ open }) => (
@@ -220,7 +221,8 @@ export default function Sidebar({ children, categories, modules }) {
                           key={item}
                           className="space-y-1"
                           defaultOpen={
-                            kebabCase(item) === slug[1] ? true : false
+                            true
+                            // kebabCase(item) === slug[1] ? true : false
                           }
                         >
                           {({ open }) => (
