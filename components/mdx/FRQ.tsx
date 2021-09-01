@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import FRQNotification from './FRQNotification'
 
-function FRQ({ totalPoints, children }) {
+function FRQ({ num, totalPoints, children }) {
   const auth = useAuth()
   const router = useRouter()
   const slug: any = router.query.slug || []
@@ -33,6 +33,7 @@ function FRQ({ totalPoints, children }) {
     let newScore = {
       category: slug[0],
       chapter: slug[1],
+      num: num,
       score: points,
       totalPoints: totalPoints,
       createdAt: new Date().toISOString(),
