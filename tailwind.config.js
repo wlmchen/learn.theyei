@@ -14,7 +14,7 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      sans: ['ui-sans-serif', 'system-ui', 'sans-serif'],
     },
     colors: {
       transparent: 'transparent',
