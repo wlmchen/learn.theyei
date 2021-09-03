@@ -6,7 +6,14 @@ function UncompleteModule({
   allData,
   courseData: { categories, chapters, kebabCategories, kebabChapters },
 }) {
-  const [suggestion, setSuggestion] = useState({})
+  const [suggestion, setSuggestion] = useState({
+    progress: '',
+    category: '',
+    chapter: '',
+    userChoices: '',
+    totalPoints: '',
+    score: '',
+  })
   useEffect(() => {
     if (allData) {
       let checkingForIncompleteSlides = allData
@@ -44,7 +51,7 @@ function UncompleteModule({
     <>
       {suggestion && (
         <>
-          {suggestion.progress !== undefined ? (
+          {suggestion.progress !== '' ? (
             <div className="mb-8 rounded-md bg-blue-50 p-4">
               <div className="flex">
                 <div className="flex-shrink-0">
@@ -77,7 +84,7 @@ function UncompleteModule({
           ) : (
             ''
           )}
-          {suggestion.userChoices !== undefined ? (
+          {suggestion.userChoices !== '' ? (
             <div className="mb-8 rounded-md bg-blue-50 p-4 ">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
