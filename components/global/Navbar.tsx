@@ -25,7 +25,7 @@ function classNames(...classes) {
 export default function Navbar({ page }) {
   const auth = useAuth()
   const router = useRouter()
-  console.log(router.query.slug)
+  // console.log(router.query.slug)
   return (
     <>
       <Disclosure as="nav" className="bg-white border-b border-gray-200">
@@ -129,7 +129,7 @@ export default function Navbar({ page }) {
                                 width={40}
                                 height={40}
                                 src={
-                                  auth.user.photoUrl ||
+                                  auth.user?.photoUrl ||
                                   '/img/others/emptyUser.svg'
                                 }
                                 alt="Profile picture"
@@ -233,17 +233,17 @@ export default function Navbar({ page }) {
                       <Image
                         width={40}
                         height={40}
-                        src={auth.user.photoUrl || '/img/others/emptyUser.svg'}
+                        src={auth.user?.photoUrl || '/img/others/emptyUser.svg'}
                         alt="Profile picture"
                       />
                     </div>
                   </div>
                   <div className="ml-3">
                     <div className="text-base font-medium text-gray-800">
-                      {auth.user.name}
+                      {auth.user?.name || ''}
                     </div>
                     <div className="text-sm font-medium text-gray-500">
-                      {auth.user.email}
+                      {auth.user?.email || ''}
                     </div>
                   </div>
                 </div>
@@ -251,12 +251,17 @@ export default function Navbar({ page }) {
                   {userNavigation.map((item) => (
                     <div key={item.name}>
                       {item.name === 'Sign out' ? (
-                        <button
-                          className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
-                          onClick={() => auth.signout()}
-                        >
-                          {item.name}
-                        </button>
+                        <>
+                          {auth.user ? (
+                            <button className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
+                              <div className="w-20 bg-gray-200 animate-pulse h-5 rounded-md"></div>
+                            </button>
+                          ) : (
+                            <button className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
+                              <div className="w-20 bg-gray-200 animate-pulse h-5 rounded-md"></div>
+                            </button>
+                          )}
+                        </>
                       ) : (
                         <a
                           href={item.href}
