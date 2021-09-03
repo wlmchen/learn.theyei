@@ -46,10 +46,10 @@ export default function general() {
   return (
     <>
       {auth.user && { completedSlides, completedMCQs, completedFRQs } ? (
-        <Layout page="general" showNav={true}>
+        <Layout page="macro" showNav={true}>
           <div className="w-full">
             <Dashboard
-              title="General"
+              title="Macro"
               description="This section covers the basics of economics. Here's to the start of your adventure in economics!"
               moduleData={{ slideProgressData, mcqScoreData }}
               completedData={{
