@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import mcq from '@/data/mcq'
-import { numToLetter, kebabCase, letterToNum } from '@/lib/utils'
+import { kebabCase, letterToNum } from '@/lib/utils'
 import { CheckIcon, InformationCircleIcon } from '@heroicons/react/outline'
 import { useAuth } from '@/lib/auth'
 import { createMCQScore, removeMCQScore } from '@/lib/db'

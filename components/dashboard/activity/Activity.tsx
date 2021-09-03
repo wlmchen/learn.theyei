@@ -1,0 +1,57 @@
+import React, { useState, useEffect } from 'react'
+import DayDetails from './DayDetails'
+import DayGrid from './DayGrid'
+import Streak from './Streak'
+
+function Activity({ allData, courseData }) {
+  const [dayDetails, setDayDetails] = useState([])
+
+  const [daySelected, setDaySelected] = useState(0)
+
+  useEffect(() => {
+    if (allData) {
+      setDayDetails(
+        allData.filter((item) => {
+          let mydate = new Date()
+          mydate.setDate(mydate.getDate())
+          return (
+            new Date(item.createdAt).getUTCDate() === mydate.getUTCDate() &&
+            new Date(item.createdAt).getUTCMonth() === mydate.getUTCMonth() &&
+            new Date(item.createdAt).getUTCFullYear() ===
+              mydate.getUTCFullYear()
+          )
+        })
+      )
+    }
+  }, [allData])
+
+  const handleSetDayDetails = (newDetails) => {
+    setDayDetails(newDetails)
+  }
+  const handleSetDaySelected = (newSelected) => {
+    setDaySelected(newSelected)
+  }
+  return (
+    <div className="mt-8">
+      <div className="mt-4 p-4 border border-gray-200 rounded-2xl bg-gray-100 flex flex-col">
+        <DayGrid
+          allData={allData}
+          daySelected={daySelected}
+          handleSetDaySelected={(newSelected) =>
+            handleSetDaySelected(newSelected)
+          }
+          handleSetDayDetails={(newDetails) => handleSetDayDetails(newDetails)}
+        />
+        <Streak allData={allData} />
+        <DayDetails
+          allData={allData}
+          daySelected={daySelected}
+          dayDetails={dayDetails}
+          courseData={courseData}
+        />
+      </div>
+    </div>
+  )
+}
+
+export default Activity

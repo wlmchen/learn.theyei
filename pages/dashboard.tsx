@@ -1,40 +1,73 @@
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
 
-import CategoryLayout from '@/components/category/CategoryLayout'
-import { kebabCase } from '@/lib/utils'
 import { useAuth } from '@/lib/auth'
-import DashboardLayout from '@/components/dashboard/DashboardLayout'
-import Layout from '../components/global/Layout'
-import routes from '@/data/routes'
 
-export default function Dashboard() {
+import Dashboard from '@/components/dashboard/Dashboard'
+import Layout from '../components/global/Layout'
+import { useEffect, useState } from 'react'
+import { kebabCase } from '@/lib/utils'
+import routes from '@/data/routes'
+import useSWR from 'swr'
+import fetcher from '@/utils/fetcher'
+import DashboardSkeleton from './../components/dashboard/DashboardSkeleton'
+
+export default function dashboard() {
   const auth = useAuth()
   const router = useRouter()
   const slug = router.query.slug || []
 
-  const [sectionType, setSectionType] = useState('')
+  const [allData, setAllData] = useState([])
 
-  let categories = ['General', 'Micro', 'Macro']
+  const [completedSlides, setCompletedSlides] = useState([])
+  const [completedMCQs, setCompletedMCQs] = useState([])
+  const [completedFRQs, setCompletedFRQs] = useState([])
 
-  let modules = ['Slides', 'MCQ Practice', 'FRQ Practice']
-  const kebabModules = []
-  modules.forEach((item) => kebabModules.push(kebabCase(item)))
+  const { data: slideProgressData } = useSWR(
+    auth.user ? [`/api/slides/${auth.user.uid}`, auth.user.token] : null,
+    fetcher
+  )
+  const { data: mcqScoreData } = useSWR(
+    auth.user ? [`/api/mcqs/${auth.user.uid}`, auth.user.token] : null,
+    fetcher
+  )
+  const { data: frqScoreData } = useSWR(
+    auth.user ? [`/api/frqs/${auth.user.uid}`, auth.user.token] : null,
+    fetcher
+  )
 
   useEffect(() => {
-    setSectionType(slug[2])
-  }, [router])
+    if (slideProgressData && mcqScoreData && frqScoreData) {
+      setAllData([...slideProgressData.progress, ...mcqScoreData.score])
+
+      setCompletedSlides(
+        slideProgressData.progress?.filter((item) => {
+          return item.progress === 'completed'
+        }) || []
+      )
+      setCompletedMCQs(mcqScoreData?.score || [])
+      setCompletedFRQs(frqScoreData?.score || [])
+    }
+  }, [slideProgressData, mcqScoreData, frqScoreData])
 
   return (
     <>
-      {auth.user ? (
+      {auth.user && allData ? (
         <Layout page="dashboard" showNav={true}>
           <div className="w-full">
-            <DashboardLayout title="Dashboard" description="" slug={slug} />
+            <Dashboard
+              allData={allData}
+              moduleData={{ slideProgressData, mcqScoreData, frqScoreData }}
+              completedData={{ completedSlides, completedMCQs, completedFRQs }}
+              slug={slug}
+            />
           </div>
         </Layout>
       ) : (
-        ''
+        <Layout page="dashboard" showNav={true}>
+          <div className="w-full">
+            <DashboardSkeleton />
+          </div>
+        </Layout>
       )}
     </>
   )
