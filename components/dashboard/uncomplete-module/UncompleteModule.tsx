@@ -7,12 +7,12 @@ function UncompleteModule({
   courseData: { categories, chapters, kebabCategories, kebabChapters },
 }) {
   const [suggestion, setSuggestion] = useState({
-    progress: '',
-    category: '',
-    chapter: '',
-    userChoices: '',
-    totalPoints: '',
-    score: '',
+    progress: null,
+    category: null,
+    chapter: null,
+    userChoices: null,
+    totalPoints: null,
+    score: null,
   })
   useEffect(() => {
     if (allData) {
@@ -51,7 +51,7 @@ function UncompleteModule({
     <>
       {suggestion && (
         <>
-          {suggestion.progress !== '' ? (
+          {suggestion.progress && suggestion.progress !== null ? (
             <div className="mb-8 rounded-md bg-blue-50 p-4">
               <div className="flex">
                 <div className="flex-shrink-0">
@@ -84,7 +84,7 @@ function UncompleteModule({
           ) : (
             ''
           )}
-          {suggestion.userChoices !== '' ? (
+          {suggestion.userChoices && suggestion.userChoices !== null ? (
             <div className="mb-8 rounded-md bg-blue-50 p-4 ">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
