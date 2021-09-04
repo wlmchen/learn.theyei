@@ -201,7 +201,11 @@ export default function SlideSelect({ slug }) {
           </Listbox>
         </div>
       ) : (
-        ''
+        <div className="w-48">
+          <div className="mt-1 relative">
+            <div className="h-10 rounded-md w-48 bg-gray-300 animate-pulse"></div>
+          </div>
+        </div>
       )}
     </>
   )

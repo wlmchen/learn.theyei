@@ -1,11 +1,10 @@
-import routes from '@/data/routes'
+import routes, { kebabCategories } from '@/data/routes'
 import { kebabCase } from '@/lib/utils'
 import React from 'react'
 
 function ProgressBar({
   title,
   completedData: { completedSlides, completedMCQs, completedFRQs },
-  kebabCategories,
 }) {
   return (
     <div className="bg-green-100 max-w-lg m-5 w-full p-5 shadow-2xl rounded-xl inline-flex flex-col justify-center space-y-4">

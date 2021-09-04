@@ -22,44 +22,15 @@ export default function Dashboard({
 }) {
   const auth = useAuth()
 
-  let categories = ['General', 'Micro', 'Macro']
-  const kebabCategories = []
-  categories.forEach((item) => kebabCategories.push(kebabCase(item)))
-
-  const chapters = []
-  const kebabChapters = []
-  routes.forEach((category) =>
-    category.children.forEach((item) => {
-      chapters.push(item)
-      kebabChapters.push(kebabCase(item))
-    })
-  )
-
   return (
     <>
       <div className="max-w-4xl m-auto min-h-screen bg-white p-5">
-        <UncompleteModule
-          allData={allData}
-          courseData={{
-            categories,
-            chapters,
-            kebabCategories,
-            kebabChapters,
-          }}
-        />
+        <UncompleteModule allData={allData} />
         <h1>
           {allData.length === 0 ? 'Welcome,' : 'Welcome back,'} {auth.user.name}
           .
         </h1>
-        <Activity
-          allData={allData}
-          courseData={{
-            categories,
-            chapters,
-            kebabCategories,
-            kebabChapters,
-          }}
-        />
+        <Activity allData={allData} />
         <AllProgress
           completedData={{ completedSlides, completedMCQs, completedFRQs }}
         />

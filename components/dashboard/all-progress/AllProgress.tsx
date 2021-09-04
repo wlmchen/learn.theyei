@@ -1,5 +1,5 @@
 import React from 'react'
-import routes from '@/data/routes'
+import routes, { categories } from '@/data/routes'
 import { kebabCase } from '@/lib/utils'
 import ProgressBar from './ProgressBar'
 import Link from 'next/link'
@@ -7,7 +7,6 @@ import Link from 'next/link'
 function AllProgress({
   completedData: { completedSlides, completedMCQs, completedFRQs },
 }) {
-  const categories = ['General', 'Micro', 'Macro']
   return (
     <div className="mt-8">
       <h2 className="font-medium">Total Progress</h2>

@@ -49,7 +49,7 @@ export default function general() {
   return (
     <>
       {auth.user && { completedSlides, completedMCQs, completedFRQs } ? (
-        <Layout page="general" showNav={true}>
+        <Layout page="general" showNav>
           <div className="w-full">
             <Dashboard
               title="General"
@@ -65,7 +65,7 @@ export default function general() {
           </div>
         </Layout>
       ) : (
-        <Layout page="general" showNav={true}>
+        <Layout page="general" showNav>
           <div className="w-full">
             <DashboardSkeleton />
           </div>

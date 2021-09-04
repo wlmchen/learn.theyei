@@ -1,8 +1,8 @@
-import routes from '@/data/routes'
+import routes, { categories, chapters } from '@/data/routes'
 import React from 'react'
 import MCQ from './MCQ'
 
-function MCQPage({ slug, categories, chapters }) {
+function MCQPage({ slug }) {
   return (
     <div className="w-full">
       <h3 className="border-b border-gray-300 mb-4 pb-2 uppercase italic font-semibold text-gray-400 text-base tracking-widest">
@@ -16,7 +16,7 @@ function MCQPage({ slug, categories, chapters }) {
         }
       </h1>
       <br />
-      <MCQ categories={categories} chapters={chapters} slug={slug} />
+      <MCQ slug={slug} />
     </div>
   )
 }

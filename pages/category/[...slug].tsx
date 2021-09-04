@@ -15,7 +15,7 @@ import {
   getAllFilesFrontMatter,
 } from '@/lib/mdx'
 import { MDXLayoutRenderer } from '@/components/mdx/MDXComponents'
-import routes from '@/data/routes'
+import routes, { kebabModules } from '@/data/routes'
 import FRQPage from '@/components/category/frq/FRQPage'
 
 export async function getStaticPaths() {
@@ -63,12 +63,6 @@ export default function Category({ post }) {
 
   const [sectionType, setSectionType] = useState('')
 
-  let categories = ['General', 'Micro', 'Macro']
-
-  let modules = ['Slides', 'MCQ Practice', 'FRQ Practice']
-  const kebabModules = []
-  modules.forEach((item) => kebabModules.push(kebabCase(item)))
-
   useEffect(() => {
     setSectionType(slug[2])
   }, [router])
@@ -87,14 +81,9 @@ export default function Category({ post }) {
         <Layout page={slug[0]} showNav={slug.length === 1}>
           <div className="w-full">
             {kebabModules.indexOf(sectionType) !== -1 ? (
-              <CategoryLayout
-                categories={categories}
-                modules={modules}
-                slug={slug}
-                sectionType={sectionType}
-              >
+              <CategoryLayout slug={slug} sectionType={sectionType}>
                 {mdxSource !== '' && frontMatter !== '' ? (
-                  <FRQPage categories={categories} slug={slug}>
+                  <FRQPage slug={slug}>
                     <MDXLayoutRenderer
                       mdxSource={mdxSource}
                       frontMatter={frontMatter}

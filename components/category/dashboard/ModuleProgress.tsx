@@ -1,11 +1,10 @@
-import routes from '@/data/routes'
+import routes, { kebabCategories } from '@/data/routes'
 import { kebabCase } from '@/lib/utils'
 import React from 'react'
 
 function ModuleProgress({
   title,
   completedData: { completedSlides, completedMCQs, completedFRQs },
-  kebabCategories,
 }) {
   return (
     <div>

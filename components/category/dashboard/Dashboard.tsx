@@ -11,16 +11,6 @@ export default function Dashboard({
   completedData: { completedSlides, completedMCQs, completedFRQs },
   slug,
 }) {
-  let categories = ['General', 'Micro', 'Macro']
-  const kebabCategories = []
-  categories.forEach((item) => kebabCategories.push(kebabCase(item)))
-
-  const chapters = []
-  const kebabChapters = []
-  routes[kebabCategories.indexOf(kebabCase(title))].children.forEach((item) => {
-    chapters.push(item)
-    kebabChapters.push(kebabCase(item))
-  })
   return (
     <div className="min-h-screen bg-white">
       <div className="">
@@ -38,12 +28,10 @@ export default function Dashboard({
             <ProgressBar
               title={title}
               completedData={{ completedSlides, completedMCQs, completedFRQs }}
-              kebabCategories={kebabCategories}
             />
             <ModuleProgress
               title={title}
               completedData={{ completedSlides, completedMCQs, completedFRQs }}
-              kebabCategories={kebabCategories}
             />
           </div>
         </div>
@@ -51,15 +39,13 @@ export default function Dashboard({
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div className="relative w-full flex flex-col items-center px-4 sm:px-0">
               <Pathway
-                slug={slug}
-                categories={kebabCategories}
-                chapters={kebabChapters}
                 title={title}
-                slideProgressData={slideProgressData}
-                mcqScoreData={mcqScoreData}
-                completedSlides={completedSlides}
-                completedMCQs={completedMCQs}
-                completedFRQs={completedFRQs}
+                scoreData={{ slideProgressData, mcqScoreData }}
+                completedData={{
+                  completedSlides,
+                  completedMCQs,
+                  completedFRQs,
+                }}
               />
             </div>
           </div>

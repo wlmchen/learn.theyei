@@ -1,11 +1,9 @@
+import { categories, kebabCategories, chapters, kebabChapters } from '@/data/routes'
 import { InformationCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
-function UncompleteModule({
-  allData,
-  courseData: { categories, chapters, kebabCategories, kebabChapters },
-}) {
+function UncompleteModule({ allData }) {
   const [suggestion, setSuggestion] = useState({
     progress: null,
     category: null,

@@ -1,10 +1,10 @@
-import routes from '@/data/routes'
+import routes, { kebabCategories, kebabChapters } from '@/data/routes'
 import { kebabCase } from '@/lib/utils'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React from 'react'
 
-function PrevNextBar({ kebabCategories, kebabChapters, slug }) {
+function PrevNextBar({ slug }) {
   let prevCategory = kebabCategories[kebabCategories.indexOf(slug[0]) - 1]
   let nextCategory = kebabCategories[kebabCategories.indexOf(slug[0]) + 1]
   let prevChapter = kebabChapters[kebabChapters.indexOf(slug[1]) - 1]

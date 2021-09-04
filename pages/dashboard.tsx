@@ -52,7 +52,7 @@ export default function dashboard() {
   return (
     <>
       {auth.user && allData ? (
-        <Layout page="dashboard" showNav={true}>
+        <Layout page="dashboard" showNav>
           <div className="w-full">
             <Dashboard
               allData={allData}
@@ -63,7 +63,7 @@ export default function dashboard() {
           </div>
         </Layout>
       ) : (
-        <Layout page="dashboard" showNav={true}>
+        <Layout page="dashboard" showNav>
           <div className="w-full">
             <DashboardSkeleton />
           </div>

@@ -7,8 +7,9 @@ import { createMCQScore, removeMCQScore } from '@/lib/db'
 import fetcher from '@/utils/fetcher'
 import useSWR, { mutate } from 'swr'
 import ScoreAlert from './ScoreAlert'
+import { chapters } from '@/data/routes'
 
-function MCQ({ categories, chapters, slug }) {
+function MCQ({ slug }) {
   const auth = useAuth()
   const { data: mcqScoreData } = useSWR(
     auth.user

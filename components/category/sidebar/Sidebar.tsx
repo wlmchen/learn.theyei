@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { kebabCase } from '@/lib/utils'
 import GroupSelect from './GroupSelect'
 
-import routes from '@/data/routes'
+import routes, { categories, kebabCategories } from '@/data/routes'
 import { useRouter } from 'next/router'
 import { XIcon, MenuAlt2Icon, BellIcon } from '@heroicons/react/solid'
 import {
@@ -19,12 +19,10 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Sidebar({ children, categories, modules }) {
+export default function Sidebar({ children, modules }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const router = useRouter()
   const slug = router.query.slug || []
-  const kebabCategories = []
-  categories.forEach((item) => kebabCategories.push(kebabCase(item)))
   const [categoryIndex, setCategoryIndex] = useState(-1)
 
   useEffect(() => {

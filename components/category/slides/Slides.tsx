@@ -1,7 +1,8 @@
 import React from 'react'
 import slides from '@/data/slides'
+import { categories, chapters } from '@/data/routes'
 
-function Slides({ categories, chapters, slug }) {
+function Slides({ slug }) {
   return (
     <iframe
       src={

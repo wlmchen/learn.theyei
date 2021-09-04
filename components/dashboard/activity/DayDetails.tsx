@@ -1,11 +1,12 @@
+import {
+  categories,
+  kebabCategories,
+  chapters,
+  kebabChapters,
+} from '@/data/routes'
 import React, { useState, useEffect } from 'react'
 
-function DayDetails({
-  allData,
-  daySelected,
-  dayDetails,
-  courseData: { categories, chapters, kebabCategories, kebabChapters },
-}) {
+function DayDetails({ allData, daySelected, dayDetails }) {
   const [dayDetailsMaxDisplay, setDayDetailsMaxDisplay] = useState(4)
 
   const handleDayDetailsMaxDisplay = () => {

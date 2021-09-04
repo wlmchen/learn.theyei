@@ -1,19 +1,13 @@
 import React from 'react'
-import routes from '@/data/routes'
+import routes, { categories } from '@/data/routes'
 import Link from 'next/link'
 import { kebabCase } from '@/lib/utils'
 import { BookOpenIcon, CheckIcon, XIcon } from '@heroicons/react/outline'
 
 function Pathway({
-  slug,
-  categories,
-  chapters,
   title,
-  slideProgressData,
-  completedSlides,
-  completedMCQs,
-  completedFRQs,
-  mcqScoreData,
+  scoreData: { slideProgressData, mcqScoreData },
+  completedData: { completedSlides, completedMCQs, completedFRQs },
 }) {
   const slideDataNamesOnly = []
   slideProgressData?.progress.forEach((item) => {
@@ -23,8 +17,6 @@ function Pathway({
   mcqScoreData?.score.forEach((item) => {
     mcqDataNamesOnly.push(`${item.category}/${item.chapter}`)
   })
-  console.log(slideDataNamesOnly)
-  console.log('yo', completedSlides, completedMCQs, completedFRQs)
 
   const getSlides = (item) => {
     return (

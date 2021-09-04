@@ -46,7 +46,7 @@ export default function general() {
   return (
     <>
       {auth.user && { completedSlides, completedMCQs, completedFRQs } ? (
-        <Layout page="macro" showNav={true}>
+        <Layout page="macro" showNav>
           <div className="w-full">
             <Dashboard
               title="Macro"
@@ -62,7 +62,7 @@ export default function general() {
           </div>
         </Layout>
       ) : (
-        <Layout page="general" showNav={true}>
+        <Layout page="general" showNav>
           <div className="w-full">
             <DashboardSkeleton />
           </div>

@@ -3,9 +3,9 @@ import { useAuth } from '@/lib/auth'
 
 export default function IndexPage() {
   const auth = useAuth()
-
   return (
     <div>
+      {}hi
       <div>
         {auth?.user ? (
           <div>

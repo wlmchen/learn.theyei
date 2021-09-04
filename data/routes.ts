@@ -1,4 +1,6 @@
-const routes = [
+import { kebabCase, kebabArray } from '@/lib/utils'
+
+const routes: any[] = [
   {
     name: 'General',
     children: [
@@ -33,4 +35,23 @@ const routes = [
   },
 ]
 
+const modules = ['Slides', 'MCQ Practice', 'FRQ Practice']
+const kebabModules = kebabArray(modules)
+
+const categories = routes.map((category) => category.name)
+
+let kebabCategories = kebabArray(categories)
+
+const chapters = routes.map((category) => category.children)
+
+const kebabChapters = chapters.map((item) => kebabArray(item))
+
 export default routes
+export {
+  modules,
+  kebabModules,
+  categories,
+  chapters,
+  kebabCategories,
+  kebabChapters,
+}
