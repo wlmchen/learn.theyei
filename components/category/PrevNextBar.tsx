@@ -5,10 +5,14 @@ import Link from 'next/link'
 import React from 'react'
 
 function PrevNextBar({ slug }) {
+  const kebabChaptersSelection = kebabChapters[kebabCategories.indexOf(slug[0])]
   let prevCategory = kebabCategories[kebabCategories.indexOf(slug[0]) - 1]
   let nextCategory = kebabCategories[kebabCategories.indexOf(slug[0]) + 1]
-  let prevChapter = kebabChapters[kebabChapters.indexOf(slug[1]) - 1]
-  let nextChapter = kebabChapters[kebabChapters.indexOf(slug[1]) + 1]
+  console.log(kebabChaptersSelection, kebabChapters)
+  let prevChapter =
+    kebabChaptersSelection[kebabChaptersSelection.indexOf(slug[1]) - 1]
+  let nextChapter =
+    kebabChaptersSelection[kebabChaptersSelection.indexOf(slug[1]) + 1]
   let prevModule =
     slug[2] === 'slides'
       ? 'frq-practice'

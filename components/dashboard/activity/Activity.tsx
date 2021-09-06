@@ -3,7 +3,7 @@ import DayDetails from './DayDetails'
 import DayGrid from './DayGrid'
 import Streak from './Streak'
 
-function Activity({ allData }) {
+function Activity({ allData, slug }) {
   const [dayDetails, setDayDetails] = useState([])
 
   const [daySelected, setDaySelected] = useState(0)
@@ -47,6 +47,7 @@ function Activity({ allData }) {
           allData={allData}
           daySelected={daySelected}
           dayDetails={dayDetails}
+          slug={slug}
         />
       </div>
     </div>

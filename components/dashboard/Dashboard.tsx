@@ -30,7 +30,7 @@ export default function Dashboard({
           {allData.length === 0 ? 'Welcome,' : 'Welcome back,'} {auth.user.name}
           .
         </h1>
-        <Activity allData={allData} />
+        <Activity allData={allData} slug={slug} />
         <AllProgress
           completedData={{ completedSlides, completedMCQs, completedFRQs }}
         />

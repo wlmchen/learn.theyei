@@ -7,9 +7,10 @@ import { createMCQScore, removeMCQScore } from '@/lib/db'
 import fetcher from '@/utils/fetcher'
 import useSWR, { mutate } from 'swr'
 import ScoreAlert from './ScoreAlert'
-import { chapters } from '@/data/routes'
+import { kebabCategories, kebabChapters } from '@/data/routes'
 
 function MCQ({ slug }) {
+  const kebabChaptersSelection = kebabChapters[kebabCategories.indexOf(slug[0])]
   const auth = useAuth()
   const { data: mcqScoreData } = useSWR(
     auth.user
@@ -24,9 +25,11 @@ function MCQ({ slug }) {
       parseInt(
         item.category.substring(item.category.length - 1, item.category.length)
       ) ===
-        chapters.indexOf(slug[1]) + 1
+        kebabChaptersSelection.indexOf(slug[1]) + 1
     )
   })
+
+  console.log({ filteredMcqs, kebabChaptersSelection })
 
   const [userChoices, setUserChoices] = useState(
     new Array(filteredMcqs.length).fill(null)

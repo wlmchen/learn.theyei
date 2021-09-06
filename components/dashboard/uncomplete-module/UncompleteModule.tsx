@@ -1,9 +1,15 @@
-import { categories, kebabCategories, chapters, kebabChapters } from '@/data/routes'
+import {
+  categories,
+  kebabCategories,
+  chapters,
+  kebabChapters,
+} from '@/data/routes'
 import { InformationCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
 function UncompleteModule({ allData }) {
+  const kebabChaptersSelection = kebabChapters[kebabCategories.indexOf(slug[0])]
   const [suggestion, setSuggestion] = useState({
     progress: null,
     category: null,
@@ -63,7 +69,12 @@ function UncompleteModule({ allData }) {
                     Looks like you didn't finish the{' '}
                     <span className="font-bold italic">
                       {categories[kebabCategories.indexOf(suggestion.category)]}
-                      : {chapters[kebabChapters.indexOf(suggestion.chapter)]}
+                      :{' '}
+                      {
+                        chapters[
+                          kebabChaptersSelection.indexOf(suggestion.chapter)
+                        ]
+                      }
                     </span>{' '}
                     slides. Do you want to finish it right now?
                   </p>
@@ -97,7 +108,12 @@ function UncompleteModule({ allData }) {
                     {suggestion.totalPoints} on the{' '}
                     <span className="font-bold italic">
                       {categories[kebabCategories.indexOf(suggestion.category)]}
-                      : {chapters[kebabChapters.indexOf(suggestion.chapter)]}
+                      :{' '}
+                      {
+                        chapters[
+                          kebabChaptersSelection.indexOf(suggestion.chapter)
+                        ]
+                      }
                     </span>{' '}
                     multiple choice quiz. Would you like to give it another
                     shot?

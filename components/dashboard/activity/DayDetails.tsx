@@ -6,7 +6,8 @@ import {
 } from '@/data/routes'
 import React, { useState, useEffect } from 'react'
 
-function DayDetails({ allData, daySelected, dayDetails }) {
+function DayDetails({ allData, daySelected, dayDetails, slug }) {
+  const kebabChaptersSelection = kebabChapters[kebabCategories.indexOf(slug[0])]
   const [dayDetailsMaxDisplay, setDayDetailsMaxDisplay] = useState(4)
 
   const handleDayDetailsMaxDisplay = () => {
@@ -65,7 +66,7 @@ function DayDetails({ allData, daySelected, dayDetails }) {
                     the{' '}
                     <i>
                       {categories[kebabCategories.indexOf(item.category)]}:{' '}
-                      {chapters[kebabChapters.indexOf(item.chapter)]}
+                      {chapters[kebabChaptersSelection.indexOf(item.chapter)]}
                     </i>{' '}
                     slideshow.
                   </p>
@@ -75,7 +76,7 @@ function DayDetails({ allData, daySelected, dayDetails }) {
                     Scored {item.score}/{item.totalPoints} on the{' '}
                     <i>
                       {categories[kebabCategories.indexOf(item.category)]}:{' '}
-                      {chapters[kebabChapters.indexOf(item.chapter)]}
+                      {chapters[kebabChaptersSelection.indexOf(item.chapter)]}
                     </i>{' '}
                     multiple choice test.
                   </p>
