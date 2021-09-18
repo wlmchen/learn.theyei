@@ -44,7 +44,13 @@ let kebabCategories = kebabArray(categories)
 
 const chapters = routes.map((category) => category.children)
 
+const allChapters = chapters.reduce((arr, e) => {
+  return arr.concat(e)
+})
+
 const kebabChapters = chapters.map((item) => kebabArray(item))
+
+const allKebabChapters = allChapters.map((item) => kebabCase(item))
 
 export default routes
 export {
@@ -54,4 +60,6 @@ export {
   chapters,
   kebabCategories,
   kebabChapters,
+  allChapters,
+  allKebabChapters,
 }

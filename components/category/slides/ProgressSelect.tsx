@@ -51,15 +51,20 @@ export default function SlideSelect({ slug }) {
     fetcher
   )
 
-  const onCreateSlideProgress = (progress) => {
+  const [dataLoading, setDataLoading] = useState(false)
+
+  let newSlideId = ''
+
+  const onCreateSlideProgress = (userProgress) => {
     const newProgress = {
       category: slug[0],
       chapter: slug[1],
-      progress: progress,
+      progress: userProgress,
       createdAt: new Date().toISOString(),
       userId: auth.user.uid,
     }
-    createSlideProgress(newProgress)
+    setDataLoading(true)
+    createSlideProgress(newProgress, () => setDataLoading(false))
   }
 
   const onUpdateSlideProgress = (id, progress) => {
@@ -72,6 +77,7 @@ export default function SlideSelect({ slug }) {
 
   const [selected, setSelected] = useState(options[0])
   let lastChoice = ''
+  let newSlide = true
 
   useEffect(() => {
     if (slideProgressData) {
@@ -83,6 +89,7 @@ export default function SlideSelect({ slug }) {
           )
         ]
       )
+      newSlide = !slideProgressData.progress[0]?.progress
       lastChoice = slideProgressData.progress[0]?.progress || 'not-started'
     }
   }, [slideProgressData])
@@ -92,22 +99,28 @@ export default function SlideSelect({ slug }) {
       setSelected(value)
       console.log(kebabCase(value.name))
       lastChoice = kebabCase(value.name)
-      if (slideProgressData.progress.length === 0) {
-        onCreateSlideProgress(kebabCase(value.name))
-        console.log('create')
-      } else {
-        console.log('update', slug, value, slideProgressData)
-        onUpdateSlideProgress(
-          slideProgressData.progress[0].id,
-          kebabCase(value.name)
-        )
-      }
+      console.log(slideProgressData.progress, newSlide)
+      // if (slideProgressData.progress[0]) {
+      //   console.log('update', slug, value, slideProgressData)
+      //   onUpdateSlideProgress(
+      //     slideProgressData.progress[0].id,
+      //     kebabCase(value.name)
+      //   )
+      // } else if (!newSlide) {
+      //   console.log('update new slide', slug, value, slideProgressData)
+      //   onUpdateSlideProgress(newSlideId, kebabCase(value.name))
+      // } else {
+      //   onCreateSlideProgress(kebabCase(value.name))
+      //   console.log('create')
+      //   newSlide = true
+      // }
+      onCreateSlideProgress(kebabCase(value.name))
     }
   }
 
   return (
     <>
-      {slideProgressData ? (
+      {slideProgressData && !dataLoading ? (
         <div className="w-48">
           <Listbox value={selected} onChange={(value) => handleChange(value)}>
             {({ open }) => (

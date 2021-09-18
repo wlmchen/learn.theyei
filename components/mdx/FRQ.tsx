@@ -24,7 +24,7 @@ function FRQ({ num, totalPoints, children }) {
 
   useEffect(() => {
     if (frqScoreData) {
-      console.log(frqScoreData)
+      console.log({ frqScoreData })
       setPoints(frqScoreData.score[0]?.score || '')
     }
   }, [frqScoreData])

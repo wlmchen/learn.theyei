@@ -3,6 +3,8 @@ import {
   kebabCategories,
   chapters,
   kebabChapters,
+  allChapters,
+  allKebabChapters,
 } from '@/data/routes'
 import React, { useState, useEffect } from 'react'
 
@@ -66,7 +68,7 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
                     the{' '}
                     <i>
                       {categories[kebabCategories.indexOf(item.category)]}:{' '}
-                      {chapters[kebabChaptersSelection.indexOf(item.chapter)]}
+                      {allChapters[allKebabChapters.indexOf(item.chapter)]}
                     </i>{' '}
                     slideshow.
                   </p>
@@ -76,7 +78,7 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
                     Scored {item.score}/{item.totalPoints} on the{' '}
                     <i>
                       {categories[kebabCategories.indexOf(item.category)]}:{' '}
-                      {chapters[kebabChaptersSelection.indexOf(item.chapter)]}
+                      {allChapters[allKebabChapters.indexOf(item.chapter)]}
                     </i>{' '}
                     multiple choice test.
                   </p>

@@ -1,15 +1,15 @@
 import {
   categories,
   kebabCategories,
-  chapters,
-  kebabChapters,
+  allChapters,
+  allKebabChapters,
 } from '@/data/routes'
 import { InformationCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
-function UncompleteModule({ allData }) {
-  const kebabChaptersSelection = kebabChapters[kebabCategories.indexOf(slug[0])]
+function UncompleteModule({ allData, slug }) {
+  console.log({ allChapters, allKebabChapters })
   const [suggestion, setSuggestion] = useState({
     progress: null,
     category: null,
@@ -71,8 +71,8 @@ function UncompleteModule({ allData }) {
                       {categories[kebabCategories.indexOf(suggestion.category)]}
                       :{' '}
                       {
-                        chapters[
-                          kebabChaptersSelection.indexOf(suggestion.chapter)
+                        allChapters[
+                          allKebabChapters.indexOf(suggestion.chapter)
                         ]
                       }
                     </span>{' '}
@@ -110,8 +110,8 @@ function UncompleteModule({ allData }) {
                       {categories[kebabCategories.indexOf(suggestion.category)]}
                       :{' '}
                       {
-                        chapters[
-                          kebabChaptersSelection.indexOf(suggestion.chapter)
+                        allChapters[
+                          allKebabChapters.indexOf(suggestion.chapter)
                         ]
                       }
                     </span>{' '}
