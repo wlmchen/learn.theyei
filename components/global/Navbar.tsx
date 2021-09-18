@@ -13,8 +13,7 @@ const categoryNavigation = [
   { name: 'Macro', href: '/macro' },
 ]
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
+  { name: 'Settings', href: '/settings' },
   { name: 'Sign out', href: '' },
 ]
 
@@ -35,11 +34,13 @@ export default function Navbar({ page }) {
               <div className="flex justify-between h-16">
                 <div className="flex">
                   <div className="flex-shrink-0 flex items-center">
-                    <img
-                      className="h-10 w-auto"
-                      src="/img/logos/yei-training-logo.svg"
-                      alt="YEI Logo"
-                    />
+                    <Link href="/dashboard">
+                      <img
+                        className="h-10 w-auto"
+                        src="/img/logos/yei-training-logo.svg"
+                        alt="YEI Logo"
+                      />
+                    </Link>
                   </div>
                 </div>
                 <div className="hidden h-full sm:ml-6 sm:flex sm:items-center ">

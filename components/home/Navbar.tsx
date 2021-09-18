@@ -9,7 +9,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
   return (
-    <Popover className="relative bg-white">
+    <Popover className="relative bg-white z-50">
       <div className="max-w-7xl mx-auto w-full flex justify-between items-center md:space-x-10 py-3 px-4 sm:px-6 lg:px-8">
         <div>
           <Link href="/">
