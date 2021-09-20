@@ -258,9 +258,16 @@ export default function Navbar({ page }) {
                       {item.name === 'Sign out' ? (
                         <>
                           {auth.user ? (
-                            <button className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
-                              Sign out
-                            </button>
+                            <button
+                                        className="block px-4 py-2 text-md text-gray-700"
+                                        onClick={() => auth.signout()}
+                                      >
+                                        {auth.user ? (
+                                          <>{item.name}</>
+                                        ) : (
+                                          <div className="w-20 bg-gray-200 animate-pulse h-5 rounded-md"></div>
+                                        )}
+                                      </button>
                           ) : (
                             <button className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
                               <div className="w-20 bg-gray-200 animate-pulse h-5 rounded-md"></div>
