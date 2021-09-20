@@ -7,9 +7,15 @@ import Features from '@/components/home/Features'
 import PageTypes from '@/components/home/PageTypes'
 import Footer from '@/components/global/Footer'
 import CTA from '@/components/home/CTA'
+import { useRouter } from 'next/router'
 
 export default function IndexPage() {
   const auth = useAuth()
+  const router = useRouter()
+
+  if (auth.user) {
+    router.push('/dashboard')
+  }
   return (
     <div>
       <Navbar />
