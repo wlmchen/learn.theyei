@@ -60,7 +60,7 @@ export default function Navbar({ page }) {
                       </a>
                     ))}
                   </div>
-                  <Menu as="div" className="ml-8 relative sm:mr-8 h-full">
+                  <Menu as="div" className="z-50 ml-8 relative sm:mr-8 h-full">
                     {({ open }) => (
                       <div className="h-full">
                         <div className="h-full">
@@ -119,7 +119,7 @@ export default function Navbar({ page }) {
                     )}
                   </Menu>
                   {/* Profile dropdown */}
-                  <Menu as="div" className="ml-3 relative">
+                  <Menu as="div" className="ml-3 z-50 relative">
                     {({ open }) => (
                       <>
                         <div>
