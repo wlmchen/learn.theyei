@@ -10,8 +10,8 @@ export default function Layout({
 }) {
   return (
     <div className="min-h-screen bg-white">
-      {showNav && <Navbar page={page} />}
-      <div className="w-full pb-10">{children}</div>
+      <div className="z-50">{showNav && <Navbar page={page} />}</div>
+      <div className="w-full pb-10 z-0">{children}</div>
       {contentLoaded && <Footer />}
     </div>
   )
