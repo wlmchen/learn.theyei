@@ -27,7 +27,7 @@ export default function Navbar({ page }) {
   // console.log(router.query.slug)
   return (
     <>
-      <Disclosure as="nav" className="bg-white">
+      <Disclosure as="nav" className="bg-white z-50">
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
