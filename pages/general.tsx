@@ -49,7 +49,7 @@ export default function general() {
   return (
     <>
       {auth.user && { completedSlides, completedMCQs, completedFRQs } ? (
-        <Layout page="general" showNav>
+        <Layout page="general" showNav contentLoaded>
           <div className="w-full">
             <Dashboard
               title="General"

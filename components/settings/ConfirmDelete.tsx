@@ -14,7 +14,14 @@ function ConfirmDelete({ open, setDeleteAccount, setCloseModal }) {
   }
 
   const reauth = () => {
-    auth.reauthUser(password, setDeleteAccount, (val) => setPasswordError(val))
+    if (auth.user.provider === 'google.com') {
+      // auth.reauthGoogleUser(() => console.log('oohhh yeah'))
+      setDeleteAccount()
+    } else {
+      auth.reauthUser(password, setDeleteAccount, (val) =>
+        setPasswordError(val)
+      )
+    }
   }
 
   const cancelButtonRef = useRef(null)
@@ -80,20 +87,24 @@ function ConfirmDelete({ open, setDeleteAccount, setCloseModal }) {
                 </div>
               </div>
 
-              <input
-                id="password"
-                name="password"
-                type="password"
-                value={password}
-                onChange={updatePassword}
-                placeholder="Confirm your password"
-                className="appearance-none block w-full mt-4 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-yei-primary-main-main focus:yei-primary-main-main sm:text-sm"
-                required
-              />
-              {passwordError && (
-                <p className="text-red-600 font-bold text-sm mt-2">
-                  Invalid password.
-                </p>
+              {auth.user.provider === 'password' && (
+                <>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    value={password}
+                    onChange={updatePassword}
+                    placeholder="Confirm your password"
+                    className="appearance-none block w-full mt-4 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-yei-primary-main-main focus:yei-primary-main-main sm:text-sm"
+                    required
+                  />
+                  {passwordError && (
+                    <p className="text-red-600 font-bold text-sm mt-2">
+                      Invalid password.
+                    </p>
+                  )}
+                </>
               )}
               <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                 <button

@@ -50,7 +50,7 @@ export default function dashboard() {
   return (
     <>
       {auth.user && allData ? (
-        <Layout page="dashboard" showNav>
+        <Layout page="dashboard" showNav contentLoaded>
           <div className="w-full">
             <Dashboard
               allData={allData}

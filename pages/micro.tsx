@@ -46,7 +46,7 @@ export default function general() {
   return (
     <>
       {auth.user && { completedSlides, completedMCQs, completedFRQs } ? (
-        <Layout page="micro" showNav>
+        <Layout page="micro" showNav contentLoaded>
           <div className="w-full">
             <Dashboard
               title="Micro"

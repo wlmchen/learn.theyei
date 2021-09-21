@@ -17,13 +17,16 @@ export default function IndexPage() {
     router.push('/dashboard')
   }
   return (
-    <div>
-      <Navbar />
-      <Hero />
-      <Features />
-      <PageTypes />
-      <CTA />
-      <Footer />
-    </div>
+    <>
+      {auth.user !== true}
+      <div>
+        <Navbar />
+        <Hero />
+        <Features />
+        <PageTypes />
+        <CTA />
+        <Footer />
+      </div>
+    </>
   )
 }

@@ -1,22 +1,33 @@
 import { auth } from '@/lib/firebase-admin'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import FocusError from '../utility/FocusError'
 import * as Yup from 'yup'
 import { useAuth } from '@/lib/auth'
 
 function Password() {
   const auth = useAuth()
+  const [passwordError, setPasswordError] = useState(false)
+  const [passwordSuccess, setPasswordSuccess] = useState(false)
+
   return (
     <Formik
       initialValues={{
-        name: '',
-        email: '',
-        password: '',
+        oldPassword: '',
+        newPassword: '',
       }}
       validationSchema={PasswordSchema}
       onSubmit={(values, { setSubmitting, resetForm }) => {
-        auth.signinWithPassword(values.email, values.password)
+        auth.reauthUser(
+          values.oldPassword,
+          () =>
+            auth.updatePassword(values.newPassword, () =>
+              setPasswordSuccess(true)
+            ),
+          (val) => {
+            setPasswordError(val)
+          }
+        )
         resetForm({})
         setSubmitting(false)
       }}
@@ -48,6 +59,11 @@ function Password() {
               component="div"
               name="password"
             />
+            {passwordError && (
+              <p className="text-red-600 font-bold text-sm mt-2">
+                Invalid password.
+              </p>
+            )}
           </div>
           <label
             htmlFor="password"
@@ -75,6 +91,12 @@ function Password() {
           >
             Update Password
           </button>
+
+          {passwordSuccess && (
+            <p className="text-green-600 font-bold text-sm mt-2">
+              Password updated.
+            </p>
+          )}
         </div>
         <FocusError />
       </Form>
@@ -85,7 +107,10 @@ function Password() {
 export default Password
 
 const PasswordSchema = Yup.object().shape({
-  password: Yup.string()
+  oldPassword: Yup.string()
+    .min(6, 'Password must be at least six characters long.')
+    .required('Password is required.'),
+  newPassword: Yup.string()
     .min(6, 'Password must be at least six characters long.')
     .required('Password is required.'),
 })
