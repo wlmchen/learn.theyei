@@ -46,7 +46,7 @@ function settings({ allUserIds }) {
     <>
       {auth.user ? (
         <Layout page="settings" showNav contentLoaded>
-          <div className="mt-10 w-full max-w-xl m-auto bg-white px-5 text-left py-8 shadow sm:rounded-lg sm:px-10">
+          <div className="mt-10 w-full max-w-xl m-auto z-0 px-5 text-left py-8 shadow sm:rounded-lg sm:px-10">
             <h1>Settings</h1>
             <div className="space-y-5 mt-6">
               {auth.user.provider === 'password' ? (
