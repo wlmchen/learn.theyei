@@ -108,7 +108,7 @@ function settings({ allUserIds }) {
           </div>
         </Layout>
       ) : (
-        <Layout page="settings" showNav></Layout>
+        <Layout page="settings" showNav><div></div></Layout>
       )}
     </>
   )
