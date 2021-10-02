@@ -50,7 +50,7 @@ export default function general() {
           <div className="w-full">
             <Dashboard
               title="Micro"
-              description="This section covers the basics of economics. Here's to the start of your adventure in economics!"
+              description="This section covers microeconomics, the economics of individual firms and markets."
               moduleData={{ slideProgressData, mcqScoreData }}
               completedData={{
                 completedSlides,
