@@ -78,7 +78,7 @@ const mcq = [
     source: '',
   },
   {
-    category: 'General 2',
+    category: 'General 3',
     question:
       'Company A currently produced 1000 bicycles in 2019. However, the price of aluminum spikes in 2020. Among the following choices, which number is the most likely to be the amount of bicycles produced by company A?',
     a: 999,
@@ -90,7 +90,7 @@ const mcq = [
       'https://docs.google.com/document/d/1fTwjzHtV444JzpiNsFiW44TtefrFj4QRt0hsCLQXK7Q/edit',
   },
   {
-    category: 'General 2',
+    category: 'General 3',
     question:
       'Purple Kingdom is invading Green Kingdom again! Green Kingdom decides to adopt a scorched earth policy and burn all crops upon retreat. Wheat is one of the primary crops grown in Green Kingdom. Holding all else equal, what is the most likely consequence of this on the price and quantity supplied of (whole-wheat) bread?',
     a: 'Increase, Increase',
@@ -101,7 +101,7 @@ const mcq = [
     source: '',
   },
   {
-    category: 'General 2',
+    category: 'General 3',
     question:
       'Rob’s company produces 300 billion tires annually when tires are priced at $80. When the price increases to $120, how many tires will Rob’s company produce?',
     a: 450,
@@ -112,7 +112,7 @@ const mcq = [
     source: '',
   },
   {
-    category: 'General 2',
+    category: 'General 3',
     question:
       'Which of the following is not a reason why the supply of carrots would decrease?',
     a: 'A drought kills many of the carrots grown in a year.',
@@ -123,7 +123,7 @@ const mcq = [
     source: '',
   },
   {
-    category: 'General 2',
+    category: 'General 3',
     question: 'Which of the following is a sufficient description of supply?',
     a: 'Producers’ willingness and ability to produce and sell a good at a fixed price.',
     b: 'Firms’ ability to produce goods at a fixed price.',
@@ -133,7 +133,7 @@ const mcq = [
     source: '',
   },
   {
-    category: 'General 3',
+    category: 'General 2',
     question:
       'Which of the following is not an example of an economic resource?',
     a: 'A river',
@@ -145,7 +145,7 @@ const mcq = [
       'https://docs.google.com/document/d/1iRUaido29EIUdXJX8euWGkWGPUISAHoXrd4YEEbRKUc/edit',
   },
   {
-    category: 'General 3',
+    category: 'General 2',
     question:
       'Will can mow the lawn for $100 a month, flip burgers for $110 a month, or get an internship for $10,000 a month. He chooses the internship (obviously). What is the opportunity cost?',
     a: 10110,
