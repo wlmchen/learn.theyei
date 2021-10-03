@@ -42,6 +42,14 @@ input {
   @apply text-yei-primary-main hover:text-yei-primary-darker font-semibold;
 }
 
+.frqpage-main h1 {
+  margin-bottom: 0.5em;
+}
+
+.frqpage-main img {
+  margin: 1em 0;
+}
+
 .alpha-list-mdx {
   list-style-type: lower-alpha;
 }

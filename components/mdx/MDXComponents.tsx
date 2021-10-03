@@ -2,9 +2,11 @@
 import { useMemo } from 'react'
 import { getMDXComponent } from 'mdx-bundler/client'
 import FRQ from './FRQ'
+import FRQCheck from './FRQCheck'
 
 export const MDXComponents = {
   FRQ,
+  FRQCheck,
 }
 
 export const MDXLayoutRenderer = ({ mdxSource, ...rest }) => {

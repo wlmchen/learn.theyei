@@ -5,7 +5,7 @@ import React from 'react'
 function FRQPage({ slug, children }) {
   const kebabChaptersSelection = kebabChapters[kebabCategories.indexOf(slug[0])]
   return (
-    <div className="w-full">
+    <div className="w-full frqpage-main">
       <h3 className="border-b border-gray-300 mb-4 pb-2 uppercase italic font-semibold text-gray-400 text-base tracking-widest">
         Free Response Practice
       </h3>
