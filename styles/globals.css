@@ -50,6 +50,18 @@ input {
   margin: 1em 0;
 }
 
+.alpha-list-mdx li:first-child {
+  margin-top: 0;
+}
+
+p + .alpha-list-mdx li:first-child {
+  margin-top: 1em;
+}
+
+.alpha-list-mdx li:last-child {
+  margin-bottom: 0;
+}
+
 .alpha-list-mdx ol {
   list-style-type: lower-roman;
   @apply ml-6 sm:ml-12;

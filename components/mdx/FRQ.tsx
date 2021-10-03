@@ -79,7 +79,7 @@ function FRQ({ num, totalPoints, children }) {
   }
 
   return (
-    <div className="mb-10">
+    <div className="mt-5 mb-10 pb-5 border-b border-gray-400">
       <FRQNotification showNotification={showNotification} />
       <div
         className={`flex ${
