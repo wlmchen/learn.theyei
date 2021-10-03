@@ -201,7 +201,7 @@ const mcq = [
   {
     category: 'General 4',
     question:
-      'An economy where the factors of production is owned by individuals is called a',
+      'An economy where the factors of production is owned by a few individuals is called a',
     a: 'Mixed economy',
     b: 'Command economy',
     c: 'Capitalist economy',
