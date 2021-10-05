@@ -9,6 +9,8 @@ import useSWR, { mutate } from 'swr'
 import ScoreAlert from './ScoreAlert'
 import { kebabCategories, kebabChapters } from '@/data/routes'
 
+import Latex from 'react-latex'
+
 function MCQ({ slug }) {
   const kebabChaptersSelection = kebabChapters[kebabCategories.indexOf(slug[0])]
   const auth = useAuth()
@@ -114,7 +116,9 @@ function MCQ({ slug }) {
                 <div className="inline-block uppercase px-4 py-2 rounded-lg bg-indigo-200 text-indigo-500 font-bold text-sm mb-2">
                   Problem #{index + 1}
                 </div>
-                <p className="text-base sm:text-lg italic">{question}</p>
+                <p className="text-base sm:text-lg italic">
+                  <Latex>{question}</Latex>
+                </p>
                 {showAnswers ? (
                   <ul className="list-none my-4 ml-4 space-y-3">
                     <li className="flex items-center">
