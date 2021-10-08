@@ -1,3 +1,4 @@
+import frqs from '@/data/frqs'
 import {
   categories,
   kebabCategories,
@@ -6,6 +7,7 @@ import {
   allChapters,
   allKebabChapters,
 } from '@/data/routes'
+import { kebabCase } from '@/lib/utils'
 import React, { useState, useEffect } from 'react'
 
 function DayDetails({ allData, daySelected, dayDetails, slug }) {
@@ -41,6 +43,60 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
     'November',
     'December',
   ]
+  // console.log(
+  //   'is it there? ',
+  //   dayDetails.filter((item) => item.frqProgress)
+  // )
+  // frqs[0].forEach((chapter, index2) => {
+  //   console.log(
+  //     'maybe ',
+  //     dayDetails.filter((item) => item.frqProgress)
+  //   )
+  //   if (
+  //     dayDetails.filter(
+  //       (item) =>
+  //         item.category === kebabCategories[0] &&
+  //         item.chapter === kebabChapters[0][index2] &&
+  //         item.num
+  //     ).length === chapter.numberOfFRQs
+  //   ) {
+  //     dayDetails.push({
+  //       category: kebabCategories[0],
+  //       chapter: kebabChapters[0][index2],
+  //       frqProgress: 'completed',
+  //     })
+  //   } else if (
+  //     dayDetails.filter(
+  //       (item) =>
+  //         item.category === kebabCategories[0] &&
+  //         item.chapter === kebabChapters[0][index2] &&
+  //         item.num
+  //     ).length > 0
+  //   ) {
+  //     console.log(
+  //       dayDetails.filter(
+  //         (item) =>
+  //           item.category === kebabCategories[0] &&
+  //           item.chapter === kebabChapters[0][index2] &&
+  //           item.num
+  //       )
+  //     )
+  //     dayDetails.push({
+  //       category: kebabCategories[0],
+  //       chapter: kebabChapters[0][index2],
+  //       frqProgress: 'in-progress',
+  //     })
+  //   } else {
+  //   }
+  // })
+
+  // console.log(
+  //   'hmm ',
+  //   dayDetails.filter((item) => item.frqProgress)
+  // )
+
+  // const dayDetails = dayDetails.filter((item) => !item.num)
+  // console.log(dayDetails, dayDetails)
   return (
     <div>
       {dayDetails[0]?.createdAt !== undefined && dayDetails !== [] ? (
@@ -81,6 +137,16 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
                       {allChapters[allKebabChapters.indexOf(item.chapter)]}
                     </i>{' '}
                     multiple choice test.
+                  </p>
+                )}
+                {item.num && (
+                  <p>
+                    Completed FRQ #{item.num} for{' '}
+                    <i>
+                      {categories[kebabCategories.indexOf(item.category)]}:{' '}
+                      {allChapters[allKebabChapters.indexOf(item.chapter)]}
+                    </i>
+                    .
                   </p>
                 )}
               </div>

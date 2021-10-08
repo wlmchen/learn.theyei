@@ -1,5 +1,5 @@
 import { useAuth } from '@/lib/auth'
-import { createFRQScore, updateFRQScore } from '@/lib/db'
+import { createFRQScore, removeFRQScore } from '@/lib/db'
 import fetcher from '@/utils/fetcher'
 import { EyeIcon, EyeOffIcon, XCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
@@ -15,17 +15,29 @@ function FRQ({ num, totalPoints, children }) {
   const [points, setPoints] = useState('0')
   const [pointsError, setPointsError] = useState('')
   const [showNotification, setShowNotification] = useState(false)
+  const [newId, setNewId] = useState('')
+  const [alreadyFinished, setAlreadyFinished] = useState(false)
   const { data: frqScoreData } = useSWR(
     auth.user
-      ? [`/api/frqs/${slug.join('/')}/${auth.user.uid}`, auth.user.token]
+      ? [`/api/frqs/${slug.join('/')}/${num}/${auth.user.uid}`, auth.user.token]
       : null,
     fetcher
   )
+  let firstData = true
+  // console.log(`/api/frqs/${slug.join('/')}/${num}/${auth.user.uid}`)
 
   useEffect(() => {
     if (frqScoreData) {
-      console.log({ frqScoreData })
-      setPoints(frqScoreData.score[0]?.score || '')
+      if (frqScoreData.score) {
+        console.log('theres data', { frqScoreData })
+        // console.log({ frqScoreData })
+        setPoints(frqScoreData.score[0]?.score || '')
+        setAlreadyFinished(frqScoreData.score.length !== 0)
+        setShowAnswers(frqScoreData.score.length !== 0)
+      } else {
+        console.log({ frqScoreData })
+        setPoints('')
+      }
     }
   }, [frqScoreData])
 
@@ -39,30 +51,28 @@ function FRQ({ num, totalPoints, children }) {
       createdAt: new Date().toISOString(),
       userId: auth.user.uid,
     }
-    createFRQScore(newScore)
+    const { id } = createFRQScore(newScore)
+    setNewId(id)
   }
 
-  const onUpdateFRQScore = (id) => {
-    const newScore = {
-      score: points,
-      createdAt: new Date().toISOString(),
-    }
-    updateFRQScore(id, newScore)
+  const handleRedo = () => {
+    removeFRQScore(frqScoreData.score[0]?.id || newId)
+    console.log('remove scoreeee', frqScoreData.score[0]?.id || newId)
+    setAlreadyFinished(false)
+    setShowAnswers(false)
+    setPoints('')
   }
 
   const handleSubmit = () => {
     const userPoints = parseInt(points)
-    if (userPoints <= 10 && userPoints >= 0) {
+    if (userPoints <= totalPoints && userPoints >= 0) {
       if (userPoints % 1 === 0) {
         setPointsError('')
         setShowNotification(true)
-        if (frqScoreData.score.length === 0) {
-          onCreateFRQScore()
-          console.log('create')
-        } else {
-          onUpdateFRQScore(frqScoreData.score[0].id)
-          console.log('update', slug, frqScoreData)
-        }
+        onCreateFRQScore()
+        console.log('create ' + firstData)
+        firstData = false
+        setAlreadyFinished(true)
       } else {
         setPointsError(`Cannot be a decimal.`)
       }
@@ -100,7 +110,7 @@ function FRQ({ num, totalPoints, children }) {
             {showAnswers ? `Hide Solutions` : `Show Solutions`}
           </button>
         </div>
-        {showAnswers ? (
+        {showAnswers || alreadyFinished ? (
           <>
             <div className="w-36 sm:w-56 h-full flex rounded-md shadow-sm">
               <input
@@ -111,7 +121,12 @@ function FRQ({ num, totalPoints, children }) {
                 max={totalPoints.toString()}
                 value={points}
                 onChange={handlePointsChange}
-                className="h-full z-10 appearence-none focus:ring-0 flex-1 block w-full px-3 py-2 rounded-none rounded-l-md sm:text-sm border-gray-300 focus:ring-yei-primary-main focus:border-yei-primary-main"
+                disabled={alreadyFinished}
+                className={`h-full z-10 appearence-none focus:ring-0 flex-1 block w-full px-3 py-2 rounded-none rounded-l-md sm:text-sm border-gray-300 focus:ring-yei-primary-main focus:border-yei-primary-main ${
+                  alreadyFinished
+                    ? 'bg-gray-100 text-gray-400'
+                    : 'bg-white text-black'
+                }`}
               />
               <span className="h-full inline-flex items-center px-3 rounded-r-md border border-r-md border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
                 out of {totalPoints}
@@ -120,10 +135,14 @@ function FRQ({ num, totalPoints, children }) {
 
             <button
               type="button"
-              className="h-full  items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-yei-primary-main hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2"
-              onClick={handleSubmit}
+              className={`h-full items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white ${
+                alreadyFinished
+                  ? 'bg-gray-500 hover:bg-gray-600'
+                  : 'bg-yei-primary-main hover:bg-yei-primary-darker'
+              } focus:outline-none focus:ring-2 focus:ring-offset-2`}
+              onClick={alreadyFinished ? handleRedo : handleSubmit}
             >
-              Submit
+              {alreadyFinished ? 'Redo' : 'Submit'}
             </button>
           </>
         ) : (

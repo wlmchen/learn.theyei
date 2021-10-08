@@ -152,6 +152,14 @@ export default function Navbar({ page }) {
                             static
                             className="origin-top-right absolute right-0 mt-6 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                           >
+                            <div className="mt-2 mx-4 border-b pb-2 overflow-x-hidden">
+                              <div className="text-sm font-medium text-gray-800">
+                                {auth.user?.name || ''}
+                              </div>
+                              <div className="text-xs font-medium text-gray-500">
+                                {auth.user?.email || ''}
+                              </div>
+                            </div>
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
@@ -243,7 +251,7 @@ export default function Navbar({ page }) {
                       />
                     </div>
                   </div>
-                  <div className="ml-3">
+                  <div className="ml-3 overflow-x-hidden">
                     <div className="text-base font-medium text-gray-800">
                       {auth.user?.name || ''}
                     </div>
@@ -259,15 +267,15 @@ export default function Navbar({ page }) {
                         <>
                           {auth.user ? (
                             <button
-                                        className="block px-4 py-2 text-md text-gray-700"
-                                        onClick={() => auth.signout()}
-                                      >
-                                        {auth.user ? (
-                                          <>{item.name}</>
-                                        ) : (
-                                          <div className="w-20 bg-gray-200 animate-pulse h-5 rounded-md"></div>
-                                        )}
-                                      </button>
+                              className="block px-4 py-2 text-md text-gray-700"
+                              onClick={() => auth.signout()}
+                            >
+                              {auth.user ? (
+                                <>{item.name}</>
+                              ) : (
+                                <div className="w-20 bg-gray-200 animate-pulse h-5 rounded-md"></div>
+                              )}
+                            </button>
                           ) : (
                             <button className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
                               <div className="w-20 bg-gray-200 animate-pulse h-5 rounded-md"></div>

@@ -8,6 +8,7 @@ const mcq = [
     c: 'The number of firms',
     d: 'There is no difference',
     correct: 'A',
+    image: '/img/graphs/a1.png',
     source:
       'https://docs.google.com/document/d/13ZgY-hZkW5LYOvZCb_Ai5xiUyEWZC2MJ2EyNwJXLdyE/edit',
   },
@@ -1087,6 +1088,7 @@ const mcq = [
     b: 'https://i.imgur.com/kLt4ozD.png',
     c: 'https://i.imgur.com/UfD0Xv6.png',
     d: 'https://i.imgur.com/ek01M2R.png',
+    questionsAreImages: true,
     correct: 'D',
     source: 'https://imgur.com/a/3lxr6bQ',
   },

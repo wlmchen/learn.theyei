@@ -1,13 +1,15 @@
 import { kebabCase } from '@/lib/utils'
-import routes from '@/data/routes'
+import routes, { kebabCategories } from '@/data/routes'
 import Pathway from './Pathway'
 import ProgressBar from './ProgressBar'
 import ModuleProgress from './ModuleProgress'
+import frqs from '@/data/frqs'
+import { useEffect, useState } from 'react'
 
 export default function Dashboard({
   title,
   description,
-  moduleData: { slideProgressData, mcqScoreData },
+  moduleData: { slideProgressData, mcqScoreData, mutatedFRQData },
   completedData: { completedSlides, completedMCQs, completedFRQs },
   slug,
 }) {
@@ -27,11 +29,19 @@ export default function Dashboard({
           <div className="flex flex-wrap items-center justify-center mt-5">
             <ProgressBar
               title={title}
-              completedData={{ completedSlides, completedMCQs, completedFRQs }}
+              completedData={{
+                completedSlides,
+                completedMCQs,
+                completedFRQs,
+              }}
             />
             <ModuleProgress
               title={title}
-              completedData={{ completedSlides, completedMCQs, completedFRQs }}
+              completedData={{
+                completedSlides,
+                completedMCQs,
+                completedFRQs,
+              }}
             />
           </div>
         </div>
@@ -40,11 +50,10 @@ export default function Dashboard({
             <div className="relative w-full flex flex-col items-center px-4 sm:px-0">
               <Pathway
                 title={title}
-                scoreData={{ slideProgressData, mcqScoreData }}
-                completedData={{
-                  completedSlides,
-                  completedMCQs,
-                  completedFRQs,
+                scoreData={{
+                  slideProgressData,
+                  mcqScoreData,
+                  mutatedFRQData,
                 }}
               />
             </div>

@@ -111,7 +111,10 @@ function MCQ({ slug }) {
           )}
 
           {filteredMcqs.map(
-            ({ question, a, b, c, d, correct, source }, index) => (
+            (
+              { question, a, b, c, d, correct, source, questionsAreImages },
+              index
+            ) => (
               <div key={index} className="mb-12">
                 <div className="inline-block uppercase px-4 py-2 rounded-lg bg-indigo-200 text-indigo-500 font-bold text-sm mb-2">
                   Problem #{index + 1}
@@ -143,7 +146,11 @@ function MCQ({ slug }) {
                       >
                         A
                       </div>
-                      {a}
+                      {questionsAreImages && typeof a !== 'number' ? (
+                        <img src={a} width="300" />
+                      ) : (
+                        a
+                      )}
                     </li>
                     <li className="flex items-center">
                       <div
@@ -167,7 +174,11 @@ function MCQ({ slug }) {
                       >
                         B
                       </div>
-                      {b}
+                      {questionsAreImages && typeof b !== 'number' ? (
+                        <img src={b} width="300" />
+                      ) : (
+                        b
+                      )}
                     </li>
                     <li className="flex items-center">
                       <div
@@ -191,7 +202,11 @@ function MCQ({ slug }) {
                       >
                         C
                       </div>
-                      {c}
+                      {questionsAreImages && typeof c !== 'number' ? (
+                        <img src={c} width="300" />
+                      ) : (
+                        c
+                      )}
                     </li>
                     <li className="flex items-center">
                       <div
@@ -215,7 +230,11 @@ function MCQ({ slug }) {
                       >
                         D
                       </div>
-                      {d}
+                      {questionsAreImages && typeof d !== 'number' ? (
+                        <img src={d} width="300" />
+                      ) : (
+                        d
+                      )}
                     </li>
                   </ul>
                 ) : (
@@ -233,7 +252,11 @@ function MCQ({ slug }) {
                       >
                         A
                       </div>
-                      {a}
+                      {questionsAreImages && typeof a !== 'number' ? (
+                        <img src={a} width="300" />
+                      ) : (
+                        a
+                      )}
                     </li>
                     <li
                       className="flex items-center cursor-pointer"
@@ -248,7 +271,11 @@ function MCQ({ slug }) {
                       >
                         B
                       </div>
-                      {b}
+                      {questionsAreImages && typeof b !== 'number' ? (
+                        <img src={b} width="300" />
+                      ) : (
+                        b
+                      )}
                     </li>
                     <li
                       className="flex items-center cursor-pointer"
@@ -263,7 +290,11 @@ function MCQ({ slug }) {
                       >
                         C
                       </div>
-                      {c}
+                      {questionsAreImages && typeof c !== 'number' ? (
+                        <img src={c} width="300" />
+                      ) : (
+                        c
+                      )}
                     </li>
                     <li
                       className="flex items-center cursor-pointer"
@@ -278,7 +309,11 @@ function MCQ({ slug }) {
                       >
                         D
                       </div>
-                      {d}
+                      {questionsAreImages && typeof d !== 'number' ? (
+                        <img src={d} width="300" />
+                      ) : (
+                        d
+                      )}
                     </li>
                   </ul>
                 )}

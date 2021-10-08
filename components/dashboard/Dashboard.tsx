@@ -16,7 +16,6 @@ function classNames(...classes) {
 
 export default function Dashboard({
   allData,
-  moduleData: { slideProgressData, mcqScoreData, frqScoreData },
   completedData: { completedSlides, completedMCQs, completedFRQs },
   slug,
 }) {

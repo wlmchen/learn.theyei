@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import routes, { kebabCategories } from '@/data/routes'
 import Link from 'next/link'
 import { kebabCase } from '@/lib/utils'
@@ -6,8 +6,7 @@ import { BookOpenIcon, CheckIcon, XIcon } from '@heroicons/react/outline'
 
 function Pathway({
   title,
-  scoreData: { slideProgressData, mcqScoreData },
-  completedData: { completedSlides, completedMCQs, completedFRQs },
+  scoreData: { slideProgressData, mcqScoreData, mutatedFRQData },
 }) {
   const slideDataNamesOnly = []
   slideProgressData?.progress.forEach((item) => {
@@ -17,7 +16,10 @@ function Pathway({
   mcqScoreData?.score.forEach((item) => {
     mcqDataNamesOnly.push(`${item.category}/${item.chapter}`)
   })
-
+  const frqDataNamesOnly = []
+  mutatedFRQData?.forEach((item) => {
+    frqDataNamesOnly.push(`${item.category}/${item.chapter}`)
+  })
   const getSlides = (item) => {
     return (
       slideProgressData?.progress[
@@ -30,10 +32,19 @@ function Pathway({
       mcqDataNamesOnly.indexOf(`${kebabCase(title)}/${kebabCase(item)}`)
     ]
   }
+
+  const getFRQs = (item) => {
+    console.log(item)
+    return (
+      mutatedFRQData[
+        frqDataNamesOnly.indexOf(`${kebabCase(title)}/${kebabCase(item)}`)
+      ].frqProgress || 'not-started'
+    )
+  }
   return (
-    <div>
+    <div className="sm:flex sm:items-start smLjustify-center sm:flex-row">
       <div
-        className={`sm:absolute sm:right-1/2 pl-8 sm:pr-8 py-8 max-w-xs text-left sm:text-right border-l-2 border-dashed ${
+        className={`pl-8 sm:pr-8 py-8 max-w-xs text-left sm:text-right border-l-2 border-dashed ${
           getSlides(
             routes[kebabCategories.indexOf(kebabCase(title))].children[0]
           ) === 'completed' &&
@@ -54,11 +65,12 @@ function Pathway({
           Here's the pathway in order to complete the {title} section.
         </p>
       </div>
-      <div className="sm:absolute sm:left-1/2 m-auto w-auto">
+      <div className="m-auto w-auto">
         {routes[kebabCategories.indexOf(kebabCase(title))].children.map(
-          (item) => {
+          (item, index) => {
             return (
               <div
+                key={index}
                 className={`relative pl-8 py-8 border-l-2 ${
                   getSlides(item) === 'completed' && getMCQs(item)
                     ? 'border-yei-primary-main'
@@ -142,7 +154,19 @@ function Pathway({
                         )}/frq-practice`}
                       >
                         <div className="flex items-center ">
-                          <XIcon className="mr-1 h-5 w-5 text-gray-500" />
+                          {frqDataNamesOnly.indexOf(
+                            `${kebabCase(title)}/${kebabCase(item)}`
+                          ) !== -1 ? (
+                            getFRQs(item) === 'completed' ? (
+                              <CheckIcon className="mr-1 h-5 w-5 text-green-500" />
+                            ) : getFRQs(item) === 'in-progress' ? (
+                              <BookOpenIcon className="mr-1 h-5 w-5 text-yellow-500" />
+                            ) : (
+                              <XIcon className="mr-1 h-5 w-5 text-gray-500" />
+                            )
+                          ) : (
+                            <XIcon className="mr-1 h-5 w-5 text-gray-500" />
+                          )}{' '}
                           FRQ
                         </div>
                       </Link>

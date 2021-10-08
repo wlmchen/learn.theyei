@@ -15,13 +15,13 @@ function ProgressBar({
         background: `linear-gradient(to right, #279361, #279361 ${Math.round(
           ((completedSlides.length +
             completedMCQs.length +
-            completedFRQs.length) /
+            completedMCQs.length) /
             getCountOfAllContent) *
             100
         )}%, #7ab69a ${Math.round(
           ((completedSlides.length +
             completedMCQs.length +
-            completedFRQs.length) /
+            completedMCQs.length) /
             getCountOfAllContent) *
             10
         )}%, #7ab69a)`,
@@ -30,7 +30,7 @@ function ProgressBar({
       {Math.round(
         ((completedSlides.length +
           completedMCQs.length +
-          completedFRQs.length) /
+          completedMCQs.length) /
           getCountOfAllContent) *
           100
       )}
