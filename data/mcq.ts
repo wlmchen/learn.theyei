@@ -15,7 +15,7 @@ const mcq = [
   {
     category: 'General 1',
     question:
-      'William could wash the dishes for $1,000 a year, work as a software engineer for $100,000 a year, or make YouTube videos for $10,000 a year. He chooses to make YouTube videos. What is the opportunity cost (in dollars) of his action?',
+      'William could wash the dishes for $\$1,000$ a year, work as a software engineer for $\$100,000$ a year, or make YouTube videos for $\$10,000$ a year. He chooses to make YouTube videos. What is the opportunity cost (in dollars) of his action?',
     a: '10,100',
     b: '100,000',
     c: '1,000',
@@ -70,7 +70,7 @@ const mcq = [
   {
     category: 'General 1',
     question:
-      'The marginal revenue for a boba company is -(q/100)^2+7 and the marginal cost min(0, 4(q/100)-5) when q units are sold. What is the optimal number of units to sell?',
+      'The marginal revenue for a boba company is $-(\frac{q}{100})^2+7$ and the marginal cost $\min(0, \frac{q}{25}-5)$ when q units are sold. What is the optimal number of units to sell?',
     a: 150,
     b: 200,
     c: 250,
@@ -104,7 +104,7 @@ const mcq = [
   {
     category: 'General 3',
     question:
-      'Rob’s company produces 300 billion tires annually when tires are priced at $80. When the price increases to $120, how many tires will Rob’s company produce?',
+      'Rob’s company produces 300 billion tires annually when tires are priced at €80. When the price increases to €120, how many tires will Rob’s company produce?',
     a: 450,
     b: '53 billion',
     c: '300 billion',
@@ -148,11 +148,11 @@ const mcq = [
   {
     category: 'General 2',
     question:
-      'Will can mow the lawn for $100 a month, flip burgers for $110 a month, or get an internship for $10,000 a month. He chooses the internship (obviously). What is the opportunity cost?',
-    a: 10110,
-    b: 100,
-    c: 110,
-    d: 210,
+      'Will can mow the lawn for €100 a month, flip burgers for €110 a month, or get an internship for €10,000 a month. He chooses the internship (obviously). What is the opportunity cost?',
+    a: '€10110',
+    b: '€100',
+    c: '€110',
+    d: '€210',
     correct: 'C',
     source: '',
   },
@@ -255,7 +255,7 @@ const mcq = [
   {
     category: 'Macro 1',
     question:
-      'Willy sells tires on the black market at absurdly high prices. For some reason, people still buy his tires. In the past month, 1000 people bought one of his $5000 tires and 3000 people bought two of his $6000 tires. How much money is added to the GDP?',
+      'Willy sells tires on the black market at absurdly high prices. For some reason, people still buy his tires. In the past month, 1000 people bought one of his $\$5000$ tires and 3000 people bought two of his $\$6000$ tires. How much money is added to the GDP?',
     a: 23000000,
     b: 15360000,
     c: 15000,
@@ -266,7 +266,7 @@ const mcq = [
   {
     category: 'Macro 1',
     question:
-      'The Kingdom of Bovinia doesn’t know what a coronavirus is, so the economy is still going full speed ahead. Thus, their real GDP per capita is at an all-time high of $3000. Which of the following is most likely the nominal GDP per capita, assuming no deflation?',
+      'The Kingdom of Bovinia doesn’t know what a coronavirus is, so the economy is still going full speed ahead. Thus, their real GDP per capita is at an all-time high of $\$3000$. Which of the following is most likely the nominal GDP per capita, assuming no deflation?',
     a: 3101,
     b: 3000,
     c: 2800,
@@ -632,11 +632,11 @@ const mcq = [
   {
     category: 'Micro 2',
     question:
-      "Tongil Industries produced 5 ICBMs this month. The xth ICBM cost $(x^2+5) to produce in total. What's the average total cost of the ICBMs?",
-    a: '$11',
-    b: '$16',
-    c: '$55',
-    d: '$80',
+      "Chris produced 5 ICBMs this month. The $x$-th ICBM cost $\$(x^2+5)$ to produce in total. What's the average total cost of the ICBMs?",
+    a: '$\$11$',
+    b: '$\$16$',
+    c: '$\$55$',
+    d: '$\$80$',
     correct: 'B',
     source: '',
   },
@@ -698,7 +698,7 @@ const mcq = [
   {
     category: 'Micro 2',
     question:
-      'The average fixed cost for producing 500 wine glasses is $12.34. The average total cost is $50.34. What is the AVC?',
+      'The average fixed cost for producing 500 glasses is $\$12.34$. The average total cost is $\$50.34$. What is the AVC?',
     a: '$62.68',
     b: '$28',
     c: '$30.34',
@@ -709,7 +709,7 @@ const mcq = [
   {
     category: 'Micro 2',
     question:
-      'Willy chose to run a lemonade stand for $30000 a year instead of working as a software engineer for $120000 a year. The stand costs around $5000 a year to operate. Does Willy make an accounting profit, and does he make an economic profit?',
+      'Willy chose to run a lemonade stand for €30000 a year instead of working as a software engineer for €120000 a year. The stand costs around €5000 a year to operate. Does Willy make an accounting profit, and does he make an economic profit?',
     a: 'Accounting profit, economic profit',
     b: 'Accounting loss, economic profit',
     c: 'Accounting profit, economic loss',
@@ -720,7 +720,7 @@ const mcq = [
   {
     category: 'Micro 3',
     question:
-      'Trey’s company makes soda. It set the price to $5.50 a bottle. What type of market is Trey’s company definitely not in?',
+      'Trey’s company makes soda. It set the price to ¥550 a bottle. What type of market is Trey’s company definitely not in?',
     a: 'Perfect Competition',
     b: 'Monopolistic Competition',
     c: 'Oligopoly',
@@ -742,7 +742,7 @@ const mcq = [
   {
     category: 'Micro 3',
     question:
-      'Randy’s perfectly competitive ice cream company prices its house-sized ice cream cone at $841 per unit. The marginal cost for unit x is x2. For allocative efficiency, how many units should Randy produce?',
+      'Randy’s perfectly competitive ice cream company prices its house-sized ice cream cone at $\$841$ per unit. The marginal cost for unit $x$ is $x^2$. For allocative efficiency, how many units should Randy produce?',
     a: 841,
     b: 31,
     c: 29,
@@ -753,7 +753,7 @@ const mcq = [
   {
     category: 'Micro 3',
     question:
-      'Owen’s firm is currently running at productive efficiency, and the ATC reaches a minimum of $4.00. If his firm is perfectly competitive, what is the price?',
+      'Owen’s firm is currently running at productive efficiency, and the ATC reaches a minimum of $\$4.00$. If his firm is perfectly competitive, what is the price?',
     a: '$4',
     b: '$5',
     c: '$6',
@@ -955,7 +955,7 @@ const mcq = [
   {
     category: 'Micro 6',
     question:
-      'The supply curve for a labor market is modeled by y=3x, and the Marginal Revenue Product of Labor by y=-5x+24. What is the economic rent? Assume perfect competition.',
+      'The supply curve for a labor market is modeled by y=3x, and the Marginal Revenue Product of Labor by $y=-5x+24$. What is the economic rent? Assume perfect competition.',
     a: 13,
     b: 13.5,
     c: 14,
@@ -1073,7 +1073,7 @@ const mcq = [
   {
     category: 'Micro 7',
     question:
-      'The bottom x% of the population owns x^2/100 percent of the wealth in YEIland. In YEIland, the bottom 10% of the population is considered to be officially in poverty. What percent of the wealth of the YEIland is owned by those who are officially in poverty?',
+      'The bottom $x\%$ of the population owns $\frac{x^2}{100}$ percent of the wealth in YEIland. In YEIland, the bottom 10% of the population is considered to be officially in poverty. What percent of the wealth of the YEIland is owned by those who are officially in poverty?',
     a: '0.10%',
     b: '1%',
     c: '5%',
