@@ -98,6 +98,12 @@ export default function dashboard() {
       // console.log(frqScoreData)
     }
   }, [slideProgressData, mcqScoreData, frqScoreData])
+
+  useEffect(() => {
+    if (!auth.user) {
+      router.push('/')
+    }
+  }, [auth])
   return (
     <>
       {auth.user && {
