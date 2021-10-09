@@ -3,7 +3,14 @@ import { Transition, Dialog } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 import React, { Fragment, useRef, useState } from 'react'
 
-function ConfirmDelete({ open, setDeleteAccount, setCloseModal }) {
+function ConfirmDelete({
+  open,
+  setDeleteAccount,
+  setCloseModal,
+  handleStartDelete,
+  handleStopDelete,
+  deleteLoading,
+}) {
   const auth = useAuth()
   const [openModal, setOpenModal] = useState(open)
   const [password, setPassword] = useState('')
@@ -16,10 +23,14 @@ function ConfirmDelete({ open, setDeleteAccount, setCloseModal }) {
   const reauth = () => {
     if (auth.user.provider === 'google.com') {
       // auth.reauthGoogleUser(() => console.log('oohhh yeah'))
-      setDeleteAccount()
+      // setDeleteAccount()
     } else {
-      auth.reauthUser(password, setDeleteAccount, (val) =>
-        setPasswordError(val)
+      handleStartDelete()
+      auth.reauthUser(
+        password,
+        setDeleteAccount,
+        (val) => setPasswordError(val),
+        () => handleStopDelete()
       )
     }
   }
@@ -29,7 +40,7 @@ function ConfirmDelete({ open, setDeleteAccount, setCloseModal }) {
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed z-10 inset-0 overflow-y-auto"
+        className="fixed z-50 inset-0 overflow-y-auto"
         initialFocus={cancelButtonRef}
         onClose={setOpenModal}
       >
@@ -75,13 +86,13 @@ function ConfirmDelete({ open, setDeleteAccount, setCloseModal }) {
                     as="h3"
                     className="text-lg leading-6 font-medium text-gray-900"
                   >
-                    Deactivate account
+                    Delete account
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Are you sure you want to deactivate your account? All of
-                      your data will be permanently removed from our servers
-                      forever. This action cannot be undone.
+                      Are you sure you want to delete your account? All of your
+                      data will be permanently removed from our servers forever.
+                      This action cannot be undone.
                     </p>
                   </div>
                 </div>
@@ -111,8 +122,19 @@ function ConfirmDelete({ open, setDeleteAccount, setCloseModal }) {
                   type="button"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={reauth}
+                  disabled={deleteLoading}
                 >
-                  Delete Account
+                  {deleteLoading ? (
+                    <div
+                      style={{
+                        margin: '0 44.8px',
+                        borderTopColor: 'transparent',
+                      }}
+                      className="w-5 h-5 border-2 border-white border-solid rounded-full animate-spin"
+                    ></div>
+                  ) : (
+                    'Delete Account'
+                  )}
                 </button>
                 <button
                   type="button"

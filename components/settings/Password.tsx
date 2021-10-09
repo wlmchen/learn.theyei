@@ -8,6 +8,8 @@ import { useAuth } from '@/lib/auth'
 function Password() {
   const auth = useAuth()
   const [passwordError, setPasswordError] = useState(false)
+
+  const [submissionLoading, setSubmissionLoading] = useState(false)
   const [passwordSuccess, setPasswordSuccess] = useState(false)
 
   return (
@@ -17,19 +19,20 @@ function Password() {
         newPassword: '',
       }}
       validationSchema={PasswordSchema}
-      onSubmit={(values, { setSubmitting, resetForm }) => {
+      onSubmit={(values, { resetForm }) => {
+        setSubmissionLoading(true)
+        setPasswordSuccess(false)
         auth.reauthUser(
           values.oldPassword,
           () =>
-            auth.updatePassword(values.newPassword, () =>
+            auth.updatePassword(values.newPassword, () => {
               setPasswordSuccess(true)
-            ),
-          (val) => {
-            setPasswordError(val)
-          }
+              setSubmissionLoading(false)
+            }),
+          (val) => setPasswordError(val),
+          () => setSubmissionLoading(false)
         )
         resetForm({})
-        setSubmitting(false)
       }}
     >
       <Form className="space-y-3">
@@ -57,7 +60,7 @@ function Password() {
             <ErrorMessage
               className="formik-error text-sm"
               component="div"
-              name="password"
+              name="oldPassword"
             />
             {passwordError && (
               <p className="text-red-600 font-bold text-sm mt-2">
@@ -82,14 +85,22 @@ function Password() {
             <ErrorMessage
               className="formik-error text-sm"
               component="div"
-              name="password"
+              name="newPassword"
             />
           </div>
           <button
             type="submit"
             className="mt-2 inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 sm:text-sm"
+            disabled={submissionLoading}
           >
-            Update Password
+            {submissionLoading ? (
+              <div
+                style={{ margin: '0 44.8px', borderTopColor: 'transparent' }}
+                className="w-5 h-5 border-2 border-white border-solid rounded-full animate-spin"
+              ></div>
+            ) : (
+              'Update Password'
+            )}
           </button>
 
           {passwordSuccess && (
@@ -97,6 +108,7 @@ function Password() {
               Password updated.
             </p>
           )}
+          <span className="formik-error text-sm">{auth.authError}</span>
         </div>
         <FocusError />
       </Form>

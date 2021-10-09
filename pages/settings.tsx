@@ -27,21 +27,21 @@ function settings({ allUserIds }) {
   const router = useRouter()
   const [openConfirmDelete, setOpenConfirmDelete] = useState(false)
   const [execDelete, setExecDelete] = useState(false)
+  const [deleteLoading, setDeleteLoading] = useState(false)
   const deletePopup = () => {
     setOpenConfirmDelete(true)
   }
   const deleteAccountConfirmed = () => {
     console.log('1/3 re auth done')
     auth.deleteAccount(
-      allUserIds.filter((item) => item.userId === auth.user.uid)
+      allUserIds.filter((item) => item.userId === auth.user.uid),
+      auth.user.uid
     )
     setOpenConfirmDelete(false)
+    router.push('/')
   }
-  useEffect(() => {
-    if (auth) {
-      console.log(auth.user)
-    }
-  }, [auth])
+  const handleStartDelete = () => setDeleteLoading(true)
+  const handleStopDelete = () => setDeleteLoading(false)
   return (
     <>
       {auth.user ? (
@@ -101,6 +101,9 @@ function settings({ allUserIds }) {
             )}
             <ConfirmDelete
               open={openConfirmDelete}
+              deleteLoading={deleteLoading}
+              handleStartDelete={handleStartDelete}
+              handleStopDelete={handleStopDelete}
               setDeleteAccount={deleteAccountConfirmed}
               setCloseModal={() => setOpenConfirmDelete(false)}
             />
@@ -108,7 +111,9 @@ function settings({ allUserIds }) {
           </div>
         </Layout>
       ) : (
-        <Layout page="settings" showNav><div></div></Layout>
+        <Layout page="settings" showNav>
+          <div></div>
+        </Layout>
       )}
     </>
   )

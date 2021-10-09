@@ -29,10 +29,8 @@ export default function Signup() {
             values.name,
             values.email,
             values.password,
-            () => {
-              setSubmissionLoading(false)
-              router.push('/dashboard')
-            }
+            () => setSubmissionLoading(false),
+            () => router.push('/dashboard')
           )
           resetForm({})
         }}
@@ -159,10 +157,10 @@ export default function Signup() {
                           className="w-full inline-flex items-center justify-center py-4 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                           onClick={() => {
                             setSubmissionLoading(true)
-                            auth.signinWithGoogle(() => {
-                              setSubmissionLoading(false)
-                              router.push('/dashboard')
-                            })
+                            auth.signinWithGoogle(
+                              () => setSubmissionLoading(false),
+                              () => router.push('/dashboard')
+                            )
                           }}
                         >
                           <img

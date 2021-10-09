@@ -16,6 +16,7 @@ function classNames(...classes) {
 
 export default function Dashboard({
   allData,
+  allDataWithMutation,
   completedData: { completedSlides, completedMCQs, completedFRQs },
   slug,
 }) {
@@ -24,7 +25,11 @@ export default function Dashboard({
   return (
     <>
       <div className="max-w-4xl m-auto min-h-screen bg-white p-5">
-        <UncompleteModule allData={allData} slug={slug} />
+        <UncompleteModule
+          allDataWithMutation={allDataWithMutation}
+          allData={allData}
+          slug={slug}
+        />
         <h1>
           {allData.length === 0 ? 'Welcome,' : 'Welcome back,'} {auth.user.name}
           .

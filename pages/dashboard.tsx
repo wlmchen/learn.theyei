@@ -24,6 +24,8 @@ export default function dashboard() {
   const [completedFRQs, setCompletedFRQs] = useState([])
   const [mutatedFRQData, setMutatedFRQData] = useState([])
 
+  const [allDataWithMutation, setAllDataWithMutation] = useState([])
+
   const { data: slideProgressData } = useSWR(
     auth.user ? [`/api/slides/${auth.user.uid}`, auth.user.token] : null,
     fetcher
@@ -94,6 +96,11 @@ export default function dashboard() {
         ...mcqScoreData.score,
         ...frqScoreData.score,
       ])
+      setAllDataWithMutation([
+        ...slideProgressData.progress,
+        ...mcqScoreData.score,
+        ...newFRQData,
+      ])
       console.log('new', newFRQData)
       // console.log(frqScoreData)
     }
@@ -114,6 +121,7 @@ export default function dashboard() {
           <div className="w-full">
             <Dashboard
               allData={allData}
+              allDataWithMutation={allDataWithMutation}
               completedData={{ completedSlides, completedMCQs, completedFRQs }}
               slug={slug}
             />
