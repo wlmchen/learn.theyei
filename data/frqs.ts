@@ -62,7 +62,7 @@ const frqs = [
     },
     {
       title: 'Fiscal Policy',
-      numberOfFRQs: 2,
+      numberOfFRQs: 3,
     },
     {
       title: 'Monetary Policy',
