@@ -5,6 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { useAuth } from '@/lib/auth'
 import FocusError from '@/components/utility/FocusError'
 import Layout from '@/components/global/Layout'
+import Link from 'next/link'
 
 export default function Login() {
   const auth = useAuth()
@@ -49,7 +50,7 @@ export default function Login() {
             <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
               <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                  Sign into your Account
+                  Login to your Account
                 </h2>
               </div>
 
@@ -113,6 +114,12 @@ export default function Login() {
                     </div>
                     <FocusError />
                   </Form>
+
+                  <Link href="/forgotPassword">
+                    <span className="w-full appearance-none text-sm text-center text-yei-primary-main font-semibold pt-4">
+                      Forgot your password?
+                    </span>
+                  </Link>
 
                   <span className="formik-error text-sm">{auth.authError}</span>
 

@@ -1,22 +1,21 @@
-import { useRouter } from 'next/router'
-import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
-
-import CategoryLayout from '@/components/category/CategoryLayout'
-import { kebabCase } from '@/lib/utils'
-import { useAuth } from '@/lib/auth'
-import { MDXRemote } from 'next-mdx-remote'
-import Layout from '@/components/global/Layout'
-
 import {
-  getFiles,
-  getFileBySlug,
   formatSlug,
   getAllFilesFrontMatter,
+  getFileBySlug,
+  getFiles,
 } from '@/lib/mdx'
-import { MDXLayoutRenderer } from '@/components/mdx/MDXComponents'
 import routes, { kebabModules } from '@/data/routes'
+
+import CategoryLayout from '@/components/category/CategoryLayout'
 import FRQPage from '@/components/category/frq/FRQPage'
+import Head from 'next/head'
+import Layout from '@/components/global/Layout'
+import { MDXLayoutRenderer } from '@/components/mdx/MDXComponents'
+import { MDXRemote } from 'next-mdx-remote'
+import { kebabCase } from '@/lib/utils'
+import { useAuth } from '@/lib/auth'
+import { useRouter } from 'next/router'
 
 export async function getStaticPaths() {
   const posts = await getFiles('content')
