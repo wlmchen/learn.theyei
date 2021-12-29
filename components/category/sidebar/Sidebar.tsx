@@ -168,7 +168,7 @@ export default function Sidebar({ children }) {
                       </nav>
                     </div>
                   </div>
-                  <Link href="/settings">
+                  <Link href="/dashboard">
                     <div className="border-t hover:bg-gray-100 bg-white border-gray-300 text-sm text-gray-500 py-4 px-5 cursor-pointer">
                       <span className="flex items-center font-semibold">
                       <ArrowLeftIcon className="h-4 w-4 mr-2" style={{marginTop: '2px'}} />
@@ -277,7 +277,7 @@ export default function Sidebar({ children }) {
                     </nav>
                   </div>
                 </div>
-                <Link href="/settings">
+                <Link href="/dashboard">
                   <div className="border-t hover:bg-gray-100 bg-white border-gray-300 text-sm text-gray-500 py-4 px-5 cursor-pointer">
                     <span className="flex items-center font-semibold">
                       <ArrowLeftIcon className="h-4 w-4 mr-2" style={{marginTop: '2px'}} />
