@@ -37,7 +37,6 @@ function MCQ({ slug }) {
         kebabChaptersSelection.indexOf(slug[1]) + 1
     )
   })
-  // console.log({ sortedMcqs })
   useEffect(() => {
     new Array(sortedMcqs.length).fill(null).forEach(() => {
       randomSeq.push(Math.random() - 0.5)
@@ -45,8 +44,6 @@ function MCQ({ slug }) {
     setFilteredMcqs(
       sortedMcqs.sort((item) => randomSeq[sortedMcqs.indexOf(item)]).slice(0, 5)
     )
-    console.log(sortedMcqs)
-    // console.log(filteredMcqs)
   }, [])
 
   const [userChoices, setUserChoices] = useState(
@@ -57,7 +54,6 @@ function MCQ({ slug }) {
     let newUserChoices = userChoices.slice()
     newUserChoices[questionNumber] = letterIndex
     setUserChoices(newUserChoices)
-    console.log(filteredMcqs.slice(0, 5))
   }
 
   useEffect(() => {
@@ -78,7 +74,6 @@ function MCQ({ slug }) {
       createdAt: new Date().toISOString(),
       userId: auth.user.uid,
     }
-    console.log(newScore)
     const { id } = createMCQScore(newScore)
     setNewId(id)
   }

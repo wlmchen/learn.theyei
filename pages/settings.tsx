@@ -1,23 +1,23 @@
-import Dashboard from '@/components/dashboard/Dashboard'
-import Layout from '@/components/global/Layout'
-import ConfirmDelete from '@/components/settings/ConfirmDelete'
-import FocusError from '@/components/utility/FocusError'
-import { useAuth } from '@/lib/auth'
-import fetcher from '@/utils/fetcher'
-import axios from 'axios'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-import React, { useEffect, useState } from 'react'
 import * as Yup from 'yup'
-import { getAllUserDataIds } from '@/lib/db-admin'
+
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+import React, { useEffect, useState } from 'react'
+
+import ConfirmDelete from '@/components/settings/ConfirmDelete'
+import Dashboard from '@/components/dashboard/Dashboard'
 import FirstName from './../components/settings/FirstName'
-import Password from './../components/settings/Password'
+import FocusError from '@/components/utility/FocusError'
 import { InformationCircleIcon } from '@heroicons/react/outline'
+import Layout from '@/components/global/Layout'
+import Password from './../components/settings/Password'
+import axios from 'axios'
+import fetcher from '@/utils/fetcher'
+import { getAllUserDataIds } from '@/lib/db-admin'
+import { useAuth } from '@/lib/auth'
 import { useRouter } from 'next/router'
 
 export async function getStaticProps() {
-  // const auth = useAuth()
   const { allUserIds } = await getAllUserDataIds()
-  // console.log(allUserIds)
 
   return { props: { allUserIds } }
 }
@@ -32,7 +32,6 @@ function settings({ allUserIds }) {
     setOpenConfirmDelete(true)
   }
   const deleteAccountConfirmed = () => {
-    console.log('1/3 re auth done')
     auth.deleteAccount(
       allUserIds.filter((item) => item.userId === auth.user.uid),
       auth.user.uid

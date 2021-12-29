@@ -1,11 +1,13 @@
-import React, { Fragment } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import React, { Fragment } from 'react'
+
+import Image from 'next/image'
+import Link from 'next/link'
+import { kebabCase } from '@/lib/utils'
 import { useAuth } from '@/lib/auth'
 import { useRouter } from 'next/router'
-import { kebabCase } from '@/lib/utils'
+
 const navigation = [{ name: 'Dashboard', href: '/dashboard' }]
 const categoryNavigation = [
   { name: 'General', href: '/general' },
@@ -24,7 +26,6 @@ function classNames(...classes) {
 export default function Navbar({ page }) {
   const auth = useAuth()
   const router = useRouter()
-  // console.log(router.query.slug)
   return (
     <>
       <Disclosure as="nav" className="bg-white z-50">

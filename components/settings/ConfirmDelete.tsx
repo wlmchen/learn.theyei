@@ -22,8 +22,7 @@ function ConfirmDelete({
 
   const reauth = () => {
     if (auth.user.provider === 'google.com') {
-      // auth.reauthGoogleUser(() => console.log('oohhh yeah'))
-      // setDeleteAccount()
+      // No delete method for google yet
     } else {
       handleStartDelete()
       auth.reauthUser(

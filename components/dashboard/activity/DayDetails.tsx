@@ -1,14 +1,15 @@
-import frqs from '@/data/frqs'
+import React, { useEffect, useState } from 'react'
 import {
-  categories,
-  kebabCategories,
-  chapters,
-  kebabChapters,
   allChapters,
   allKebabChapters,
+  categories,
+  chapters,
+  kebabCategories,
+  kebabChapters,
 } from '@/data/routes'
+
+import frqs from '@/data/frqs'
 import { kebabCase } from '@/lib/utils'
-import React, { useState, useEffect } from 'react'
 
 function DayDetails({ allData, daySelected, dayDetails, slug }) {
   const kebabChaptersSelection = kebabChapters[kebabCategories.indexOf(slug[0])]
@@ -43,60 +44,6 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
     'November',
     'December',
   ]
-  // console.log(
-  //   'is it there? ',
-  //   dayDetails.filter((item) => item.frqProgress)
-  // )
-  // frqs[0].forEach((chapter, index2) => {
-  //   console.log(
-  //     'maybe ',
-  //     dayDetails.filter((item) => item.frqProgress)
-  //   )
-  //   if (
-  //     dayDetails.filter(
-  //       (item) =>
-  //         item.category === kebabCategories[0] &&
-  //         item.chapter === kebabChapters[0][index2] &&
-  //         item.num
-  //     ).length === chapter.numberOfFRQs
-  //   ) {
-  //     dayDetails.push({
-  //       category: kebabCategories[0],
-  //       chapter: kebabChapters[0][index2],
-  //       frqProgress: 'completed',
-  //     })
-  //   } else if (
-  //     dayDetails.filter(
-  //       (item) =>
-  //         item.category === kebabCategories[0] &&
-  //         item.chapter === kebabChapters[0][index2] &&
-  //         item.num
-  //     ).length > 0
-  //   ) {
-  //     console.log(
-  //       dayDetails.filter(
-  //         (item) =>
-  //           item.category === kebabCategories[0] &&
-  //           item.chapter === kebabChapters[0][index2] &&
-  //           item.num
-  //       )
-  //     )
-  //     dayDetails.push({
-  //       category: kebabCategories[0],
-  //       chapter: kebabChapters[0][index2],
-  //       frqProgress: 'in-progress',
-  //     })
-  //   } else {
-  //   }
-  // })
-
-  // console.log(
-  //   'hmm ',
-  //   dayDetails.filter((item) => item.frqProgress)
-  // )
-
-  // const dayDetails = dayDetails.filter((item) => !item.num)
-  // console.log(dayDetails, dayDetails)
   return (
     <div>
       {dayDetails[0]?.createdAt !== undefined && dayDetails !== [] ? (

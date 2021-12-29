@@ -1,11 +1,12 @@
-import { useAuth } from '@/lib/auth'
-import { createFRQScore, removeFRQScore } from '@/lib/db'
-import fetcher from '@/utils/fetcher'
 import { EyeIcon, EyeOffIcon, XCircleIcon } from '@heroicons/react/outline'
-import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import useSWR from 'swr'
+import { createFRQScore, removeFRQScore } from '@/lib/db'
+
 import FRQNotification from './FRQNotification'
+import fetcher from '@/utils/fetcher'
+import { useAuth } from '@/lib/auth'
+import { useRouter } from 'next/router'
+import useSWR from 'swr'
 
 function FRQ({ num, totalPoints, children }) {
   const auth = useAuth()
@@ -24,18 +25,14 @@ function FRQ({ num, totalPoints, children }) {
     fetcher
   )
   let firstData = true
-  // console.log(`/api/frqs/${slug.join('/')}/${num}/${auth.user.uid}`)
 
   useEffect(() => {
     if (frqScoreData) {
       if (frqScoreData.score) {
-        console.log('theres data', { frqScoreData })
-        // console.log({ frqScoreData })
         setPoints(frqScoreData.score[0]?.score || '')
         setAlreadyFinished(frqScoreData.score.length !== 0)
         setShowAnswers(frqScoreData.score.length !== 0)
       } else {
-        console.log({ frqScoreData })
         setPoints('')
       }
     }
@@ -57,7 +54,6 @@ function FRQ({ num, totalPoints, children }) {
 
   const handleRedo = () => {
     removeFRQScore(frqScoreData.score[0]?.id || newId)
-    console.log('remove scoreeee', frqScoreData.score[0]?.id || newId)
     setAlreadyFinished(false)
     setShowAnswers(false)
     setPoints('')
@@ -70,7 +66,6 @@ function FRQ({ num, totalPoints, children }) {
         setPointsError('')
         setShowNotification(true)
         onCreateFRQScore()
-        console.log('create ' + firstData)
         firstData = false
         setAlreadyFinished(true)
       } else {

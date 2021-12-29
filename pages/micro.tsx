@@ -1,16 +1,15 @@
-import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
-import { useAuth } from '@/lib/auth'
-
-import Layout from '@/components/global/Layout'
 import Dashboard from '@/components/category/dashboard/Dashboard'
-import { kebabCase } from '@/lib/utils'
-import fetcher from '@/utils/fetcher'
-import { useState, useEffect } from 'react'
-import useSWR from 'swr'
 import DashboardSkeleton from '@/components/category/dashboard/DashboardSkeleton'
+import Layout from '@/components/global/Layout'
+import fetcher from '@/utils/fetcher'
 import frqs from '@/data/frqs'
+import { kebabCase } from '@/lib/utils'
 import { kebabCategories } from '@/data/routes'
+import { useAuth } from '@/lib/auth'
+import { useRouter } from 'next/router'
+import useSWR from 'swr'
 
 export default function general() {
   const auth = useAuth()
@@ -38,7 +37,6 @@ export default function general() {
   let newFRQData = []
   useEffect(() => {
     if (slideProgressData && mcqScoreData && frqScoreData) {
-      // console.log(slideProgressData, mcqScoreData, frqScoreData)
       setCompletedSlides(
         slideProgressData.progress?.filter((item) => {
           return item.progress === 'completed'
@@ -46,8 +44,6 @@ export default function general() {
       )
       setCompletedMCQs(mcqScoreData?.score || [])
       setCompletedFRQs(frqScoreData?.score || [])
-
-      console.log('start of frq data ', frqScoreData)
 
       frqs.forEach((category, index) => {
         category.forEach((chapter, index2) => {
@@ -86,8 +82,6 @@ export default function general() {
       })
       setCompletedFRQs(completedFRQData)
       setMutatedFRQData(newFRQData)
-      console.log('new', newFRQData)
-      // console.log(frqScoreData)
     }
   }, [slideProgressData, mcqScoreData, frqScoreData])
   return (

@@ -1,16 +1,17 @@
-import { Fragment, useEffect, useState } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
-import { kebabCase } from '@/lib/utils'
 import {
   BookOpenIcon,
   CheckIcon,
   SelectorIcon,
   XIcon,
 } from '@heroicons/react/solid'
-import { useAuth } from '@/lib/auth'
-import useSWR, { mutate } from 'swr'
+import { Fragment, useEffect, useState } from 'react'
+import { Listbox, Transition } from '@headlessui/react'
 import { createSlideProgress, updateSlideProgress } from '@/lib/db'
+import useSWR, { mutate } from 'swr'
+
 import fetcher from '@/utils/fetcher'
+import { kebabCase } from '@/lib/utils'
+import { useAuth } from '@/lib/auth'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -81,7 +82,6 @@ export default function SlideSelect({ slug }) {
 
   useEffect(() => {
     if (slideProgressData) {
-      console.log(slideProgressData, slug.join('/'))
       setSelected(
         options[
           kebabOptionsNames.indexOf(
@@ -97,23 +97,7 @@ export default function SlideSelect({ slug }) {
   const handleChange = (value) => {
     if (kebabCase(value.name) !== lastChoice) {
       setSelected(value)
-      console.log(kebabCase(value.name))
       lastChoice = kebabCase(value.name)
-      console.log(slideProgressData.progress, newSlide)
-      // if (slideProgressData.progress[0]) {
-      //   console.log('update', slug, value, slideProgressData)
-      //   onUpdateSlideProgress(
-      //     slideProgressData.progress[0].id,
-      //     kebabCase(value.name)
-      //   )
-      // } else if (!newSlide) {
-      //   console.log('update new slide', slug, value, slideProgressData)
-      //   onUpdateSlideProgress(newSlideId, kebabCase(value.name))
-      // } else {
-      //   onCreateSlideProgress(kebabCase(value.name))
-      //   console.log('create')
-      //   newSlide = true
-      // }
       onCreateSlideProgress(kebabCase(value.name))
     }
   }

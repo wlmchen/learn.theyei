@@ -1,8 +1,9 @@
+import { BookOpenIcon, CheckIcon, XIcon } from '@heroicons/react/outline'
 import React, { useEffect } from 'react'
 import routes, { kebabCategories } from '@/data/routes'
+
 import Link from 'next/link'
 import { kebabCase } from '@/lib/utils'
-import { BookOpenIcon, CheckIcon, XIcon } from '@heroicons/react/outline'
 
 function Pathway({
   title,
@@ -34,7 +35,6 @@ function Pathway({
   }
 
   const getFRQs = (item) => {
-    console.log(item)
     return (
       mutatedFRQData[
         frqDataNamesOnly.indexOf(`${kebabCase(title)}/${kebabCase(item)}`)

@@ -31,7 +31,6 @@ function Streak({ allData }) {
           // counts up consecutive numbers to create a streak
           streakCount += item === streakCount ? 1 : 0
         })
-      // console.log(dates, streakCount)
       setStreak(streakCount)
     }
   }, [allData])

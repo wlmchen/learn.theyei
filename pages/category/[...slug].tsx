@@ -31,7 +31,6 @@ export async function getStaticPaths() {
       )
     }
   })
-  // console.log(posts)
   return {
     paths: posts.map((p) => ({
       params: {
@@ -44,7 +43,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   let post
-  // console.log(params.slug)
   if (params.slug[2] !== 'slides' && params.slug[2] !== 'mcq-practice') {
     post = await getFileBySlug('content', params.slug.join('_'))
   } else {

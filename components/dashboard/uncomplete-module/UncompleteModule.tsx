@@ -1,15 +1,15 @@
+import React, { useEffect, useState } from 'react'
 import {
-  categories,
-  kebabCategories,
   allChapters,
   allKebabChapters,
+  categories,
+  kebabCategories,
 } from '@/data/routes'
+
 import { InformationCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
 
 function UncompleteModule({ allData, allDataWithMutation, slug }) {
-  console.log({ allChapters, allKebabChapters })
   const [suggestion, setSuggestion] = useState({
     progress: null,
     category: null,
@@ -68,7 +68,6 @@ function UncompleteModule({ allData, allDataWithMutation, slug }) {
         )
       } else if (incompleteFRQs.length !== 0) {
         // If there are incomplete frqs, suggest the oldest one on the list
-        console.log('hiiiiiiiiii\nsorry im really bored rn')
         setSuggestion(
           allDataWithMutation
             .slice()
@@ -79,7 +78,6 @@ function UncompleteModule({ allData, allDataWithMutation, slug }) {
             )
             .filter((item) => item.frqProgress === 'in-progress')[0]
         )
-        console.log('')
       } else {
       }
     }
