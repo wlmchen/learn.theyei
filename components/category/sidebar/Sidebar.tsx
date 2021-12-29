@@ -1,19 +1,17 @@
-import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
-import React, { Fragment, useEffect, useState } from 'react'
-import Link from 'next/link'
-import { kebabCase } from '@/lib/utils'
-import GroupSelect from './GroupSelect'
-
-import routes, { categories, kebabCategories, modules } from '@/data/routes'
-import { useRouter } from 'next/router'
-import { XIcon, MenuAlt2Icon, BellIcon } from '@heroicons/react/solid'
 import {
-  ArrowDownIcon,
-  ChevronDownIcon,
+  ArrowLeftIcon,
   ChevronRightIcon,
-  CogIcon,
   MenuIcon,
 } from '@heroicons/react/outline'
+import { Dialog, Disclosure, Transition } from '@headlessui/react'
+import { HomeIcon, XIcon } from '@heroicons/react/solid'
+import React, { Fragment, useEffect, useState } from 'react'
+import routes, { categories, kebabCategories, modules } from '@/data/routes'
+
+import GroupSelect from './GroupSelect'
+import Link from 'next/link'
+import { kebabCase } from '@/lib/utils'
+import { useRouter } from 'next/router'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -172,10 +170,10 @@ export default function Sidebar({ children }) {
                   </div>
                   <Link href="/settings">
                     <div className="border-t hover:bg-gray-100 bg-white border-gray-300 text-sm text-gray-500 py-4 px-5 cursor-pointer">
-                      <span className="flex items-center">
-                        <CogIcon className="h-6 w-6 mr-2" />
-                        Settings
-                      </span>
+                      <span className="flex items-center font-semibold">
+                      <ArrowLeftIcon className="h-4 w-4 mr-2" style={{marginTop: '2px'}} />
+                      Return Home
+                    </span>
                     </div>
                   </Link>
                 </div>
@@ -281,9 +279,9 @@ export default function Sidebar({ children }) {
                 </div>
                 <Link href="/settings">
                   <div className="border-t hover:bg-gray-100 bg-white border-gray-300 text-sm text-gray-500 py-4 px-5 cursor-pointer">
-                    <span className="flex items-center">
-                      <CogIcon className="h-6 w-6 mr-2" />
-                      Settings
+                    <span className="flex items-center font-semibold">
+                      <ArrowLeftIcon className="h-4 w-4 mr-2" style={{marginTop: '2px'}} />
+                      Return Home
                     </span>
                   </div>
                 </Link>
