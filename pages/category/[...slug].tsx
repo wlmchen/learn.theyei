@@ -5,7 +5,7 @@ import {
   getFileBySlug,
   getFiles,
 } from '@/lib/mdx'
-import routes, { kebabModules } from '@/data/routes'
+import routes, { allChapters, allKebabChapters, chapters, kebabCategories, kebabChapters, kebabModules, modules } from '@/data/routes'
 
 import CategoryLayout from '@/components/category/CategoryLayout'
 import FRQPage from '@/components/category/frq/FRQPage'
@@ -62,8 +62,13 @@ export default function Category({ post }) {
 
   useEffect(() => {
     setSectionType(slug[2])
-  }, [router])
 
+    console.log(chapters)
+    console.log(allKebabChapters)
+    console.log(slug[1])
+    console.log(allChapters[allKebabChapters.indexOf(slug[1])])
+    
+  }, [router])
   return (
     <>
       <Head>
@@ -75,7 +80,11 @@ export default function Category({ post }) {
         />
       </Head>
       {auth.user ? (
-        <Layout page={slug[0]} showNav={slug.length === 1}>
+        <Layout
+          title={`${allChapters[allKebabChapters.indexOf(slug[1])]} ${modules[kebabModules.indexOf(slug[2])]}`}
+          page={slug[0]}
+          showNav={slug.length === 1}
+        >
           <div className="w-full">
             {kebabModules.indexOf(sectionType) !== -1 ? (
               <CategoryLayout slug={slug} sectionType={sectionType}>

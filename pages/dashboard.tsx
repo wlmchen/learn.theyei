@@ -111,7 +111,7 @@ export default function dashboard() {
         allData,
         mutatedFRQData,
       } ? (
-        <Layout page="dashboard" showNav contentLoaded>
+        <Layout title="Dashboard" page="dashboard" showNav contentLoaded>
           <div className="w-full">
             <Dashboard
               allData={allData}
@@ -122,7 +122,7 @@ export default function dashboard() {
           </div>
         </Layout>
       ) : (
-        <Layout page="dashboard" showNav>
+        <Layout title="Dashboard" page="dashboard" showNav>
           <div className="w-full">
             <DashboardSkeleton />
           </div>

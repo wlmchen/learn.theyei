@@ -1,11 +1,13 @@
-import router from 'next/router'
-import React, { useState } from 'react'
 import * as Yup from 'yup'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { useAuth } from '@/lib/auth'
+
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+import React, { useState } from 'react'
+
 import FocusError from '@/components/utility/FocusError'
 import Layout from '@/components/global/Layout'
 import Link from 'next/link'
+import router from 'next/router'
+import { useAuth } from '@/lib/auth'
 
 export default function Login() {
   const auth = useAuth()
@@ -17,7 +19,7 @@ export default function Login() {
   const [submissionLoading, setSubmissionLoading] = useState(false)
 
   return (
-    <Layout page="login" showNav contentLoaded>
+    <Layout title="Login" page="login" showNav contentLoaded>
       <Formik
         initialValues={{
           name: '',

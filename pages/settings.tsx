@@ -44,7 +44,7 @@ function settings({ allUserIds }) {
   return (
     <>
       {auth.user ? (
-        <Layout page="settings" showNav contentLoaded>
+        <Layout title="Settings" page="settings" showNav contentLoaded>
           <div className="mt-10 w-full max-w-xl m-auto z-0 px-5 text-left py-8 shadow sm:rounded-lg sm:px-10">
             <h1>Settings</h1>
             <div className="space-y-5 mt-6">
@@ -110,7 +110,7 @@ function settings({ allUserIds }) {
           </div>
         </Layout>
       ) : (
-        <Layout page="settings" showNav>
+        <Layout title="Settings" page="settings" showNav>
           <div></div>
         </Layout>
       )}

@@ -92,7 +92,7 @@ export default function general() {
         completedFRQs,
         mutatedFRQData,
       } ? (
-        <Layout page="micro" showNav contentLoaded>
+        <Layout title="Micro" page="micro" showNav contentLoaded>
           <div className="w-full">
             <Dashboard
               title="Micro"
@@ -108,7 +108,7 @@ export default function general() {
           </div>
         </Layout>
       ) : (
-        <Layout page="macro" showNav>
+        <Layout title="Micro" page="micro"  showNav>
           <div className="w-full">
             <DashboardSkeleton />
           </div>
