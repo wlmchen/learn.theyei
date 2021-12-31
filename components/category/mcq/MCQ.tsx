@@ -107,8 +107,16 @@ function MCQ({ slug }) {
           {alreadyComplete ? (
             <div className="mb-8 bg-white p-5 rounded-lg border-2 border-gray-200">
               <p className="text-gray-700 text-sm sm:text-base">
-                Looks like you've already taken this practice quiz. Would you
-                like to try again?
+                Looks like you've already taken this practice quiz and got a
+                score of{' '}
+                <b>
+                  {
+                    userChoices?.filter(
+                      (item, index) =>
+                        item === letterToNum(filteredMcqs[index].correct)
+                    ).length
+                  }/{filteredMcqs?.length}
+                </b>. Would you like to try again?
               </p>
               <button
                 type="submit"
@@ -346,49 +354,50 @@ function MCQ({ slug }) {
                   </div>
                 )
               )}
+              <div>
+                {showAnswers ? (
+                  <div>
+                    <button
+                      type="submit"
+                      className="inline-flex items-center px-4 py-2 mb-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-400 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main"
+                      onClick={handleRedo}
+                    >
+                      Redo?
+                    </button>
+                    <ScoreAlert
+                      score={
+                        userChoices?.filter(
+                          (item, index) =>
+                            item === letterToNum(filteredMcqs[index].correct)
+                        ).length
+                      }
+                      totalPoints={filteredMcqs?.length}
+                    />
+                  </div>
+                ) : (
+                  <button
+                    type="submit"
+                    className="inline-flex items-center px-4 py-2 mb-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-yei-primary-main hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main"
+                    onClick={handleSubmit}
+                  >
+                    Submit <CheckIcon className="h-6 w-6 ml-1" />
+                  </button>
+                )}
+                <br />
+                {missedProblems !== 0 ? (
+                  <p className="border-t-2 pt-2 pr-5 border-red-200 text-sm text-red-500 font-bold inline">
+                    {missedProblems}{' '}
+                    {missedProblems === 1
+                      ? "problem hasn't"
+                      : "problems haven't"}{' '}
+                    been answered.
+                  </p>
+                ) : (
+                  ''
+                )}
+              </div>
             </div>
           )}
-
-          <div>
-            {showAnswers ? (
-              <div>
-                <button
-                  type="submit"
-                  className="inline-flex items-center px-4 py-2 mb-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-400 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main"
-                  onClick={handleRedo}
-                >
-                  Redo?
-                </button>
-                <ScoreAlert
-                  score={
-                    userChoices?.filter(
-                      (item, index) =>
-                        item === letterToNum(filteredMcqs[index].correct)
-                    ).length
-                  }
-                  totalPoints={filteredMcqs?.length}
-                />
-              </div>
-            ) : (
-              <button
-                type="submit"
-                className="inline-flex items-center px-4 py-2 mb-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-yei-primary-main hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main"
-                onClick={handleSubmit}
-              >
-                Submit <CheckIcon className="h-6 w-6 ml-1" />
-              </button>
-            )}
-            <br />
-            {missedProblems !== 0 ? (
-              <p className="border-t-2 pt-2 pr-5 border-red-200 text-sm text-red-500 font-bold inline">
-                {missedProblems}{' '}
-                {missedProblems === 1 ? "problem hasn't" : "problems haven't"}{' '}
-                been answered.
-              </p>
-            ) : (
-              ''
-            )}
-          </div>
         </div>
       )}
     </>
