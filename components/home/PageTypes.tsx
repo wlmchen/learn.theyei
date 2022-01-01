@@ -20,10 +20,9 @@ export default function PageTypes() {
                   Slideshows
                 </h2>
                 <p className="mt-4 text-lg text-gray-500">
-                  Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis
-                  bibendum malesuada faucibus lacinia porttitor. Pulvinar
-                  laoreet sagittis viverra duis. In venenatis sem arcu pretium
-                  pharetra at. Lectus viverra dui tellus ornare pharetra.
+				  Learn or review AP Microeconomics and Macroeconomics concepts with the YEI's slideshows.
+				  Covering all fundamental economics concepts, as well as everything on the AP Microeconomics
+				  and Macroeconomics exams.
                 </p>
               </div>
             </div>
@@ -52,14 +51,12 @@ export default function PageTypes() {
                 </div>
                 <div className="mt-6">
                   <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
-                    Free Response Questions (FRQs)
+				    Multiple-Choice Questions
                   </h2>
                   <p className="mt-4 text-lg text-gray-500">
-                    Semper curabitur ullamcorper posuere nunc sed. Ornare
-                    iaculis bibendum malesuada faucibus lacinia porttitor.
-                    Pulvinar laoreet sagittis viverra duis. In venenatis sem
-                    arcu pretium pharetra at. Lectus viverra dui tellus ornare
-                    pharetra.
+				    Strengthen your conceptual grasp of economics concepts and prepare for competitions
+					like the EconBowl and National Economics Challenges with our multiple-choice questions.
+					Includes original questions and past questions from our EconBowl competitions.
                   </p>
                 </div>
               </div>
@@ -68,7 +65,7 @@ export default function PageTypes() {
               <div className="pl-4 -mr-48 sm:pr-6 lg:px-0 lg:m-0 lg:relative lg:h-full">
                 <img
                   className="border border-gray-200 w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
-                  src="./img/others/home/frq.png"
+                  src="./img/others/home/mcq.png"
                   alt="Customer profile user interface"
                 />
               </div>
@@ -88,13 +85,12 @@ export default function PageTypes() {
               </div>
               <div className="mt-6">
                 <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
-                  Mutliple Choice Quizzes
+				  Free-Response Questions (FRQs)
                 </h2>
                 <p className="mt-4 text-lg text-gray-500">
-                  Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis
-                  bibendum malesuada faucibus lacinia porttitor. Pulvinar
-                  laoreet sagittis viverra duis. In venenatis sem arcu pretium
-                  pharetra at. Lectus viverra dui tellus ornare pharetra.
+				  Practice for free-response questions on the AP Econ exams and the EconOlympiad with our free-response questions.
+				  We have over [x] questions, including original questions, past AP questions, and past EconOlympiad problems. 
+				  Grading rubrics and solutions also available.
                 </p>
               </div>
             </div>
@@ -103,7 +99,7 @@ export default function PageTypes() {
             <div className="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
               <img
                 className="border border-gray-200 w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
-                src="./img/others/home/mcq.png"
+                src="./img/others/home/frq.png"
                 alt="Inbox user interface"
               />
             </div>
