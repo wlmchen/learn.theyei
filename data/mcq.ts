@@ -70,6 +70,116 @@ const mcq = [
   {
     category: 'General 1',
     question:
+      'Jayce goes to college and pays $\$50,000$ in tuition, but can get a job at McDonalds for $\$30,000$ a year. What is his annual opportunity cost?',
+    a: '$\$20000$',
+    b: '$\$30000$',
+    c: '$\$50000$',
+    d: '$\$80000$',
+    correct: 'B',
+    source: 'Spring 2020 EconBowl',
+  },
+  {
+    category: 'General 1',
+    question:
+	  'What is a scarce resource?',
+    a: 'A resource with limited supply',
+    b: 'A resource that’s hard to find',
+    c: 'A resource that is spooky',
+    d: 'A resource that people don’t want',
+    correct: 'A',
+    source: 'Spring 2020 EconBowl',
+  },
+  {
+    category: 'General 1',
+    question:
+	  'Who is known as the father of capitalism?',
+    a: 'Arthur Laffer',
+    b: 'George Washington',
+    c: 'Adam Smith',
+    d: 'David Ricardo',
+    correct: 'C',
+    source: 'Spring 2020 EconBowl',
+  },
+  {
+    category: 'General 1',
+    question:
+	  'Which of the following is considered a normative economic statement?',
+    a: 'The government should raise taxes to fund a new program',
+    b: 'Expansionary fiscal policy can lead to crowding out',
+    c: 'Increasing prices does not always lead to more profits',
+    d: 'Monopolies are allocatively inefficient',
+    correct: 'A',
+    source: 'EconBowl Practice Test #2',
+  },
+  {
+    category: 'General 1',
+    question:
+	  'Peter compares the price of Trident gum to the price of Extra gum. What function of money BEST describes the situation?',
+    a: 'Unit of Account',
+    b: 'Store of Value',
+    c: 'Medium of Exchange',
+    d: 'Speculative Motive',
+    correct: 'A',
+    source: 'EconBowl Practice Test #2',
+  },
+  {
+    category: 'General 1',
+    question:
+	  'Assume that one unit of capital costs 10 euros and one unit of labor costs 5 euros. If a firm has 40 euros, what will be the combination of capital and labor hired?',
+    a: '4 units of capital, 0 units of labor',
+    b: '3 units of capital, 2 units of labor',
+    c: '2 units of capital, 4 units of labor',
+    d: '1 unit of capital, 6 units of labor',
+    correct: 'B',
+    source: 'EconBowl Practice Test #3',
+  },
+  {
+    category: 'General 1',
+    question:
+	  'There is a new minimum wage law that sets the cost of one unit of labor at 10 euros. If one unit of capital costs 10 euros and a firm has 50 euros, what will be the combination of capital and labor hired?',
+    a: '4 unit of capital, 4 unit of labor',
+    b: '4 units of capital, 2 units of labor',
+    c: '3 units of capital, 4 units of labor',
+    d: '2 units of capital, 6 units of labor',
+    correct: 'B',
+    source: 'EconBowl Practice Test #3',
+  },
+  {
+    category: 'General 1',
+    question:
+	  'Darion spends $\$500$ on a vacation to Fiji. At the same time, he could be working for $\$600$. He could also be hanging out with his friends, an experience he values at $\$300$. What is Darion’s opportunity cost of his Fiji trip, in dollars?',
+    a: '1100',
+    b: '1400',
+    c: '500',
+    d: '100',
+    correct: 'A',
+    source: 'EconBowl Practice Test #3',
+  },
+  {
+    category: 'General 1',
+    question:
+	  'Zoe quits her $\$100,000$ salary programming job to open a restaurant that makes $\$200,000$ a year in revenue with $\$50,000$ in operation costs. What is her economic profit, in dollars?',
+    a: '50,000',
+    b: '100,000',
+    c: '150,000',
+    d: '200,000',
+    correct: 'A',
+    source: 'EconBowl Practice Test #3',
+  },
+  {
+    category: 'General 1',
+    question:
+	  'According to the table, what is the utility-maximizing quantity of pizza and hot dogs that should be consumed given a budget of $52?',
+    a: '3 pizzas, 7 hot dogs',
+    b: '4 pizzas, 5 hot dogs',
+    c: '5 pizzas, 3 hot dogs',
+    d: '6 pizzas, 1 hot dog',
+    correct: 'B',
+    source: 'EconBowl Practice Test #3, Image: https://i.imgur.com/iLKiud0.png',
+  },
+  {
+    category: 'General 1',
+    question:
       'The marginal revenue for a boba company is $-(\frac{q}{100})^2+7$ and the marginal cost $\min(0, \frac{q}{25}-5)$ when q units are sold. What is the optimal number of units to sell?',
     a: 150,
     b: 200,
