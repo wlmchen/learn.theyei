@@ -6,22 +6,16 @@ import {
 
 const features = [
   {
-    name: 'Competitive exchange rates',
+    name: 'Learn',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: GlobeAltIcon,
+      '17 chapters of AP Economics content, including 4 chapters of fundamental economics, 6 chapters of macroeconomics, and 7 chapters of microeconomics.',
+    icon: BookOpenIcon,
   },
   {
-    name: 'No hidden fees',
+    name: 'Practice',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: ScaleIcon,
-  },
-  {
-    name: 'Transfers are instant',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: LightningBoltIcon,
+      'Practice with our hundreds of multiple-choice and free-response questions covering every topic on the AP Economics exams.',
+    icon: ArrowCircleUpIcon,
   },
 ]
 
