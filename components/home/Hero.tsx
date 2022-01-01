@@ -15,9 +15,7 @@ function Hero() {
             </span>
           </h1>
           <p className="m-auto max-w-xl mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg">
-            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-            lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-            fugiat aliqua ad ad non deserunt sunt.
+		    YEI Learn has practice resources to prepare for the AP Economics exams, National Economics Challenge, EconBowl, EconOlympiad, and more. 
           </p>
           <div className=" mt-4 sm:mx-auto sm:text-center lg:text-left">
             <Link href="/signup">
