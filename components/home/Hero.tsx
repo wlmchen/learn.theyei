@@ -15,7 +15,7 @@ function Hero() {
             </span>
           </h1>
           <p className="m-auto max-w-xl mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg">
-		    YEI Learn has practice resources to prepare for the AP Economics exams, National Economics Challenge, EconBowl, EconOlympiad, and more. 
+		    YEI Learn provides practice resources for the AP Economics exams, National Economics Challenge, EconBowl, EconOlympiad, and more. 
           </p>
           <div className=" mt-4 sm:mx-auto sm:text-center lg:text-left">
             <Link href="/signup">
