@@ -76,7 +76,7 @@ const mcq = [
     c: '$\$50000$',
     d: '$\$80000$',
     correct: 'B',
-    source: 'Spring 2020 EconBowl',
+    source: '',
   },
   {
     category: 'General 1',
@@ -87,7 +87,7 @@ const mcq = [
     c: 'A resource that is spooky',
     d: 'A resource that people don’t want',
     correct: 'A',
-    source: 'Spring 2020 EconBowl',
+    source: '',
   },
   {
     category: 'General 1',
@@ -98,7 +98,7 @@ const mcq = [
     c: 'Adam Smith',
     d: 'David Ricardo',
     correct: 'C',
-    source: 'Spring 2020 EconBowl',
+    source: '',
   },
   {
     category: 'General 1',
@@ -109,7 +109,7 @@ const mcq = [
     c: 'Increasing prices does not always lead to more profits',
     d: 'Monopolies are allocatively inefficient',
     correct: 'A',
-    source: 'EconBowl Practice Test #2',
+    source: '',
   },
   {
     category: 'General 1',
@@ -120,7 +120,7 @@ const mcq = [
     c: 'Medium of Exchange',
     d: 'Speculative Motive',
     correct: 'A',
-    source: 'EconBowl Practice Test #2',
+    source: '',
   },
   {
     category: 'General 1',
@@ -131,7 +131,7 @@ const mcq = [
     c: '2 units of capital, 4 units of labor',
     d: '1 unit of capital, 6 units of labor',
     correct: 'B',
-    source: 'EconBowl Practice Test #3',
+    source: '',
   },
   {
     category: 'General 1',
@@ -142,7 +142,7 @@ const mcq = [
     c: '3 units of capital, 4 units of labor',
     d: '2 units of capital, 6 units of labor',
     correct: 'B',
-    source: 'EconBowl Practice Test #3',
+    source: '',
   },
   {
     category: 'General 1',
@@ -153,7 +153,7 @@ const mcq = [
     c: '500',
     d: '100',
     correct: 'A',
-    source: 'EconBowl Practice Test #3',
+    source: '',
   },
   {
     category: 'General 1',
@@ -164,18 +164,18 @@ const mcq = [
     c: '150,000',
     d: '200,000',
     correct: 'A',
-    source: 'EconBowl Practice Test #3',
+    source: '',
   },
   {
     category: 'General 1',
     question:
-	  'According to the table, what is the utility-maximizing quantity of pizza and hot dogs that should be consumed given a budget of $52?',
+	  'According to the linked table, what is the utility-maximizing quantity of pizza and hot dogs that should be consumed given a budget of $52?',
     a: '3 pizzas, 7 hot dogs',
     b: '4 pizzas, 5 hot dogs',
     c: '5 pizzas, 3 hot dogs',
     d: '6 pizzas, 1 hot dog',
     correct: 'B',
-    source: 'EconBowl Practice Test #3, Image: https://i.imgur.com/iLKiud0.png',
+    source: 'https://i.imgur.com/iLKiud0.png',
   },
   {
     category: 'General 1',
