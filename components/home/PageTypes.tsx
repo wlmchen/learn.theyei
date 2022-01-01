@@ -89,7 +89,7 @@ export default function PageTypes() {
                 </h2>
                 <p className="mt-4 text-lg text-gray-500">
 				  Practice for free-response questions on the AP Econ exams and the EconOlympiad with our free-response questions.
-				  We have over [x] questions, including original questions, past AP questions, and past EconOlympiad problems. 
+				  Includes original questions, past AP questions, and past EconOlympiad problems. 
 				  Grading rubrics and solutions also available.
                 </p>
               </div>
