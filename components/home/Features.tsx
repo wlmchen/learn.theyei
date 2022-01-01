@@ -1,6 +1,6 @@
 import {
-  GlobeAltIcon,
-  LightningBoltIcon,
+  ArrowCircleUpIcon,
+  BookOpenIcon,
   ScaleIcon,
 } from '@heroicons/react/outline'
 
