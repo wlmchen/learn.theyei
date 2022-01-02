@@ -46,9 +46,7 @@ function MCQ({ slug }) {
     )
   }, [])
 
-  const [userChoices, setUserChoices] = useState(
-    new Array(filteredMcqs.length).fill(null)
-  )
+  const [userChoices, setUserChoices] = useState(new Array(5).fill(null))
 
   const handleChoice = (letterIndex, questionNumber) => {
     let newUserChoices = userChoices.slice()
@@ -115,8 +113,10 @@ function MCQ({ slug }) {
                       (item, index) =>
                         item === letterToNum(filteredMcqs[index].correct)
                     ).length
-                  }/{filteredMcqs?.length}
-                </b>. Would you like to try again?
+                  }
+                  /{filteredMcqs?.length}
+                </b>
+                . Would you like to try again?
               </p>
               <button
                 type="submit"
