@@ -15,7 +15,7 @@ const mcq = [
   {
     category: 'General 1',
     question:
-      'William could wash the dishes for $\text{\textdollar} 1,000$ a year, work as a software engineer for $\text{\textdollar} 100,000$ a year, or make YouTube videos for $\text{\textdollar} 10,000$ a year. He chooses to make YouTube videos. What is the opportunity cost (in dollars) of his action?',
+      'William could wash the dishes for $\\text{\\textdollar} 1,000$ a year, work as a software engineer for $\\text{\\textdollar} 100,000$ a year, or make YouTube videos for $\\text{\\textdollar} 10,000$ a year. He chooses to make YouTube videos. What is the opportunity cost (in dollars) of his action?',
     a: '10,100',
     b: '100,000',
     c: '1,000',
@@ -147,7 +147,7 @@ const mcq = [
   {
     category: 'General 1',
     question:
-	  'Darion spends $\$500$ on a vacation to Fiji. At the same time, he could be working for $\$600$. He could also be hanging out with his friends, an experience he values at $\$300$. What is Darion’s opportunity cost of his Fiji trip, in dollars?',
+	  'Darion spends $\\text{\\textdollar} 500$ on a vacation to Fiji. At the same time, he could be working for $\\text{\\textdollar} 600$. He could also be hanging out with his friends, an experience he values at $\\text{\\textdollar} 300$. What is Darion’s opportunity cost of his Fiji trip, in dollars?',
     a: '1100',
     b: '1400',
     c: '500',
@@ -158,7 +158,7 @@ const mcq = [
   {
     category: 'General 1',
     question:
-	  'Zoe quits her $\$100,000$ salary programming job to open a restaurant that makes $\$200,000$ a year in revenue with $\$50,000$ in operation costs. What is her economic profit, in dollars?',
+	  'Zoe quits her $\\text{\\textdollar} 100,000$ salary programming job to open a restaurant that makes $\\text{\\textdollar} 200,000$ a year in revenue with $\\text{\\textdollar} 50,000$ in operation costs. What is her economic profit, in dollars?',
     a: '50,000',
     b: '100,000',
     c: '150,000',
@@ -180,7 +180,7 @@ const mcq = [
   {
     category: 'General 1',
     question:
-      'The marginal revenue for a boba company is $-(\frac{q}{100})^2+7$ and the marginal cost $\min(0, \frac{q}{25}-5)$ when q units are sold. What is the optimal number of units to sell?',
+      'The marginal revenue for a boba company is $-(\\frac{q}{100})^2+7$ and the marginal cost $\\min(0, \\frac{q}{25}-5)$ when q units are sold. What is the optimal number of units to sell?',
     a: 150,
     b: 200,
     c: 250,
