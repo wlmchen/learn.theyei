@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import {
-  formatSlug,
-  getAllFilesFrontMatter,
   getFileBySlug,
   getFiles,
 } from '@/lib/mdx'
-import routes, { allChapters, allKebabChapters, chapters, kebabCategories, kebabChapters, kebabModules, modules } from '@/data/routes'
+import routes, {
+  allChapters,
+  allKebabChapters,
+  chapters,
+  kebabModules,
+  modules,
+} from '@/data/routes'
 
 import CategoryLayout from '@/components/category/CategoryLayout'
 import FRQPage from '@/components/category/frq/FRQPage'
@@ -67,8 +71,13 @@ export default function Category({ post }) {
     console.log(allKebabChapters)
     console.log(slug[1])
     console.log(allChapters[allKebabChapters.indexOf(slug[1])])
-    
   }, [router])
+
+  useEffect(() => {
+    if (!auth.user) {
+      router.push('/')
+    }
+  }, [auth])
   return (
     <>
       <Head>
@@ -81,7 +90,9 @@ export default function Category({ post }) {
       </Head>
       {auth.user ? (
         <Layout
-          title={`${allChapters[allKebabChapters.indexOf(slug[1])]} ${modules[kebabModules.indexOf(slug[2])]}`}
+          title={`${allChapters[allKebabChapters.indexOf(slug[1])]} ${
+            modules[kebabModules.indexOf(slug[2])]
+          }`}
           page={slug[0]}
           showNav={slug.length === 1}
         >
