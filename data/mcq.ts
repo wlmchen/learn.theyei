@@ -258,6 +258,78 @@ const mcq = [
   {
     category: 'General 2',
     question:
+      'Which of the following is not an example of an economic resource?',
+    a: 'A construction worker',
+    b: 'A machine',
+    c: 'A dollar bill',
+    d: 'Jeff Bezos',
+    correct: 'C',
+    source:
+      '',
+  },
+  {
+    category: 'General 2',
+    question:
+      'Which of the following is not an example of an economic resource?',
+    a: 'A construction worker',
+    b: 'A machine',
+    c: 'A dollar bill',
+    d: 'Jeff Bezos',
+    correct: 'C',
+    source:
+      '',
+  },
+  {
+    category: 'General 2',
+    question:
+      'Which of the following is not an example of an economic resource?',
+    a: 'A construction worker',
+    b: 'A machine',
+    c: 'A dollar bill',
+    d: 'Jeff Bezos',
+    correct: 'C',
+    source:
+      '',
+  },
+  {
+    category: 'General 2',
+    question:
+      'An outward shift in a Production Possibilities Curve is most likely caused by',
+    a: 'An improvement in technology',
+    b: 'An increase in the number of workers',
+    c: 'A natural disaster',
+    d: 'A decrease in price',
+    correct: 'C',
+    source:
+      '',
+  },
+  {
+    category: 'General 2',
+    question:
+      'Which of the following would lead to an outward shift in the production possibilities frontier?',
+    a: 'An increase in inflation',
+    b: 'An increase in minimum wage',
+    c: 'An increase in labor productivity',
+    d: 'An increase in the money supply',
+    correct: 'C',
+    source:
+      '',
+  },
+  {
+    category: 'General 2',
+    question:
+      'Assume the PPC curves for both countries are linear and with no discontinuities. In one work day, Japan can produce 25 units of rice and 10 units of corn while France can produce 15 units of rice and 20 units of corn. Which of the following statements is true?',
+    a: 'France has the absolute advantage in both products',
+    b: 'Japan should specialize in the production of corn',
+    c: 'France has an opportunity cost of ¾ units of corn per unit of rice produced',
+    d: 'Japan has an opportunity cost of ⅖ units of corn per unit of rice produced',
+    correct: 'D',
+    source:
+      '',
+  },
+  {
+    category: 'General 2',
+    question:
       'Will can mow the lawn for €100 a month, flip burgers for €110 a month, or get an internship for €10,000 a month. He chooses the internship (obviously). What is the opportunity cost?',
     a: '€10110',
     b: '€100',
