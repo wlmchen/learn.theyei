@@ -15,7 +15,7 @@ const mcq = [
   {
     category: 'General 1',
     question:
-      'William could wash the dishes for \$1,000 a year, work as a software engineer for \$100,000 a year, or make YouTube videos for \$10,000 a year. He chooses to make YouTube videos. What is the opportunity cost (in dollars) of his action?',
+      'William could wash the dishes for $\textdollar 1,000$ a year, work as a software engineer for $\textdollar 100,000$ a year, or make YouTube videos for $\textdollar 10,000$ a year. He chooses to make YouTube videos. What is the opportunity cost (in dollars) of his action?',
     a: '10,100',
     b: '100,000',
     c: '1,000',
