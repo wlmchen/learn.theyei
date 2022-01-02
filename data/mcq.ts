@@ -180,7 +180,7 @@ const mcq = [
   {
     category: 'General 1',
     question:
-      'The marginal revenue for a boba company is $-(\\frac{q}{100})^2+7$ and the marginal cost $\\min(0, \\frac{q}{25}-5)$ when q units are sold. What is the optimal number of units to sell?',
+      'The marginal revenue for a boba company is $-(\\frac{q}{100})^2+7$ and the marginal cost $\\min(0, \\frac{q}{25}-5)$ when $q$ units are sold. What is the optimal number of units to sell?',
     a: 150,
     b: 200,
     c: 250,
