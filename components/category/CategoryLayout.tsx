@@ -1,24 +1,25 @@
-import React from 'react'
-import routes from '@/data/routes'
-import MCQPage from './mcq/MCQPage'
-import Sidebar from './sidebar/Sidebar'
-import SlidesPage from './slides/SlidesPage'
-import { kebabCase } from '@/lib/utils'
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   HomeIcon,
 } from '@heroicons/react/outline'
+
 import Link from 'next/link'
+import MCQPage from './mcq/MCQPage'
 import PrevNextBar from './PrevNextBar'
+import React from 'react'
+import Sidebar from './sidebar/Sidebar'
+import SlidesPage from './slides/SlidesPage'
+import { kebabCase } from '@/lib/utils'
+import routes from '@/data/routes'
 
 function CategoryLayout({ slug, sectionType, children }) {
   return (
     <div className="flex flex-row min-h-full w-full">
       <Sidebar>
         <PrevNextBar slug={slug} />
-        <div className="my-14 w-full flex items-start justify-center px-5">
-          <div className="max-w-4xl w-full px-3 sm:px-5 leading-relaxed">
+        <div className="my-14 w-full flex items-start justify-center px-6">
+          <div className="max-w-4xl w-full leading-relaxed">
             {children}
             {sectionType === 'slides' ? (
               <div>
