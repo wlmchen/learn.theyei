@@ -74,7 +74,7 @@ export default function Category({ post }) {
   }, [router])
 
   useEffect(() => {
-    if (auth && !auth.user) {
+    if (auth && auth.user === null) {
       router.push('/')
     }
   }, [auth])
