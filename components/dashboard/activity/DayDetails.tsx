@@ -50,15 +50,15 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
         <div>
           <h4 className="font-medium mb-2">
             {daysOfTheWeek[
-              new Date(dayDetails[0].createdAt).getUTCDay()
+              new Date(dayDetails[0].createdAt).getDay()
             ]?.substring(0, 3) || ''}
             {', '}
             {monthsOfTheYear[
-              new Date(dayDetails[0]?.createdAt).getUTCMonth()
+              new Date(dayDetails[0]?.createdAt).getMonth()
             ]?.substring(0, 3) || ''}{' '}
-            {new Date(dayDetails[0]?.createdAt).getUTCDate() || ''}
+            {new Date(dayDetails[0]?.createdAt).getDate() || ''}
             {', '}
-            {new Date(dayDetails[0]?.createdAt).getUTCFullYear() || ''}
+            {new Date(dayDetails[0]?.createdAt).getFullYear() || ''}
           </h4>
           <div>
             {dayDetails.slice(0, dayDetailsMaxDisplay).map((item, index) => (
@@ -124,15 +124,15 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
                 {monthsOfTheYear[
                   new Date(
                     new Date().setDate(new Date().getDate() - dayDetails[0])
-                  ).getUTCMonth()
+                  ).getMonth()
                 ]?.substring(0, 3) || ''}{' '}
                 {new Date(
                   new Date().setDate(new Date().getDate() - dayDetails[0])
-                ).getUTCDate() || ''}
+                ).getDate() || ''}
                 {', '}
                 {new Date(
                   new Date().setDate(new Date().getDate() - dayDetails[0])
-                ).getUTCFullYear() || ''}
+                ).getFullYear() || ''}
               </h4>
               <div className="text-xs mb-1">
                 <p>No data to show for this day.</p>
@@ -143,11 +143,11 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
               <h4 className="font-medium mb-2">
                 {daysOfTheWeek[new Date().getUTCDay()]?.substring(0, 3) || ''}
                 {', '}
-                {monthsOfTheYear[new Date().getUTCMonth()]?.substring(0, 3) ||
+                {monthsOfTheYear[new Date().getMonth()]?.substring(0, 3) ||
                   ''}{' '}
-                {new Date().getUTCDate() || ''}
+                {new Date().getDate() || ''}
                 {', '}
-                {new Date().getUTCFullYear() || ''}
+                {new Date().getFullYear() || ''}
               </h4>
               <div className="text-xs mb-1">
                 <p>No data to show for today.</p>

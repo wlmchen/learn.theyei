@@ -12,9 +12,9 @@ function DayGrid({
         let mydate = new Date()
         mydate.setDate(mydate.getDate() - index)
         return (
-          new Date(item.createdAt).getUTCDate() === mydate.getUTCDate() &&
-          new Date(item.createdAt).getUTCMonth() === mydate.getUTCMonth() &&
-          new Date(item.createdAt).getUTCFullYear() === mydate.getUTCFullYear()
+          new Date(item.createdAt).getDate() === mydate.getDate() &&
+          new Date(item.createdAt).getMonth() === mydate.getMonth() &&
+          new Date(item.createdAt).getFullYear() === mydate.getFullYear()
         )
       }).length !== 0
     ) {
@@ -23,10 +23,10 @@ function DayGrid({
           let mydate = new Date()
           mydate.setDate(mydate.getDate() - index)
           return (
-            new Date(item.createdAt).getUTCDate() === mydate.getUTCDate() &&
-            new Date(item.createdAt).getUTCMonth() === mydate.getUTCMonth() &&
-            new Date(item.createdAt).getUTCFullYear() ===
-              mydate.getUTCFullYear()
+            new Date(item.createdAt).getDate() === mydate.getDate() &&
+            new Date(item.createdAt).getMonth() === mydate.getMonth() &&
+            new Date(item.createdAt).getFullYear() ===
+              mydate.getFullYear()
           )
         })
       )
@@ -43,10 +43,10 @@ function DayGrid({
             let mydate = new Date()
             mydate.setDate(mydate.getDate() - index)
             return (
-              new Date(item.createdAt).getUTCDate() === mydate.getUTCDate() &&
-              new Date(item.createdAt).getUTCMonth() === mydate.getUTCMonth() &&
-              new Date(item.createdAt).getUTCFullYear() ===
-                mydate.getUTCFullYear()
+              new Date(item.createdAt).getDate() === mydate.getDate() &&
+              new Date(item.createdAt).getMonth() === mydate.getMonth() &&
+              new Date(item.createdAt).getFullYear() ===
+                mydate.getFullYear()
             )
           }).length
           return (
