@@ -244,6 +244,160 @@ const mcq = [
     source: '',
   },
   {
+    category: 'General 3',
+    question:
+      'Due to the coronavirus, the supply of toilet paper decreased while the demand of toilet paper increased. What is the effect on the price and quantity of toilet paper?',
+    a: 'Price decrease, Quantity increase',
+    b: 'Price decrease, Quantity increase',
+    c: 'Price increase, Quantity ambiguous',
+    d: 'Price ambiguous, Quantity ambiguous',
+    correct: 'C',
+    source: '',
+  },
+  {
+    category: 'General 3',
+    question:
+      'Sera would pay up to 50 dollars for concert tickets, but was able to purchase them for only 20 dollars. What is her consumer surplus?',
+    a: '$20',
+    b: '$30',
+    c: '$50',
+    d: '$70',
+    correct: 'B',
+    source: '',
+  },
+  {
+    category: 'General 3',
+    question:
+      'The current equilibrium price for bread is $5. At which price range would an effective price floor be placed?',
+    a: 'At $5',
+    b: 'Below $5',
+    c: 'Above $5',
+    d: 'Between $4 and $6',
+    correct: 'C',
+    source: '',
+  },
+  {
+    category: 'General 3',
+    question:
+      'What is the anticipated effect of a non-binding price ceiling?',
+    a: 'Shortage',
+    b: 'Surplus',
+    c: 'Apocalypse',
+    d: 'No effect',
+    correct: 'D',
+    source: '',
+  },
+  {
+    category: 'General 3',
+    question:
+      'Cow milk is in high demand in Mongolia. Assuming that 5 gallons of milk are supplied and the price of milk is $\\text{\\textdollar} 1$ per gallon, what is the producer surplus? (assume the demand and supply curves are linear.)',
+    a: 5,
+    b: 20,
+    c: 6,
+    d: 2.5,
+    correct: 'D',
+    source: '',
+  },
+  {
+    category: 'General 3',
+    question:
+      'Panic buying due to the coronavirus dramatically increases the demand for toilet paper. Suppliers can’t keep up and cannot immediately adjust the supply. What is caused?',
+    a: 'Market inutility',
+    b: 'Shortage',
+    c: 'Lavatory Crisis',
+    d: 'Negative externality',
+    correct: 'B',
+    source: '',
+  },
+  {
+    category: 'General 3',
+    question:
+      'Farmer John has N cows. If the equilibrium price of milk increases and the supply curve does not change, what does this say about the demand?',
+    a: 'Increased',
+    b: 'Decreased',
+    c: 'Same, but quantity demanded changed',
+    d: 'Cannot be determined',
+    correct: 'A',
+    source: '',
+  },
+  {
+    category: 'General 3',
+    question:
+      'The demand curve for stuffed animals is represented by $-2p + 100$ and the supply curve is represented by $3p + 10$. If the supply curve shifts and is now represented by $3p$, what is the change in the quantity of stuffed animals purchased?',
+    a: '-3',
+    b: '-2',
+    c: '2',
+    d: '4',
+    correct: 'D',
+    source: '',
+  },
+  {
+    category: 'General 3',
+    question:
+      'An increase in the demand curve and a decrease in the supply curve will have what effect on equilibrium price and quantity?',
+    a: 'Indeterminate change in price, increase in quantity',
+    b: 'Indeterminate change in price, decrease in quantity',
+    c: 'Increase in price, indeterminate change in quantity',
+    d: 'Decrease in price, indeterminate change in quantity',
+    correct: 'C',
+    source: '',
+  },
+  {
+    category: 'General 3',
+    question:
+      'Which of the following would NOT shift the demand curve for granola bars?',
+    a: 'A change in the number of buyers of granola bars',
+    b: 'A change in the price of fig bars, a substitute for granola bars',
+    c: 'Research that supports the claim that granola bars make you more likeable',
+    d: 'A change in the price of chocolate, an input for granola bars',
+    correct: 'D',
+    source: '',
+  },
+  {
+    category: 'General 3',
+    question:
+      'Which of the following is NOT a determinant of demand?',
+    a: 'Complementary & substitute goods',
+    b: 'Preferences',
+    c: 'Income',
+    d: 'Taxes and subsidies',
+    correct: 'D',
+    source: '',
+  },
+  {
+    category: 'General 3',
+    question:
+      'Which of the following is NOT a determinant of supply?',
+    a: 'Technology',
+    b: 'Population',
+    c: 'Cost of inputs',
+    d: 'Expectations',
+    correct: 'B',
+    source: '',
+  },
+  {
+    category: 'General 3',
+    question:
+      'The demand for peanut butter sandwich makers depends on the amount of peanut butter sandwiches that need to be produced. What is this an example of?',
+    a: 'Compensating differentials',
+    b: 'Derived demand',
+    c: 'Excess capacity',
+    d: 'Upward sloping demand',
+    correct: 'B',
+    source: '',
+  },
+  {
+    category: 'General 3',
+    question:
+      'What is NOT a determinant of supply?',
+    a: 'A change in the price of inputs',
+    b: 'A change in the number of buyers',
+    c: 'A change in the technology of the firms',
+    d: 'A change in the amount of human capital',
+    correct: 'B',
+    source: '',
+  },
+  {
     category: 'General 2',
     question:
       'Which of the following is not an example of an economic resource?',
@@ -270,23 +424,11 @@ const mcq = [
   {
     category: 'General 2',
     question:
-      'Which of the following is not an example of an economic resource?',
-    a: 'A construction worker',
-    b: 'A machine',
-    c: 'A dollar bill',
-    d: 'Jeff Bezos',
-    correct: 'C',
-    source:
-      '',
-  },
-  {
-    category: 'General 2',
-    question:
-      'Which of the following is not an example of an economic resource?',
-    a: 'A construction worker',
-    b: 'A machine',
-    c: 'A dollar bill',
-    d: 'Jeff Bezos',
+      'If an economy can produce either 3 sticks of butter and 60 guns at point A or 7 sticks of butter and 30 guns at point B, what is the opportunity cost of moving from point A to point B?',
+    a: '10 sticks of butter',
+    b: '90 guns',
+    c: '30 guns',
+    d: 'Not enough information',
     correct: 'C',
     source:
       '',
@@ -299,7 +441,19 @@ const mcq = [
     b: 'An increase in the number of workers',
     c: 'A natural disaster',
     d: 'A decrease in price',
-    correct: 'C',
+    correct: 'A',
+    source:
+      '',
+  },
+  {
+    category: 'General 2',
+    question:
+      'What is an example of economic growth?',
+    a: 'The oil markets rebound after a recession',
+    b: 'A pizza parlor gets a new location',
+    c: 'I made my lemonade stand look cooler',
+    d: 'The nominal GDP increases in a given year',
+    correct: 'B',
     source:
       '',
   },
