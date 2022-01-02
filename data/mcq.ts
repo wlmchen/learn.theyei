@@ -70,11 +70,11 @@ const mcq = [
   {
     category: 'General 1',
     question:
-      'Jayce goes to college and pays $\$50,000$ in tuition, but can get a job at McDonalds for $\$30,000$ a year. What is his annual opportunity cost?',
-    a: '$\$20000$',
-    b: '$\$30000$',
-    c: '$\$50000$',
-    d: '$\$80000$',
+      'Jayce goes to college and pays $\text{\textdollar} 50,000$ in tuition, but can get a job at McDonalds for $\text{\textdollar} 30,000$ a year. What is his annual opportunity cost?',
+    a: '$\text{\textdollar} 20000$',
+    b: '$\text{\textdollar} 30000$',
+    c: '$\text{\textdollar} 50000$',
+    d: '$\text{\textdollar} 80000$',
     correct: 'B',
     source: '',
   },
