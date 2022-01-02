@@ -68,7 +68,7 @@ function MCQ({ slug }) {
       score: userChoices.filter(
         (item, index) => item === letterToNum(filteredMcqs[index].correct)
       ).length,
-      // totalPoints: filteredMcqs.length,
+      totalPoints: filteredMcqs.length,
       createdAt: new Date().toISOString(),
       userId: auth.user.uid,
     }

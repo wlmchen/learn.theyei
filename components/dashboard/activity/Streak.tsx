@@ -17,18 +17,23 @@ function Streak({ allData }) {
                 new Date(
                   `${
                     item_date.getMonth() + 1
-                  }/${item_date.getMonth()}/${item_date.getFullYear()}`
+                  }/${item_date.getDate()}/${item_date.getFullYear()}`
                 ).getTime()
             ) /
               (1000 * 60 * 60 * 24)
           )
         )
       })
-      setStreak(
-        dates
-          .filter((value, index) => dates.indexOf(value) === index)
-          .sort((a, b) => a - b)
-      .length)
+      console.log(dates.filter((value, index) => dates.indexOf(value) === index))
+      dates
+        .filter((value, index) => dates.indexOf(value) === index) // removes duplicates
+        .sort((a, b) => a - b) // sorts from smallest to largest
+        .forEach((item) => {
+          // counts up consecutive numbers to create a streak
+          streakCount += item === streakCount ? 1 : 0
+        })
+      
+      setStreak(streakCount)
     }
   }, [allData])
   return (

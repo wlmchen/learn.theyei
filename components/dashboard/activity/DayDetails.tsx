@@ -3,16 +3,11 @@ import {
   allChapters,
   allKebabChapters,
   categories,
-  chapters,
   kebabCategories,
   kebabChapters,
 } from '@/data/routes'
 
-import frqs from '@/data/frqs'
-import { kebabCase } from '@/lib/utils'
-
 function DayDetails({ allData, daySelected, dayDetails, slug }) {
-  const kebabChaptersSelection = kebabChapters[kebabCategories.indexOf(slug[0])]
   const [dayDetailsMaxDisplay, setDayDetailsMaxDisplay] = useState(4)
 
   const handleDayDetailsMaxDisplay = () => {
@@ -20,6 +15,7 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
       dayDetailsMaxDisplay === dayDetails.length ? 4 : dayDetails.length
     )
   }
+  console.log(allData)
   const daysOfTheWeek = [
     'Sunday',
     'Monday',
@@ -76,7 +72,7 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
                     slideshow.
                   </p>
                 )}
-                {item.userChoices && (
+                {item.totalPoints && (
                   <p>
                     Scored {item.score}/{item.totalPoints} on the{' '}
                     <i>
@@ -118,7 +114,7 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
                 {daysOfTheWeek[
                   new Date(
                     new Date().setDate(new Date().getDate() - dayDetails[0])
-                  ).getUTCDay()
+                  ).getDay()
                 ]?.substring(0, 3) || ''}
                 {', '}
                 {monthsOfTheYear[
@@ -141,7 +137,7 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
           ) : (
             <div>
               <h4 className="font-medium mb-2">
-                {daysOfTheWeek[new Date().getUTCDay()]?.substring(0, 3) || ''}
+                {daysOfTheWeek[new Date().getDay()]?.substring(0, 3) || ''}
                 {', '}
                 {monthsOfTheYear[new Date().getMonth()]?.substring(0, 3) ||
                   ''}{' '}

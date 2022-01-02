@@ -11,18 +11,15 @@ function Activity({ allData, slug }) {
 
   useEffect(() => {
     if (allData) {
-      for (let i = 0; i < allData.length; i++) {
-        allData[i].createdAt = new Date(allData[i].createdAt).toLocaleString()
-      }
       setDayDetails(
         allData.filter((item) => {
           let mydate = new Date()
           mydate.setDate(mydate.getDate())
           return (
-            new Date(item.createdAt).getDate() === mydate.getDate() &&
-            new Date(item.createdAt).getMonth() === mydate.getMonth() &&
-            new Date(item.createdAt).getFullYear() ===
-              mydate.getFullYear()
+            new Date(item.createdAt).getUTCDate() === mydate.getUTCDate() &&
+            new Date(item.createdAt).getUTCMonth() === mydate.getUTCMonth() &&
+            new Date(item.createdAt).getUTCFullYear() ===
+              mydate.getUTCFullYear()
           )
         })
       )
