@@ -2,7 +2,7 @@ const frqs = [
   [
     {
       title: 'Basic Economics Concepts',
-      numberOfFRQs: 6,
+      numberOfFRQs: 2,
     },
     {
       title: 'Production',
