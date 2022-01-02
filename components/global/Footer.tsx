@@ -1,14 +1,15 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  faPaypal,
-  faFacebook,
   faDiscord,
+  faFacebook,
   faInstagram,
   faLinkedin,
+  faPaypal,
 } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FooterColumn from './FooterColumn'
+import React from 'react'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 export default function Footer() {
   return (
@@ -133,7 +134,7 @@ export default function Footer() {
             ))}
           </div>
           <p className="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
-            © 2021 Youth Economics Initiative Inc. All Rights Reserved.
+            © 2022 Youth Economics Initiative Inc. All Rights Reserved.
           </p>
         </div>
       </div>
