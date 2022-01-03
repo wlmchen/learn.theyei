@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Dashboard from '@/components/category/dashboard/Dashboard'
 import DashboardSkeleton from '@/components/category/dashboard/DashboardSkeleton'
 import Layout from '@/components/global/Layout'
+import SignInReminder from '@/components/global/SignInReminder'
 import fetcher from '@/utils/fetcher'
 import frqs from '@/data/frqs'
 import { kebabCase } from '@/lib/utils'
@@ -89,7 +90,8 @@ export default function general() {
   }, [slideProgressData, mcqScoreData, frqScoreData])
   return (
     <>
-      {auth.user && {
+      <SignInReminder condition={auth.user}>
+      {{
         completedSlides,
         completedMCQs,
         completedFRQs,
@@ -117,6 +119,7 @@ export default function general() {
           </div>
         </Layout>
       )}
+      </SignInReminder>
     </>
   )
 }

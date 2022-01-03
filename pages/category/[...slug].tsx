@@ -11,12 +11,15 @@ import routes, {
   modules,
 } from '@/data/routes'
 
+import { ArrowLeftIcon } from '@heroicons/react/outline'
 import CategoryLayout from '@/components/category/CategoryLayout'
 import FRQPage from '@/components/category/frq/FRQPage'
 import Head from 'next/head'
 import Layout from '@/components/global/Layout'
+import Link from 'next/link'
 import { MDXLayoutRenderer } from '@/components/mdx/MDXComponents'
 import { MDXRemote } from 'next-mdx-remote'
+import SignInReminder from '@/components/global/SignInReminder'
 import { kebabCase } from '@/lib/utils'
 import { useAuth } from '@/lib/auth'
 import { useRouter } from 'next/router'
@@ -72,12 +75,6 @@ export default function Category({ post }) {
     console.log(slug[1])
     console.log(allChapters[allKebabChapters.indexOf(slug[1])])
   }, [router])
-
-  useEffect(() => {
-    if (auth && auth.user === null) {
-      router.push('/')
-    }
-  }, [auth])
   return (
     <>
       <Head>
@@ -88,37 +85,36 @@ export default function Category({ post }) {
           crossOrigin="anonymous"
         />
       </Head>
-      {auth.user ? (
-        <Layout
-          title={`${allChapters[allKebabChapters.indexOf(slug[1])]} ${
-            modules[kebabModules.indexOf(slug[2])]
-          }`}
-          page={slug[0]}
-          showNav={slug.length === 1}
-        >
-          <div className="w-full">
-            {kebabModules.indexOf(sectionType) !== -1 ? (
-              <CategoryLayout slug={slug} sectionType={sectionType}>
-                {mdxSource !== '' && frontMatter !== '' ? (
-                  <FRQPage slug={slug}>
-                    <MDXLayoutRenderer
-                      mdxSource={mdxSource}
-                      frontMatter={frontMatter}
-                      slug={slug}
-                      auth={auth}
-                    />
-                  </FRQPage>
+      <SignInReminder condition={auth.user}>
+            <Layout
+              title={`${allChapters[allKebabChapters.indexOf(slug[1])]} ${
+                modules[kebabModules.indexOf(slug[2])]
+              }`}
+              page={slug[0]}
+              showNav={slug.length === 1}
+            >
+              <div className="w-full">
+                {kebabModules.indexOf(sectionType) !== -1 ? (
+                  <CategoryLayout slug={slug} sectionType={sectionType}>
+                    {mdxSource !== '' && frontMatter !== '' ? (
+                      <FRQPage slug={slug}>
+                        <MDXLayoutRenderer
+                          mdxSource={mdxSource}
+                          frontMatter={frontMatter}
+                          slug={slug}
+                          auth={auth}
+                        />
+                      </FRQPage>
+                    ) : (
+                      ''
+                    )}
+                  </CategoryLayout>
                 ) : (
                   ''
                 )}
-              </CategoryLayout>
-            ) : (
-              ''
-            )}
-          </div>
-        </Layout>
-      ) : (
-        ''
+              </div>
+            </Layout>
+          </SignInReminder>
       )}
     </>
   )

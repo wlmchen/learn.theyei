@@ -5,7 +5,6 @@ import React, { useState } from 'react'
 
 import FocusError from '@/components/utility/FocusError'
 import Layout from '@/components/global/Layout'
-import Link from 'next/link'
 import router from 'next/router'
 import { useAuth } from '@/lib/auth'
 

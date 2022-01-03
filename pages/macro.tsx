@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Dashboard from '@/components/category/dashboard/Dashboard'
 import DashboardSkeleton from '@/components/category/dashboard/DashboardSkeleton'
 import Layout from '@/components/global/Layout'
+import SignInReminder from '@/components/global/SignInReminder'
 import fetcher from '@/utils/fetcher'
 import frqs from '@/data/frqs'
 import { kebabCase } from '@/lib/utils'
@@ -86,34 +87,36 @@ export default function general() {
   }, [slideProgressData, mcqScoreData, frqScoreData])
   return (
     <>
-      {auth.user && {
-        completedSlides,
-        completedMCQs,
-        completedFRQs,
-        mutatedFRQData,
-      } ? (
-        <Layout title="Macro" page="macro" showNav contentLoaded>
-          <div className="w-full">
-            <Dashboard
-              title="Macro"
-              description="This section covers macroeconomics, economics on a national and global scale."
-              moduleData={{ slideProgressData, mcqScoreData, mutatedFRQData }}
-              completedData={{
-                completedSlides,
-                completedMCQs,
-                completedFRQs,
-              }}
-              slug={slug}
-            />
-          </div>
-        </Layout>
-      ) : (
-        <Layout title="Macro" page="macro" showNav>
-          <div className="w-full">
-            <DashboardSkeleton />
-          </div>
-        </Layout>
-      )}
+      <SignInReminder condition={auth.user}>
+        {{
+          completedSlides,
+          completedMCQs,
+          completedFRQs,
+          mutatedFRQData,
+        } ? (
+          <Layout title="Macro" page="macro" showNav contentLoaded>
+            <div className="w-full">
+              <Dashboard
+                title="Macro"
+                description="This section covers macroeconomics, economics on a national and global scale."
+                moduleData={{ slideProgressData, mcqScoreData, mutatedFRQData }}
+                completedData={{
+                  completedSlides,
+                  completedMCQs,
+                  completedFRQs,
+                }}
+                slug={slug}
+              />
+            </div>
+          </Layout>
+        ) : (
+          <Layout title="Macro" page="macro" showNav>
+            <div className="w-full">
+              <DashboardSkeleton />
+            </div>
+          </Layout>
+        )}
+      </SignInReminder>
     </>
   )
 }

@@ -10,6 +10,7 @@ import FocusError from '@/components/utility/FocusError'
 import { InformationCircleIcon } from '@heroicons/react/outline'
 import Layout from '@/components/global/Layout'
 import Password from './../components/settings/Password'
+import SignInReminder from '@/components/global/SignInReminder'
 import axios from 'axios'
 import fetcher from '@/utils/fetcher'
 import { getAllUserDataIds } from '@/lib/db-admin'
@@ -43,7 +44,7 @@ function settings({ allUserIds }) {
   const handleStopDelete = () => setDeleteLoading(false)
   return (
     <>
-      {auth.user ? (
+      <SignInReminder condition={auth.user}>
         <Layout title="Settings" page="settings" showNav contentLoaded>
           <div className="mt-10 w-full max-w-xl m-auto z-0 px-5 text-left py-8 shadow sm:rounded-lg sm:px-10">
             <h1>Settings</h1>
@@ -109,11 +110,7 @@ function settings({ allUserIds }) {
             {/* {execDelete && <DeleteAccount user={auth.user} />} */}
           </div>
         </Layout>
-      ) : (
-        <Layout title="Settings" page="settings" showNav>
-          <div></div>
-        </Layout>
-      )}
+      </SignInReminder>
     </>
   )
 }
