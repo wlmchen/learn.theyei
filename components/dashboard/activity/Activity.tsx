@@ -16,10 +16,9 @@ function Activity({ allData, slug }) {
           let mydate = new Date()
           mydate.setDate(mydate.getDate())
           return (
-            new Date(item.createdAt).getUTCDate() === mydate.getUTCDate() &&
-            new Date(item.createdAt).getUTCMonth() === mydate.getUTCMonth() &&
-            new Date(item.createdAt).getUTCFullYear() ===
-              mydate.getUTCFullYear()
+            new Date(item.createdAt).getDate() === mydate.getDate() &&
+            new Date(item.createdAt).getMonth() === mydate.getMonth() &&
+            new Date(item.createdAt).getFullYear() === mydate.getFullYear()
           )
         })
       )
