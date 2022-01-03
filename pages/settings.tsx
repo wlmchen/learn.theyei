@@ -44,7 +44,7 @@ function settings({ allUserIds }) {
   const handleStopDelete = () => setDeleteLoading(false)
   return (
     <>
-      <SignInReminder condition={auth.user}>
+      <SignInReminder condition={auth.user !== null && auth.user}>
         <Layout title="Settings" page="settings" showNav contentLoaded>
           <div className="mt-10 w-full max-w-xl m-auto z-0 px-5 text-left py-8 shadow sm:rounded-lg sm:px-10">
             <h1>Settings</h1>
