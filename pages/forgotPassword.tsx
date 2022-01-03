@@ -42,18 +42,19 @@ export default function forgotPassword() {
               </div>
             </div>
           ) : (
-            <div className="px-4 py-5 sm:p-6">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
-                Update your email
-              </h3>
-              <div className="mt-2 max-w-xl text-sm text-gray-500">
-                <p>
-                  Change the email address you want associated with your
-                  account.
-                </p>
-              </div>
-              <Form className="mt-5 sm:flex sm:items-center">
-                <div className="w-full sm:max-w-xs">
+            <div className="sm:mx-auto sm:w-full sm:max-w-md mx-4">
+              <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                <h3 className="text-lg leading-6 font-medium text-gray-900">
+                  Forgot your password?
+                </h3>
+                <div className="mt-2 max-w-xl text-sm text-gray-500">
+                  <p>
+                    Enter your email below and we'll send you a password reset
+                    form to your inbox.
+                  </p>
+                </div>
+
+                <Form className="space-y-3 mt-4">
                   <div>
                     <label
                       htmlFor="email"
@@ -77,14 +78,17 @@ export default function forgotPassword() {
                       />
                     </div>
                   </div>
-                </div>
-                <button
-                  type="submit"
-                  className="mt-3 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                >
-                  Send Email
-                </button>
-              </Form>
+                  <div>
+                    <button
+                      type="submit"
+                      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yei-primary-main hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main-main"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                  <FocusError />
+                </Form>
+              </div>
             </div>
           )}
         </div>
