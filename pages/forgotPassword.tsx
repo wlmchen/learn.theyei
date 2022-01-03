@@ -19,7 +19,7 @@ export default function forgotPassword() {
   const [submissionLoading, setSubmissionLoading] = useState(false)
 
   return (
-    <Layout title="Forgot Password" page="login" showNav contentLoaded>
+    <Layout title="Forgot Password" page="forgot-password" showNav contentLoaded>
       <Formik
         initialValues={{
           email: '',
