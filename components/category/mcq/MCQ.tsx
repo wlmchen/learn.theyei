@@ -57,6 +57,11 @@ function MCQ({ slug }) {
   useEffect(() => {
     if (mcqScoreData) {
       setAlreadyComplete(mcqScoreData.score[0]?.score !== undefined || false)
+      setShowAnswers(mcqScoreData.score[0]?.score !== undefined || false)
+      if (mcqScoreData.score[0]?.score) {
+        setFilteredMcqs(mcqScoreData.score[0].mcqContent)
+        setUserChoices(mcqScoreData.score[0].userChoices)
+      }
     }
   }, [mcqScoreData])
 
@@ -64,11 +69,12 @@ function MCQ({ slug }) {
     let newScore = {
       category: slug[0],
       chapter: slug[1],
-      // userChoices: userChoices,
+      userChoices: userChoices,
       score: userChoices.filter(
         (item, index) => item === letterToNum(filteredMcqs[index].correct)
       ).length,
       totalPoints: filteredMcqs.length,
+      mcqContent: filteredMcqs,
       createdAt: new Date().toISOString(),
       userId: auth.user.uid,
     }
@@ -102,7 +108,7 @@ function MCQ({ slug }) {
     <>
       {mcqScoreData && filteredMcqs.length !== 0 && (
         <div>
-          {alreadyComplete ? (
+          {alreadyComplete && (
             <div className="mb-8 bg-white p-5 rounded-lg border-2 border-gray-200">
               <p className="text-gray-700 text-sm sm:text-base">
                 Looks like you've already taken this practice quiz and got a
@@ -126,21 +132,21 @@ function MCQ({ slug }) {
                 Yes, retry.
               </button>
             </div>
-          ) : (
-            <div>
-              {filteredMcqs.map(
-                (
-                  { question, a, b, c, d, correct, source, questionsAreImages },
-                  index
-                ) => (
-                  <div key={index} className="mb-12">
-                    <div className="inline-block uppercase px-4 py-2 rounded-lg bg-indigo-200 text-indigo-500 font-bold text-sm mb-2">
-                      Problem #{index + 1}
-                    </div>
-                    <p className="text-base sm:text-lg italic">
-                      <Latex>{question}</Latex>
-                    </p>
-                    {showAnswers ? (
+          )}
+          <div>
+            {filteredMcqs.map(
+              (
+                { question, a, b, c, d, correct, source, questionsAreImages },
+                index
+              ) => (
+                <div key={index} className="mb-12">
+                  <div className="inline-block uppercase px-4 py-2 rounded-lg bg-indigo-200 text-indigo-500 font-bold text-sm mb-2">
+                    Problem #{index + 1}
+                  </div>
+                  <p className="text-base sm:text-lg italic">
+                    <Latex>{question}</Latex>
+                  </p>
+                  {showAnswers ? (
                       <ul className="list-none my-4 ml-4 space-y-3">
                         <li className="flex items-center">
                           <div
@@ -260,144 +266,140 @@ function MCQ({ slug }) {
                         </li>
                       </ul>
                     ) : (
-                      <ul className="list-none my-4 ml-4 space-y-3">
-                        <li
-                          className="flex items-center cursor-pointer"
-                          onClick={() => handleChoice(0, index)}
-                        >
-                          <div
-                            className={` ${
-                              userChoices[index] === 0
-                                ? 'mcq-radio-letter-selected'
-                                : 'mcq-radio-letter'
-                            } `}
-                          >
-                            A
-                          </div>
-                          {questionsAreImages && typeof a !== 'number' ? (
-                            <img src={a} width="300" />
-                          ) : (
-                            a
-                          )}
-                        </li>
-                        <li
-                          className="flex items-center cursor-pointer"
-                          onClick={() => handleChoice(1, index)}
-                        >
-                          <div
-                            className={` ${
-                              userChoices[index] === 1
-                                ? 'mcq-radio-letter-selected'
-                                : 'mcq-radio-letter'
-                            }`}
-                          >
-                            B
-                          </div>
-                          {questionsAreImages && typeof b !== 'number' ? (
-                            <img src={b} width="300" />
-                          ) : (
-                            b
-                          )}
-                        </li>
-                        <li
-                          className="flex items-center cursor-pointer"
-                          onClick={() => handleChoice(2, index)}
-                        >
-                          <div
-                            className={` ${
-                              userChoices[index] === 2
-                                ? 'mcq-radio-letter-selected'
-                                : 'mcq-radio-letter'
-                            }`}
-                          >
-                            C
-                          </div>
-                          {questionsAreImages && typeof c !== 'number' ? (
-                            <img src={c} width="300" />
-                          ) : (
-                            c
-                          )}
-                        </li>
-                        <li
-                          className="flex items-center cursor-pointer"
-                          onClick={() => handleChoice(3, index)}
-                        >
-                          <div
-                            className={` ${
-                              userChoices[index] === 3
-                                ? 'mcq-radio-letter-selected'
-                                : 'mcq-radio-letter'
-                            }`}
-                          >
-                            D
-                          </div>
-                          {questionsAreImages && typeof d !== 'number' ? (
-                            <img src={d} width="300" />
-                          ) : (
-                            d
-                          )}
-                        </li>
-                      </ul>
-                    )}
-                    {source !== '' ? (
-                      <a
-                        href={source}
-                        className="inline-flex items-center justify-center text-base text-gray-400 px-3 py-1 border-t-2 border-gray-400 border-dotted"
-                        target="_blank"
+                    <ul className="list-none my-4 ml-4 space-y-3">
+                      <li
+                        className="flex items-center cursor-pointer"
+                        onClick={() => handleChoice(0, index)}
                       >
-                        Source{' '}
-                        <InformationCircleIcon className="h-6 w-6 ml-1" />
-                      </a>
-                    ) : (
-                      ''
-                    )}
-                  </div>
-                )
-              )}
-              <div>
-                {showAnswers ? (
-                  <div>
-                    <button
-                      type="submit"
-                      className="inline-flex items-center px-4 py-2 mb-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-400 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main"
-                      onClick={handleRedo}
+                        <div
+                          className={` ${
+                            userChoices[index] === 0
+                              ? 'mcq-radio-letter-selected'
+                              : 'mcq-radio-letter'
+                          } `}
+                        >
+                          A
+                        </div>
+                        {questionsAreImages && typeof a !== 'number' ? (
+                          <img src={a} width="300" />
+                        ) : (
+                          a
+                        )}
+                      </li>
+                      <li
+                        className="flex items-center cursor-pointer"
+                        onClick={() => handleChoice(1, index)}
+                      >
+                        <div
+                          className={` ${
+                            userChoices[index] === 1
+                              ? 'mcq-radio-letter-selected'
+                              : 'mcq-radio-letter'
+                          }`}
+                        >
+                          B
+                        </div>
+                        {questionsAreImages && typeof b !== 'number' ? (
+                          <img src={b} width="300" />
+                        ) : (
+                          b
+                        )}
+                      </li>
+                      <li
+                        className="flex items-center cursor-pointer"
+                        onClick={() => handleChoice(2, index)}
+                      >
+                        <div
+                          className={` ${
+                            userChoices[index] === 2
+                              ? 'mcq-radio-letter-selected'
+                              : 'mcq-radio-letter'
+                          }`}
+                        >
+                          C
+                        </div>
+                        {questionsAreImages && typeof c !== 'number' ? (
+                          <img src={c} width="300" />
+                        ) : (
+                          c
+                        )}
+                      </li>
+                      <li
+                        className="flex items-center cursor-pointer"
+                        onClick={() => handleChoice(3, index)}
+                      >
+                        <div
+                          className={` ${
+                            userChoices[index] === 3
+                              ? 'mcq-radio-letter-selected'
+                              : 'mcq-radio-letter'
+                          }`}
+                        >
+                          D
+                        </div>
+                        {questionsAreImages && typeof d !== 'number' ? (
+                          <img src={d} width="300" />
+                        ) : (
+                          d
+                        )}
+                      </li>
+                    </ul>
+                  )}
+                  {source !== '' ? (
+                    <a
+                      href={source}
+                      className="inline-flex items-center justify-center text-base text-gray-400 px-3 py-1 border-t-2 border-gray-400 border-dotted"
+                      target="_blank"
                     >
-                      Redo?
-                    </button>
-                    <ScoreAlert
-                      score={
-                        userChoices?.filter(
-                          (item, index) =>
-                            item === letterToNum(filteredMcqs[index].correct)
-                        ).length
-                      }
-                      totalPoints={filteredMcqs?.length}
-                    />
-                  </div>
-                ) : (
+                      Source <InformationCircleIcon className="h-6 w-6 ml-1" />
+                    </a>
+                  ) : (
+                    ''
+                  )}
+                </div>
+              )
+            )}
+            <div>
+              {showAnswers ? (
+                <div>
                   <button
                     type="submit"
-                    className="inline-flex items-center px-4 py-2 mb-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-yei-primary-main hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main"
-                    onClick={handleSubmit}
+                    className="inline-flex items-center px-4 py-2 mb-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-400 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main"
+                    onClick={handleRedo}
                   >
-                    Submit <CheckIcon className="h-6 w-6 ml-1" />
+                    Redo?
                   </button>
-                )}
-                <br />
-                {missedProblems !== 0 ? (
-                  <p className="border-t-2 pt-2 pr-5 border-red-200 text-sm text-red-500 font-bold inline">
-                    {missedProblems}{' '}
-                    {missedProblems === 1
-                      ? "problem hasn't"
-                      : "problems haven't"}{' '}
-                    been answered.
-                  </p>
-                ) : (
-                  ''
-                )}
-              </div>
+                  <ScoreAlert
+                    score={
+                      userChoices?.filter(
+                        (item, index) =>
+                          item === letterToNum(filteredMcqs[index].correct)
+                      ).length
+                    }
+                    totalPoints={filteredMcqs?.length}
+                  />
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  className="inline-flex items-center px-4 py-2 mb-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-yei-primary-main hover:bg-yei-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yei-primary-main"
+                  onClick={handleSubmit}
+                >
+                  Submit <CheckIcon className="h-6 w-6 ml-1" />
+                </button>
+              )}
+              <br />
+              {missedProblems !== 0 ? (
+                <p className="border-t-2 pt-2 pr-5 border-red-200 text-sm text-red-500 font-bold inline">
+                  {missedProblems}{' '}
+                  {missedProblems === 1 ? "problem hasn't" : "problems haven't"}{' '}
+                  been answered.
+                </p>
+              ) : (
+                ''
+              )}
             </div>
-          )}
+          </div>
         </div>
       )}
     </>
