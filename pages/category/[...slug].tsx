@@ -115,7 +115,6 @@ export default function Category({ post }) {
               </div>
             </Layout>
           </SignInReminder>
-      )}
     </>
   )
 }
