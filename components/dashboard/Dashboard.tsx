@@ -1,43 +1,35 @@
-import { useEffect, useState } from 'react'
-import { kebabCase } from '@/lib/utils'
-import { useAuth } from '@/lib/auth'
-import fetcher from '@/utils/fetcher'
-import useSWR from 'swr'
-import routes from '@/data/routes'
+import { AllCombinedData, AllIndividualData, CompletedData } from 'types'
 
 import Activity from './activity/Activity'
 import AllProgress from './all-progress/AllProgress'
 import UncompleteModule from './uncomplete-module/UncompleteModule'
-import DashboardSkeleton from './DashboardSkeleton'
+import { useAuth } from '@/lib/auth'
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+type DashboardProps = {
+  allIndividualData: AllIndividualData
+  allCombinedData: AllCombinedData
+  completedData: CompletedData
+  slug: string | string[]
 }
 
 export default function Dashboard({
-  allData,
-  allDataWithMutation,
-  completedData: { completedSlides, completedMCQs, completedFRQs },
+  allIndividualData,
+  allCombinedData,
+  completedData,
   slug,
-}) {
+}: DashboardProps) {
   const auth = useAuth()
 
   return (
     <>
       <div className="max-w-4xl m-auto min-h-screen bg-white p-5">
-        <UncompleteModule
-          allDataWithMutation={allDataWithMutation}
-          allData={allData}
-          slug={slug}
-        />
+        <UncompleteModule allCombinedData={allCombinedData} />
         <h1>
-          {allData.length === 0 ? 'Welcome,' : 'Welcome back,'} {auth.user.name}
-          .
+          {allIndividualData.length === 0 ? 'Welcome,' : 'Welcome back,'}{' '}
+          {auth.user.name}.
         </h1>
-        <Activity allData={allData} slug={slug} />
-        <AllProgress
-          completedData={{ completedSlides, completedMCQs, completedFRQs }}
-        />
+        <Activity allIndividualData={allIndividualData} slug={slug} />
+        <AllProgress completedData={completedData} />
       </div>
     </>
   )

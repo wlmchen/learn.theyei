@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+import { AllCombinedData } from 'types'
 import Dashboard from '@/components/category/dashboard/Dashboard'
 import DashboardSkeleton from '@/components/category/dashboard/DashboardSkeleton'
 import Layout from '@/components/global/Layout'
@@ -12,10 +13,9 @@ import { useAuth } from '@/lib/auth'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 
-export default function general() {
+export default function micro() {
   const auth = useAuth()
-  const router = useRouter()
-  const slug = router.query.slug || []
+
   const { data: slideProgressData } = useSWR(
     auth.user ? [`/api/slides/micro/${auth.user.uid}`, auth.user.token] : null,
     fetcher
@@ -32,6 +32,12 @@ export default function general() {
   const [completedSlides, setCompletedSlides] = useState([])
   const [completedMCQs, setCompletedMCQs] = useState([])
   const [completedFRQs, setCompletedFRQs] = useState([])
+
+  const [allCombinedData, setAllCombinedData] = useState<AllCombinedData>({
+    slideData: [],
+    mcqData: [],
+    frqData: [],
+  })
 
   const [mutatedFRQData, setMutatedFRQData] = useState([])
   let completedFRQData = []
@@ -83,6 +89,12 @@ export default function general() {
       })
       setCompletedFRQs(completedFRQData)
       setMutatedFRQData(newFRQData)
+
+      setAllCombinedData({
+        slideData: [...slideProgressData.progress],
+        mcqData: [...mcqScoreData.score],
+        frqData: [...newFRQData], // difference is here. all indv FRQs are combined into one object per chapter
+      })
     }
   }, [slideProgressData, mcqScoreData, frqScoreData])
   return (
@@ -94,23 +106,22 @@ export default function general() {
           completedFRQs,
           mutatedFRQData,
         } ? (
-          <Layout title="Micro" page="micro" showNav contentLoaded>
+          <Layout title="micro" page="micro" showNav contentLoaded>
             <div className="w-full">
               <Dashboard
-                title="Micro"
+                title="micro"
                 description="This section covers microeconomics, the economics of individual firms and markets."
-                moduleData={{ slideProgressData, mcqScoreData, mutatedFRQData }}
+                allCombinedData={allCombinedData}
                 completedData={{
                   completedSlides,
                   completedMCQs,
                   completedFRQs,
                 }}
-                slug={slug}
               />
             </div>
           </Layout>
         ) : (
-          <Layout title="Micro" page="micro" showNav>
+          <Layout title="micro" page="micro" showNav>
             <div className="w-full">
               <DashboardSkeleton />
             </div>

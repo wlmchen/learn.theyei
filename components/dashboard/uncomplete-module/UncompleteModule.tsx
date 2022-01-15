@@ -1,3 +1,4 @@
+import { AllCombinedData, FRQChapter, MCQ, Slide } from 'types'
 import React, { useEffect, useState } from 'react'
 import {
   allChapters,
@@ -9,34 +10,32 @@ import {
 import { InformationCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 
-function UncompleteModule({ allData, allDataWithMutation, slug }) {
-  const [suggestion, setSuggestion] = useState({
-    progress: null,
-    category: null,
-    chapter: null,
-    userChoices: null,
-    totalPoints: null,
-    score: null,
-    frqProgress: null,
-  })
+type UncompleteModuleProps = {
+  allCombinedData: AllCombinedData
+}
+
+function UncompleteModule({
+  allCombinedData: { slideData, mcqData, frqData },
+}: UncompleteModuleProps) {
+  const [suggestion, setSuggestion] = useState<Slide | MCQ | FRQChapter>()
   useEffect(() => {
-    if (allDataWithMutation) {
-      let incompleteSlides = allDataWithMutation
+    if (slideData && mcqData && frqData) {
+      let incompleteSlides = slideData
         .slice()
         .sort(
           (a, b) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         )
-        .filter((item) => item.progress === 'in-progress')
+        .filter((item) => (item.progress = 'in-progress'))
 
-      let incompleteMCQs = allDataWithMutation
+      let incompleteMCQs = mcqData
         .sort(
           (a, b) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         )
         .filter((item) => item.score / item.totalPoints < 0.6)
 
-      let incompleteFRQs = allDataWithMutation
+      let incompleteFRQs = frqData
         .sort(
           (a, b) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -46,7 +45,7 @@ function UncompleteModule({ allData, allDataWithMutation, slug }) {
       if (incompleteSlides.length !== 0) {
         // If there are incomplete slides, suggest the oldest one on the list
         setSuggestion(
-          allDataWithMutation
+          slideData
             .slice()
             .sort(
               (a, b) =>
@@ -58,7 +57,7 @@ function UncompleteModule({ allData, allDataWithMutation, slug }) {
       } else if (incompleteMCQs.length !== 0) {
         // If there are incomplete mcqs, suggest the oldest one on the list
         setSuggestion(
-          allDataWithMutation
+          mcqData
             .sort(
               (a, b) =>
                 new Date(b.createdAt).getTime() -
@@ -68,8 +67,18 @@ function UncompleteModule({ allData, allDataWithMutation, slug }) {
         )
       } else if (incompleteFRQs.length !== 0) {
         // If there are incomplete frqs, suggest the oldest one on the list
+        console.log(
+          frqData
+            .slice()
+            .sort(
+              (a, b) =>
+                new Date(b.createdAt).getTime() -
+                new Date(a.createdAt).getTime()
+            )
+            .filter((item) => item.frqProgress === 'in-progress')[0].chapter
+        )
         setSuggestion(
-          allDataWithMutation
+          frqData
             .slice()
             .sort(
               (a, b) =>
@@ -81,12 +90,12 @@ function UncompleteModule({ allData, allDataWithMutation, slug }) {
       } else {
       }
     }
-  }, [allDataWithMutation])
+  }, [slideData, mcqData, frqData])
   return (
     <>
       {suggestion && (
         <>
-          {/* {suggestion.progress && suggestion.progress !== null ? (
+          {suggestion.type === "slide" ? (
             <div className="mb-8 rounded-md bg-blue-50 p-4">
               <div className="flex">
                 <div className="flex-shrink-0">
@@ -124,7 +133,7 @@ function UncompleteModule({ allData, allDataWithMutation, slug }) {
           ) : (
             ''
           )}
-          {suggestion.userChoices && suggestion.userChoices !== null ? (
+          {suggestion.type === "mcq" ? (
             <div className="mb-8 rounded-md bg-blue-50 p-4 ">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
@@ -163,8 +172,8 @@ function UncompleteModule({ allData, allDataWithMutation, slug }) {
             </div>
           ) : (
             ''
-          )} */}
-          {suggestion.frqProgress && suggestion.frqProgress !== null ? (
+          )}
+          {suggestion.type === "frq-chapter" ? (
             <div className="mb-8 rounded-md bg-blue-50 p-4 ">
               <div className="flex items-center">
                 <div className="flex-shrink-0">

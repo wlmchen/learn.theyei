@@ -7,7 +7,7 @@ import {
   kebabChapters,
 } from '@/data/routes'
 
-function DayDetails({ allData, daySelected, dayDetails, slug }) {
+function DayDetails({ allIndividualData, daySelected, dayDetails, slug }) {
   const [dayDetailsMaxDisplay, setDayDetailsMaxDisplay] = useState(4)
 
   const handleDayDetailsMaxDisplay = () => {
@@ -15,7 +15,7 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
       dayDetailsMaxDisplay === dayDetails.length ? 4 : dayDetails.length
     )
   }
-  console.log(allData)
+  console.log(allIndividualData)
   const daysOfTheWeek = [
     'Sunday',
     'Monday',
@@ -56,9 +56,9 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
             {', '}
             {new Date(dayDetails[0]?.createdAt).getFullYear() || ''}
           </h4>
-          <div>
+          <div className="space-y-2">
             {dayDetails.slice(0, dayDetailsMaxDisplay).map((item, index) => (
-              <div key={index} className="text-xs mb-1">
+              <div key={index} className="text-xs">
                 {item.progress && item.progress !== 'not-started' && (
                   <p>
                     {item.progress === 'completed'
@@ -72,7 +72,7 @@ function DayDetails({ allData, daySelected, dayDetails, slug }) {
                     slideshow.
                   </p>
                 )}
-                {item.totalPoints && (
+                {item.userChoices && (
                   <p>
                     Scored {item.score}/{item.totalPoints} on the{' '}
                     <i>

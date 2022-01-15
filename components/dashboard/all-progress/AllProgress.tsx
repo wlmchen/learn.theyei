@@ -1,18 +1,18 @@
-import React from 'react'
 import routes, { categories } from '@/data/routes'
-import { kebabCase } from '@/lib/utils'
-import ProgressBar from './ProgressBar'
-import Link from 'next/link'
 
-function AllProgress({
-  completedData: { completedSlides, completedMCQs, completedFRQs },
-}) {
+import { CompletedData } from 'types';
+import Link from 'next/link'
+import ProgressBar from './ProgressBar'
+import React from 'react'
+import { kebabCase } from '@/lib/utils'
+
+function AllProgress({ completedData }: { completedData: CompletedData }) {
   return (
     <div className="mt-8">
       <h2 className="font-medium">Total Progress</h2>
       <div className="mt-4 p-4 border border-gray-200 rounded-2xl bg-gray-100 flex flex-col">
         <ProgressBar
-          completedData={{ completedSlides, completedMCQs, completedFRQs }}
+          completedData={completedData}
         />
         <div className="flex items-center flex-col sm:flex-row mt-2">
           {categories.map((category, index) => {
@@ -21,13 +21,13 @@ function AllProgress({
                 <>
                   <span className="font-bold">{category}: </span>
                   {Math.round(
-                    ((completedSlides.filter(
+                    ((completedData.completedSlides.filter(
                       (slide) => slide.category === kebabCase(category)
                     ).length +
-                      completedMCQs.filter(
+                      completedData.completedMCQs.filter(
                         (mcq) => mcq.category === kebabCase(category)
                       ).length +
-                      completedFRQs.filter(
+                      completedData.completedFRQs.filter(
                         (frq) => frq.category === kebabCase(category)
                       ).length) /
                       (routes[index].children.length * 3)) *

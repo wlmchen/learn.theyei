@@ -9,6 +9,7 @@ import { Listbox, Transition } from '@headlessui/react'
 import { createSlideProgress, updateSlideProgress } from '@/lib/db'
 import useSWR, { mutate } from 'swr'
 
+import { SlideWithoutID } from 'types';
 import fetcher from '@/utils/fetcher'
 import { kebabCase } from '@/lib/utils'
 import { useAuth } from '@/lib/auth'
@@ -19,19 +20,16 @@ function classNames(...classes) {
 
 const options = [
   {
-    id: 1,
     name: 'Not Started',
     icon: <XIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />,
   },
   {
-    id: 2,
     name: 'In Progress',
     icon: (
       <BookOpenIcon className="h-5 w-5 text-yellow-400" aria-hidden="true" />
     ),
   },
   {
-    id: 3,
     name: 'Completed',
     icon: <CheckIcon className="h-5 w-5 text-green-400" aria-hidden="true" />,
   },
@@ -57,7 +55,7 @@ export default function SlideSelect({ slug }) {
   let newSlideId = ''
 
   const onCreateSlideProgress = (userProgress) => {
-    const newProgress = {
+    const newProgress: Slide = {
       category: slug[0],
       chapter: slug[1],
       progress: userProgress,
@@ -66,14 +64,6 @@ export default function SlideSelect({ slug }) {
     }
     setDataLoading(true)
     createSlideProgress(newProgress, () => setDataLoading(false))
-  }
-
-  const onUpdateSlideProgress = (id, progress) => {
-    const newProgress = {
-      progress: progress,
-      createdAt: new Date().toISOString(),
-    }
-    updateSlideProgress(id, newProgress)
   }
 
   const [selected, setSelected] = useState(options[0])
@@ -141,9 +131,9 @@ export default function SlideSelect({ slug }) {
                       static
                       className="absolute z-10 mt-1 w-full bg-white shadow-lg rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
                     >
-                      {options.map((option) => (
+                      {options.map((option, index) => (
                         <Listbox.Option
-                          key={option.id}
+                          key={index}
                           className={({ active }) =>
                             classNames(
                               active

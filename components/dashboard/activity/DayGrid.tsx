@@ -1,14 +1,14 @@
 import React from 'react'
 
 function DayGrid({
-  allData,
+  allIndividualData,
   daySelected,
   handleSetDayDetails,
   handleSetDaySelected,
 }) {
   const handleDayDetails = (index) => {
     if (
-      allData.filter((item) => {
+      allIndividualData.filter((item) => {
         let mydate = new Date()
         mydate.setDate(mydate.getDate() - index)
         return (
@@ -19,7 +19,7 @@ function DayGrid({
       }).length !== 0
     ) {
       handleSetDayDetails(
-        allData.filter((item) => {
+        allIndividualData.filter((item) => {
           let mydate = new Date()
           mydate.setDate(mydate.getDate() - index)
           return (
@@ -39,7 +39,7 @@ function DayGrid({
     <div>
       <div className="flex max-w-lg flex-wrap mb-4">
         {new Array(30).fill('').map((item, index) => {
-          const todayData = allData.filter((item) => {
+          const todayData = allIndividualData.filter((item) => {
             let mydate = new Date()
             mydate.setDate(mydate.getDate() - index)
             return (

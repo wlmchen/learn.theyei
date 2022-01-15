@@ -1,11 +1,19 @@
+import { CompletedData, FRQ, MCQ, Slide } from 'types'
 import routes, { kebabCategories } from '@/data/routes'
-import { kebabCase } from '@/lib/utils'
+
 import React from 'react'
+import { kebabCase } from '@/lib/utils'
+
+type ModuleProgressProps = {
+  title: string
+  completedData: CompletedData
+}
+
 
 function ModuleProgress({
   title,
   completedData: { completedSlides, completedMCQs, completedFRQs },
-}) {
+}: ModuleProgressProps) {
   return (
     <div>
       <div className="flex justify-center w-full flex-row">

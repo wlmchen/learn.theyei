@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react'
 
+import { AllIndividualData } from 'types'
 import DayDetails from './DayDetails'
 import DayGrid from './DayGrid'
 import Streak from './Streak'
 
-function Activity({ allData, slug }) {
+type ActivityProps = {
+  allIndividualData: AllIndividualData
+  slug: string | string[]
+}
+
+function Activity({ allIndividualData, slug }: ActivityProps) {
   const [dayDetails, setDayDetails] = useState([])
 
   const [daySelected, setDaySelected] = useState(0)
 
   useEffect(() => {
-    if (allData) {
+    if (allIndividualData) {
       setDayDetails(
-        allData.filter((item) => {
+        allIndividualData.filter((item) => {
           let mydate = new Date()
           mydate.setDate(mydate.getDate())
           return (
@@ -23,7 +29,7 @@ function Activity({ allData, slug }) {
         })
       )
     }
-  }, [allData])
+  }, [allIndividualData])
 
   const handleSetDayDetails = (newDetails) => {
     setDayDetails(newDetails)
@@ -35,16 +41,16 @@ function Activity({ allData, slug }) {
     <div className="mt-8">
       <div className="mt-4 p-4 border border-gray-200 rounded-2xl bg-gray-100 flex flex-col">
         <DayGrid
-          allData={allData}
+          allIndividualData={allIndividualData}
           daySelected={daySelected}
           handleSetDaySelected={(newSelected) =>
             handleSetDaySelected(newSelected)
           }
           handleSetDayDetails={(newDetails) => handleSetDayDetails(newDetails)}
         />
-        <Streak allData={allData} />
+        <Streak allIndividualData={allIndividualData} />
         <DayDetails
-          allData={allData}
+          allIndividualData={allIndividualData}
           daySelected={daySelected}
           dayDetails={dayDetails}
           slug={slug}

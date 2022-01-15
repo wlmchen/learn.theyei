@@ -1,18 +1,22 @@
-import { kebabCase } from '@/lib/utils'
-import routes, { kebabCategories } from '@/data/routes'
+import { AllCombinedData, CompletedData, ScoreData } from 'types';
+
+import ModuleProgress from './ModuleProgress'
 import Pathway from './Pathway'
 import ProgressBar from './ProgressBar'
-import ModuleProgress from './ModuleProgress'
-import frqs from '@/data/frqs'
-import { useEffect, useState } from 'react'
+
+type DashboardProps = {
+  title: string
+  description: string
+  allCombinedData: AllCombinedData
+  completedData: CompletedData
+}
 
 export default function Dashboard({
   title,
   description,
-  moduleData: { slideProgressData, mcqScoreData, mutatedFRQData },
-  completedData: { completedSlides, completedMCQs, completedFRQs },
-  slug,
-}) {
+  allCombinedData,
+  completedData,
+}: DashboardProps) {
   return (
     <div className="min-h-screen bg-white">
       <div className="">
@@ -27,35 +31,14 @@ export default function Dashboard({
           </div>
 
           <div className="flex flex-wrap items-center justify-center mt-5">
-            <ProgressBar
-              title={title}
-              completedData={{
-                completedSlides,
-                completedMCQs,
-                completedFRQs,
-              }}
-            />
-            <ModuleProgress
-              title={title}
-              completedData={{
-                completedSlides,
-                completedMCQs,
-                completedFRQs,
-              }}
-            />
+            <ProgressBar title={title} completedData={completedData} />
+            <ModuleProgress title={title} completedData={completedData} />
           </div>
         </div>
         <main>
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div className="relative w-full flex flex-col items-center px-4 sm:px-0">
-              <Pathway
-                title={title}
-                scoreData={{
-                  slideProgressData,
-                  mcqScoreData,
-                  mutatedFRQData,
-                }}
-              />
+              <Pathway title={title} allCombinedData={allCombinedData} />
             </div>
           </div>
         </main>

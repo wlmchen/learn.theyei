@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+import { AllCombinedData } from 'types'
 import Dashboard from '@/components/category/dashboard/Dashboard'
 import DashboardSkeleton from '@/components/category/dashboard/DashboardSkeleton'
 import Layout from '@/components/global/Layout'
@@ -12,12 +13,13 @@ import { useAuth } from '@/lib/auth'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 
-export default function general() {
+export default function macro() {
   const auth = useAuth()
-  const router = useRouter()
-  const slug = router.query.slug || []
+
   const { data: slideProgressData } = useSWR(
-    auth.user ? [`/api/slides/macro/${auth.user.uid}`, auth.user.token] : null,
+    auth.user
+      ? [`/api/slides/macro/${auth.user.uid}`, auth.user.token]
+      : null,
     fetcher
   )
   const { data: mcqScoreData } = useSWR(
@@ -32,6 +34,12 @@ export default function general() {
   const [completedSlides, setCompletedSlides] = useState([])
   const [completedMCQs, setCompletedMCQs] = useState([])
   const [completedFRQs, setCompletedFRQs] = useState([])
+
+  const [allCombinedData, setAllCombinedData] = useState<AllCombinedData>({
+    slideData: [],
+    mcqData: [],
+    frqData: [],
+  })
 
   const [mutatedFRQData, setMutatedFRQData] = useState([])
   let completedFRQData = []
@@ -83,6 +91,12 @@ export default function general() {
       })
       setCompletedFRQs(completedFRQData)
       setMutatedFRQData(newFRQData)
+
+      setAllCombinedData({
+        slideData: [...slideProgressData.progress],
+        mcqData: [...mcqScoreData.score],
+        frqData: [...newFRQData], // difference is here. all indv FRQs are combined into one object per chapter
+      })
     }
   }, [slideProgressData, mcqScoreData, frqScoreData])
   return (
@@ -94,23 +108,22 @@ export default function general() {
           completedFRQs,
           mutatedFRQData,
         } ? (
-          <Layout title="Macro" page="macro" showNav contentLoaded>
+          <Layout title="macro" page="macro" showNav contentLoaded>
             <div className="w-full">
               <Dashboard
-                title="Macro"
+                title="macro"
                 description="This section covers macroeconomics, economics on a national and global scale."
-                moduleData={{ slideProgressData, mcqScoreData, mutatedFRQData }}
+                allCombinedData={allCombinedData}
                 completedData={{
                   completedSlides,
                   completedMCQs,
                   completedFRQs,
                 }}
-                slug={slug}
               />
             </div>
           </Layout>
         ) : (
-          <Layout title="Macro" page="macro" showNav>
+          <Layout title="macro" page="macro" showNav>
             <div className="w-full">
               <DashboardSkeleton />
             </div>

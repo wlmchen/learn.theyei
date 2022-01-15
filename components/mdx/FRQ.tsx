@@ -43,7 +43,7 @@ function FRQ({ num, totalPoints, children }) {
       category: slug[0],
       chapter: slug[1],
       num: num,
-      score: points,
+      score: parseInt(points),
       totalPoints: totalPoints,
       createdAt: new Date().toISOString(),
       userId: auth.user.uid,

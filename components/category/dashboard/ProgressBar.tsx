@@ -1,11 +1,12 @@
 import routes, { kebabCategories } from '@/data/routes'
-import { kebabCase } from '@/lib/utils'
-import React from 'react'
 
-function ProgressBar({
+import React from 'react'
+import { kebabCase } from '@/lib/utils'
+
+export default function ProgressBar({
   title,
   completedData: { completedSlides, completedMCQs, completedFRQs },
-}) {
+}: ProgressBarProps) {
   return (
     <div className="bg-green-100 max-w-lg m-5 w-full p-5 shadow-2xl rounded-xl inline-flex flex-col justify-center space-y-4">
       <div className="uppercase tracking-widest text-sm font-bold text-yei-primary-main">
@@ -47,4 +48,14 @@ function ProgressBar({
   )
 }
 
-export default ProgressBar
+
+type ProgressBarProps = {
+  title: String
+  completedData: CompletedData
+}
+
+type CompletedData = {
+  completedSlides: Object
+  completedMCQs: Object
+  completedFRQs: Object
+}

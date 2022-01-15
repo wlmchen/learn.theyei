@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-  getFileBySlug,
-  getFiles,
-} from '@/lib/mdx'
+import { getFileBySlug, getFiles } from '@/lib/mdx'
 import routes, {
   allChapters,
   allKebabChapters,
@@ -86,35 +83,35 @@ export default function Category({ post }) {
         />
       </Head>
       <SignInReminder condition={auth.user}>
-            <Layout
-              title={`${allChapters[allKebabChapters.indexOf(slug[1])]} ${
-                modules[kebabModules.indexOf(slug[2])]
-              }`}
-              page={slug[0]}
-              showNav={slug.length === 1}
-            >
-              <div className="w-full">
-                {kebabModules.indexOf(sectionType) !== -1 ? (
-                  <CategoryLayout slug={slug} sectionType={sectionType}>
-                    {mdxSource !== '' && frontMatter !== '' ? (
-                      <FRQPage slug={slug}>
-                        <MDXLayoutRenderer
-                          mdxSource={mdxSource}
-                          frontMatter={frontMatter}
-                          slug={slug}
-                          auth={auth}
-                        />
-                      </FRQPage>
-                    ) : (
-                      ''
-                    )}
-                  </CategoryLayout>
+        <Layout
+          title={`${allChapters[allKebabChapters.indexOf(slug[1])]} ${
+            modules[kebabModules.indexOf(slug[2])]
+          }`}
+          page={slug[0]}
+          showNav={slug.length === 1}
+        >
+          <div className="w-full">
+            {kebabModules.indexOf(sectionType) !== -1 ? (
+              <CategoryLayout slug={slug} sectionType={sectionType}>
+                {mdxSource !== '' && frontMatter !== '' ? (
+                  <FRQPage slug={slug}>
+                    <MDXLayoutRenderer
+                      mdxSource={mdxSource}
+                      frontMatter={frontMatter}
+                      slug={slug}
+                      auth={auth}
+                    />
+                  </FRQPage>
                 ) : (
                   ''
                 )}
-              </div>
-            </Layout>
-          </SignInReminder>
+              </CategoryLayout>
+            ) : (
+              ''
+            )}
+          </div>
+        </Layout>
+      </SignInReminder>
     </>
   )
 }

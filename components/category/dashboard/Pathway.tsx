@@ -1,44 +1,54 @@
 import { BookOpenIcon, CheckIcon, XIcon } from '@heroicons/react/outline'
+import { FRQChapter, MCQ, ScoreData, Slide } from 'types'
 import React, { useEffect } from 'react'
 import routes, { kebabCategories } from '@/data/routes'
 
 import Link from 'next/link'
 import { kebabCase } from '@/lib/utils'
 
+type PathwayProps = {
+  title: string
+  allCombinedData: {
+    slideData: Slide[]
+    mcqData: MCQ[]
+    frqData: FRQChapter[]
+  }
+}
+
 function Pathway({
   title,
-  scoreData: { slideProgressData, mcqScoreData, mutatedFRQData },
-}) {
+  allCombinedData: { slideData, mcqData, frqData },
+}: PathwayProps) {
   const slideDataNamesOnly = []
-  slideProgressData?.progress.forEach((item) => {
+  slideData?.forEach((item) => {
     slideDataNamesOnly.push(`${item.category}/${item.chapter}`)
   })
   const mcqDataNamesOnly = []
-  mcqScoreData?.score.forEach((item) => {
+  mcqData?.forEach((item) => {
     mcqDataNamesOnly.push(`${item.category}/${item.chapter}`)
   })
   const frqDataNamesOnly = []
-  mutatedFRQData?.forEach((item) => {
+  frqData?.forEach((item) => {
     frqDataNamesOnly.push(`${item.category}/${item.chapter}`)
   })
   const getSlides = (item) => {
     return (
-      slideProgressData?.progress[
+      slideData[
         slideDataNamesOnly.indexOf(`${kebabCase(title)}/${kebabCase(item)}`)
       ]?.progress || 'not-started'
     )
   }
   const getMCQs = (item) => {
-    return mcqScoreData?.score[
+    return mcqData[
       mcqDataNamesOnly.indexOf(`${kebabCase(title)}/${kebabCase(item)}`)
     ]
   }
 
   const getFRQs = (item) => {
     return (
-      mutatedFRQData[
+      frqData[
         frqDataNamesOnly.indexOf(`${kebabCase(title)}/${kebabCase(item)}`)
-      ].frqProgress || 'not-started'
+      ]?.frqProgress || 'not-started'
     )
   }
   return (

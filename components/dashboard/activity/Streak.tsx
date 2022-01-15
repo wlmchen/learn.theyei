@@ -1,14 +1,14 @@
 import { BanIcon, FireIcon } from '@heroicons/react/outline'
 import React, { useEffect, useState } from 'react'
 
-function Streak({ allData }) {
+function Streak({ allIndividualData }) {
   const [streak, setStreak] = useState(0)
   let streakCount = 0
   let dates = []
 
   useEffect(() => {
-    if (allData) {
-      allData.forEach((item) => {
+    if (allIndividualData) {
+      allIndividualData.forEach((item) => {
         const item_date = new Date(item.createdAt)
         dates.push(
           Math.floor(
@@ -35,10 +35,10 @@ function Streak({ allData }) {
       
       setStreak(streakCount)
     }
-  }, [allData])
+  }, [allIndividualData])
   return (
     <>
-      {allData && streak && streak !== 0 ? (
+      {allIndividualData && streak && streak !== 0 ? (
         <div className="mb-4 flex items-center space-x-2 py-2 px-3 w-min bg-orange-300 text-orange-900 rounded-full">
           <FireIcon className="h-5 w-5" />
           <span className="whitespace-nowrap pr-1 font-medium text-sm">

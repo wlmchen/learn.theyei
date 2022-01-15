@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+import { AllCombinedData } from 'types'
 import Dashboard from '@/components/category/dashboard/Dashboard'
 import DashboardSkeleton from '@/components/category/dashboard/DashboardSkeleton'
 import Layout from '@/components/global/Layout'
@@ -14,8 +15,6 @@ import useSWR from 'swr'
 
 export default function general() {
   const auth = useAuth()
-  const router = useRouter()
-  const slug = router.query.slug || []
 
   const { data: slideProgressData } = useSWR(
     auth.user
@@ -35,6 +34,13 @@ export default function general() {
   const [completedSlides, setCompletedSlides] = useState([])
   const [completedMCQs, setCompletedMCQs] = useState([])
   const [completedFRQs, setCompletedFRQs] = useState([])
+
+
+  const [allCombinedData, setAllCombinedData] = useState<AllCombinedData>({
+    slideData: [],
+    mcqData: [],
+    frqData: [],
+  })
 
   const [mutatedFRQData, setMutatedFRQData] = useState([])
   let completedFRQData = []
@@ -86,39 +92,44 @@ export default function general() {
       })
       setCompletedFRQs(completedFRQData)
       setMutatedFRQData(newFRQData)
+      
+      setAllCombinedData({
+        slideData: [...slideProgressData.progress],
+        mcqData: [...mcqScoreData.score],
+        frqData: [...newFRQData], // difference is here. all indv FRQs are combined into one object per chapter
+      })
     }
   }, [slideProgressData, mcqScoreData, frqScoreData])
   return (
     <>
       <SignInReminder condition={auth.user}>
-      {{
-        completedSlides,
-        completedMCQs,
-        completedFRQs,
-        mutatedFRQData,
-      } ? (
-        <Layout title="General" page="general" showNav contentLoaded>
-          <div className="w-full">
-            <Dashboard
-              title="General"
-              description="This section covers the basics of economics. Here's to the start of your adventure in economics!"
-              moduleData={{ slideProgressData, mcqScoreData, mutatedFRQData }}
-              completedData={{
-                completedSlides,
-                completedMCQs,
-                completedFRQs,
-              }}
-              slug={slug}
-            />
-          </div>
-        </Layout>
-      ) : (
-        <Layout title="General" page="general" showNav>
-          <div className="w-full">
-            <DashboardSkeleton />
-          </div>
-        </Layout>
-      )}
+        {{
+          completedSlides,
+          completedMCQs,
+          completedFRQs,
+          mutatedFRQData,
+        } ? (
+          <Layout title="General" page="general" showNav contentLoaded>
+            <div className="w-full">
+              <Dashboard
+                title="General"
+                description="This section covers the basics of economics. Here's to the start of your adventure in economics!"
+                allCombinedData={allCombinedData}
+                completedData={{
+                  completedSlides,
+                  completedMCQs,
+                  completedFRQs,
+                }}
+              />
+            </div>
+          </Layout>
+        ) : (
+          <Layout title="General" page="general" showNav>
+            <div className="w-full">
+              <DashboardSkeleton />
+            </div>
+          </Layout>
+        )}
       </SignInReminder>
     </>
   )

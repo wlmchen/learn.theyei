@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+import { AllCombinedData } from 'types';
 import Dashboard from '@/components/dashboard/Dashboard'
 import DashboardSkeleton from '@/components/dashboard/DashboardSkeleton'
 import Layout from '@/components/global/Layout'
@@ -16,14 +17,18 @@ export default function dashboard() {
   const router = useRouter()
   const slug = router.query.slug || []
 
-  const [allData, setAllData] = useState([])
+  const [allIndividualData, setAllIndividualData] = useState([])
 
   const [completedSlides, setCompletedSlides] = useState([])
   const [completedMCQs, setCompletedMCQs] = useState([])
   const [completedFRQs, setCompletedFRQs] = useState([])
   const [mutatedFRQData, setMutatedFRQData] = useState([])
 
-  const [allDataWithMutation, setAllDataWithMutation] = useState([])
+  const [allCombinedData, setAllCombinedData] = useState<AllCombinedData>({
+    slideData: [],
+    mcqData: [],
+    frqData: [],
+  })
 
   const { data: slideProgressData } = useSWR(
     auth.user ? [`/api/slides/${auth.user.uid}`, auth.user.token] : null,
@@ -66,9 +71,21 @@ export default function dashboard() {
               frqProgress: 'completed',
             })
             newFRQData.push({
+              type: 'frq-chapter',
               category: kebabCategories[index],
               chapter: kebabCase(chapter.title),
               frqProgress: 'completed',
+              createdAt: frqScoreData.score
+                .filter(
+                  (item) =>
+                    item.chapter === kebabCase(chapter.title) &&
+                    item.category === kebabCategories[index]
+                )
+                .sort(
+                  (a, b) =>
+                    new Date(b.createdAt).getTime() -
+                    new Date(a.createdAt).getTime()
+                )[0].createdAt,
             })
           } else if (
             frqScoreData.score.filter(
@@ -78,25 +95,37 @@ export default function dashboard() {
             ).length >= 1
           ) {
             newFRQData.push({
+              type: 'frq-chapter',
               category: kebabCategories[index],
               chapter: kebabCase(chapter.title),
               frqProgress: 'in-progress',
+              createdAt: frqScoreData.score
+                .filter(
+                  (item) =>
+                    item.chapter === kebabCase(chapter.title) &&
+                    item.category === kebabCategories[index]
+                )
+                .sort(
+                  (a, b) =>
+                    new Date(b.createdAt).getTime() -
+                    new Date(a.createdAt).getTime()
+                )[0].createdAt,
             })
           }
         })
       })
       setCompletedFRQs(completedFRQData)
       setMutatedFRQData(newFRQData)
-      setAllData([
+      setAllIndividualData([
         ...slideProgressData.progress,
         ...mcqScoreData.score,
-        ...frqScoreData.score,
+        ...frqScoreData.score, // each FRQ question (even if in the same chapter) are seperate
       ])
-      setAllDataWithMutation([
-        ...slideProgressData.progress,
-        ...mcqScoreData.score,
-        ...newFRQData,
-      ])
+      setAllCombinedData({
+        slideData: [...slideProgressData.progress],
+        mcqData: [...mcqScoreData.score],
+        frqData: [...newFRQData], // difference is here. all indv FRQs are combined into one object per chapter
+      })
     }
   }, [slideProgressData, mcqScoreData, frqScoreData])
 
@@ -108,14 +137,15 @@ export default function dashboard() {
   return (
     <>
       {auth.user && {
-        allData,
+        allIndividualData,
         mutatedFRQData,
+        allCombinedData
       } ? (
         <Layout title="Dashboard" page="dashboard" showNav contentLoaded>
           <div className="w-full">
             <Dashboard
-              allData={allData}
-              allDataWithMutation={allDataWithMutation}
+              allIndividualData={allIndividualData}
+              allCombinedData={allCombinedData}
               completedData={{ completedSlides, completedMCQs, completedFRQs }}
               slug={slug}
             />
