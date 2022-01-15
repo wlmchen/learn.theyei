@@ -167,11 +167,11 @@ const mcq: Question[] = [
     category: 'General 1',
     question:
       'According to the linked table, what is the utility-maximizing quantity of pizza and hot dogs that should be consumed given a budget of $52?',
-    a: '3 pizzas, 7 hot dogs',
-    b: '4 pizzas, 5 hot dogs',
+    a: '4 pizzas, 5 hot dogs',
+    b: '3 pizzas, 7 hot dogs',
     c: '5 pizzas, 3 hot dogs',
     d: '6 pizzas, 1 hot dog',
-    correct: 'B',
+    correct: 'A',
     source: 'https://i.imgur.com/iLKiud0.png',
   },
   {
