@@ -45,7 +45,7 @@ export type ScoreData = {
 }
 
 export type Slide = {
-  type: 'slide',
+  type: 'slide'
   category: Category
   chapter: string
   createdAt: string
@@ -56,10 +56,10 @@ export type Slide = {
 export type AllIndividualData = (Slide | MCQ | FRQ)[]
 
 export type AllCombinedData = {
-  slideData: Slide[],
-  mcqData: MCQ[],
+  slideData: Slide[]
+  mcqData: MCQ[]
   frqData: FRQChapter[]
-} | null
+}
 
 export type MCQ = {
   type: 'mcq'
@@ -89,6 +89,6 @@ export type FRQChapter = {
   type: 'frq-chapter'
   category: Category
   chapter: string
-  frqProgress: 'not-started' | 'in-progress' | 'completed',
+  frqProgress: 'not-started' | 'in-progress' | 'completed'
   createdAt: string // refers to when the oldest FRQ in that chapter was made
 }
