@@ -1,7 +1,13 @@
 import routes, { kebabCategories } from '@/data/routes'
 
+import { CompletedData } from 'types'
 import React from 'react'
 import { kebabCase } from '@/lib/utils'
+
+type ProgressBarProps = {
+  title: string
+  completedData: CompletedData
+}
 
 export default function ProgressBar({
   title,
@@ -46,16 +52,4 @@ export default function ProgressBar({
       </div>
     </div>
   )
-}
-
-
-type ProgressBarProps = {
-  title: String
-  completedData: CompletedData
-}
-
-type CompletedData = {
-  completedSlides: Object
-  completedMCQs: Object
-  completedFRQs: Object
 }
