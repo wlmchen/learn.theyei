@@ -75,6 +75,7 @@ function MCQuiz({ slug }: { slug: Slug }) {
     newUserChoices[questionNumber] = letterIndex
     setUserChoices(newUserChoices)
   }
+  let userScore: MCQScore = 0
 
   useEffect(() => {
     if (mcqScoreData) {
@@ -84,15 +85,15 @@ function MCQuiz({ slug }: { slug: Slug }) {
         setFilteredMcqs(mcqScoreData.score[0].mcqContent)
         setUserChoices(mcqScoreData.score[0].userChoices)
       }
-    }
-  }, [mcqScoreData])
-
-  let userScore: MCQScore = 0
-
+      
   userChoices.forEach(
     (item, index) =>
       (userScore += item === letterToNum(filteredMcqs[index].correct) ? 1 : 0)
   )
+
+    }
+  }, [mcqScoreData])
+
 
   const onCreateMCQScore = () => {
     const newScore: MCQ = {
