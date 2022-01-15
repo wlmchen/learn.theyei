@@ -106,10 +106,10 @@ export default function micro() {
           completedFRQs,
           mutatedFRQData,
         } ? (
-          <Layout title="micro" page="micro" showNav contentLoaded>
+          <Layout title="Micro" page="micro" showNav contentLoaded>
             <div className="w-full">
               <Dashboard
-                title="micro"
+                title="Micro"
                 description="This section covers microeconomics, the economics of individual firms and markets."
                 allCombinedData={allCombinedData}
                 completedData={{

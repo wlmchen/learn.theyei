@@ -108,10 +108,10 @@ export default function macro() {
           completedFRQs,
           mutatedFRQData,
         } ? (
-          <Layout title="macro" page="macro" showNav contentLoaded>
+          <Layout title="Macro" page="macro" showNav contentLoaded>
             <div className="w-full">
               <Dashboard
-                title="macro"
+                title="Macro"
                 description="This section covers macroeconomics, economics on a national and global scale."
                 allCombinedData={allCombinedData}
                 completedData={{
