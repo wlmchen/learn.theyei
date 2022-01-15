@@ -6,13 +6,13 @@ import {
 } from '@heroicons/react/solid'
 import { Fragment, useEffect, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
-import { createSlideProgress, updateSlideProgress } from '@/lib/db'
-import useSWR, { mutate } from 'swr'
+import { Slide, SlideWithoutType, Slug } from 'types'
 
-import { SlideWithoutID } from 'types';
+import { createSlideProgress } from '@/lib/db'
 import fetcher from '@/utils/fetcher'
 import { kebabCase } from '@/lib/utils'
 import { useAuth } from '@/lib/auth'
+import useSWR from 'swr'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -41,7 +41,7 @@ options.forEach((item) => {
   kebabOptionsNames.push(kebabCase(item.name))
 })
 
-export default function SlideSelect({ slug }) {
+export default function SlideSelect({ slug }: {slug: Slug}) {
   const auth = useAuth()
   const { data: slideProgressData } = useSWR(
     auth.user
@@ -52,10 +52,9 @@ export default function SlideSelect({ slug }) {
 
   const [dataLoading, setDataLoading] = useState(false)
 
-  let newSlideId = ''
-
   const onCreateSlideProgress = (userProgress) => {
     const newProgress: Slide = {
+      type: 'slide',
       category: slug[0],
       chapter: slug[1],
       progress: userProgress,
@@ -68,19 +67,17 @@ export default function SlideSelect({ slug }) {
 
   const [selected, setSelected] = useState(options[0])
   let lastChoice = ''
-  let newSlide = true
 
   useEffect(() => {
     if (slideProgressData) {
       setSelected(
         options[
           kebabOptionsNames.indexOf(
-            slideProgressData.progress[0]?.progress || 'not-started'
+            slideProgressData[0]?.progress || 'not-started'
           )
         ]
       )
-      newSlide = !slideProgressData.progress[0]?.progress
-      lastChoice = slideProgressData.progress[0]?.progress || 'not-started'
+      lastChoice = slideProgressData[0]?.progress || 'not-started'
     }
   }, [slideProgressData])
 

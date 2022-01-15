@@ -20,22 +20,22 @@ function UncompleteModule({
   const [suggestion, setSuggestion] = useState<Slide | MCQ | FRQChapter>()
   useEffect(() => {
     if (slideData && mcqData && frqData) {
-      let incompleteSlides = slideData
+      const incompleteSlides = slideData
         .slice()
         .sort(
           (a, b) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         )
-        .filter((item) => (item.progress = 'in-progress'))
+        .filter((item) => (item.progress === 'in-progress'))
 
-      let incompleteMCQs = mcqData
+      const incompleteMCQs = mcqData
         .sort(
           (a, b) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         )
         .filter((item) => item.score / item.totalPoints < 0.6)
 
-      let incompleteFRQs = frqData
+      const incompleteFRQs = frqData
         .sort(
           (a, b) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -67,16 +67,6 @@ function UncompleteModule({
         )
       } else if (incompleteFRQs.length !== 0) {
         // If there are incomplete frqs, suggest the oldest one on the list
-        console.log(
-          frqData
-            .slice()
-            .sort(
-              (a, b) =>
-                new Date(b.createdAt).getTime() -
-                new Date(a.createdAt).getTime()
-            )
-            .filter((item) => item.frqProgress === 'in-progress')[0].chapter
-        )
         setSuggestion(
           frqData
             .slice()
@@ -106,7 +96,7 @@ function UncompleteModule({
                 </div>
                 <div className="ml-3 flex-1 md:flex md:justify-between">
                   <p className="text-sm text-blue-700">
-                    Looks like you didn't finish the{' '}
+                    Looks like you didn&apos;t finish the{' '}
                     <span className="font-bold italic">
                       {categories[kebabCategories.indexOf(suggestion.category)]}
                       :{' '}
@@ -184,7 +174,7 @@ function UncompleteModule({
                 </div>
                 <div className="ml-3 flex-1 md:flex items-center md:justify-between">
                   <p className="text-sm text-blue-700 max-w-xl">
-                    Looks like you didn't finish all of the{' '}
+                    Looks like you didn&apos;t finish all of the{' '}
                     <span className="font-bold italic">
                       {categories[kebabCategories.indexOf(suggestion.category)]}
                       :{' '}

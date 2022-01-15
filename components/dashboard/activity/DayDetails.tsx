@@ -15,7 +15,6 @@ function DayDetails({ allIndividualData, daySelected, dayDetails, slug }) {
       dayDetailsMaxDisplay === dayDetails.length ? 4 : dayDetails.length
     )
   }
-  console.log(allIndividualData)
   const daysOfTheWeek = [
     'Sunday',
     'Monday',

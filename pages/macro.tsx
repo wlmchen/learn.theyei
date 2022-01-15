@@ -47,7 +47,7 @@ export default function macro() {
   useEffect(() => {
     if (slideProgressData && mcqScoreData && frqScoreData) {
       setCompletedSlides(
-        slideProgressData.progress?.filter((item) => {
+        slideProgressData?.filter((item) => {
           return item.progress === 'completed'
         }) || []
       )
@@ -93,7 +93,7 @@ export default function macro() {
       setMutatedFRQData(newFRQData)
 
       setAllCombinedData({
-        slideData: [...slideProgressData.progress],
+        slideData: slideProgressData,
         mcqData: [...mcqScoreData.score],
         frqData: [...newFRQData], // difference is here. all indv FRQs are combined into one object per chapter
       })

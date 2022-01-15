@@ -8,9 +8,10 @@ function DashboardSkeleton() {
         <div className="mt-4 p-4 border border-gray-200 rounded-2xl bg-gray-100 flex flex-col">
           <div>
             <div className="flex max-w-lg flex-wrap mb-4">
-              {new Array(30).fill(null).map(() => {
+              {new Array(30).fill(null).map((item, index) => {
                 return (
                   <div
+                  key={index}
                     className="h-10 w-10 cursor-pointer rounded-md flex items-center justify-center text-center font-bold bg-gray-300 animate-pulse border"
                     style={{ margin: '3px' }}
                   ></div>

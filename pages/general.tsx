@@ -10,7 +10,6 @@ import frqs from '@/data/frqs'
 import { kebabCase } from '@/lib/utils'
 import { kebabCategories } from '@/data/routes'
 import { useAuth } from '@/lib/auth'
-import { useRouter } from 'next/router'
 import useSWR from 'swr'
 
 export default function general() {
@@ -43,12 +42,13 @@ export default function general() {
   })
 
   const [mutatedFRQData, setMutatedFRQData] = useState([])
-  let completedFRQData = []
-  let newFRQData = []
+  const completedFRQData = []
+  const newFRQData = []
   useEffect(() => {
     if (slideProgressData && mcqScoreData && frqScoreData) {
+      console.log({slideProgressData})
       setCompletedSlides(
-        slideProgressData.progress?.filter((item) => {
+        slideProgressData.filter((item) => {
           return item.progress === 'completed'
         }) || []
       )
@@ -56,7 +56,7 @@ export default function general() {
       setCompletedFRQs(frqScoreData?.score || [])
 
       frqs.forEach((category, index) => {
-        category.forEach((chapter, index2) => {
+        category.forEach((chapter) => {
           if (
             chapter.numberOfFRQs ===
             frqScoreData.score.filter(
@@ -94,7 +94,7 @@ export default function general() {
       setMutatedFRQData(newFRQData)
       
       setAllCombinedData({
-        slideData: [...slideProgressData.progress],
+        slideData: slideProgressData,
         mcqData: [...mcqScoreData.score],
         frqData: [...newFRQData], // difference is here. all indv FRQs are combined into one object per chapter
       })

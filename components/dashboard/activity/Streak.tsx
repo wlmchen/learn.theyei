@@ -24,7 +24,7 @@ function Streak({ allIndividualData }) {
           )
         )
       })
-      console.log(dates.filter((value, index) => dates.indexOf(value) === index))
+      // console.log(dates.filter((value, index) => dates.indexOf(value) === index))
       dates
         .filter((value, index) => dates.indexOf(value) === index) // removes duplicates
         .sort((a, b) => a - b) // sorts from smallest to largest

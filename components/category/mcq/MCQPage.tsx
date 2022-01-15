@@ -1,8 +1,10 @@
 import routes, { kebabCategories, kebabChapters } from '@/data/routes'
-import React from 'react'
-import MCQ from './MCQ'
 
-function MCQPage({ slug }) {
+import MCQuiz from './MCQuiz'
+import React from 'react'
+import { Slug } from 'types'
+
+function MCQPage({ slug }: {slug: Slug}) {
   const kebabChaptersSelection = kebabChapters[kebabCategories.indexOf(slug[0])]
   return (
     <div className="w-full">
@@ -17,7 +19,7 @@ function MCQPage({ slug }) {
         }
       </h1>
       <br />
-      <MCQ slug={slug} />
+      <MCQuiz slug={slug} />
     </div>
   )
 }

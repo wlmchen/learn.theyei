@@ -1,7 +1,19 @@
+import {MCQUserChoice} from 'types'
+
 export const numToLetter = (num: number) =>
   (num + 10).toString(36).toUpperCase()
 
-export const letterToNum = (letter: string) => letter.charCodeAt(0) - 65
+export function letterToNum(letter: string): MCQUserChoice {
+  return letter === 'A'
+    ? 0
+    : letter === 'B'
+    ? 1
+    : letter === 'C'
+    ? 2
+    : letter === 'D'
+    ? 3
+    : null
+}
 
 export const kebabCase = (str: string) =>
   str

@@ -8,8 +8,8 @@ export default async (req, res) => {
         : req.query.slug.slice(0, req.query.slug.length - 1)
     const num = parseInt(req.query.slug[req.query.slug.length - 2])
     const userId = req.query.slug[req.query.slug.length - 1]
-    const { score } = await getAllFRQScores(path, num, userId)
-    res.status(200).json({ score })
+    const score = await getAllFRQScores(path, num, userId)
+    res.status(200).json(score)
   } catch (error) {
     res.status(500).json({ error })
   }

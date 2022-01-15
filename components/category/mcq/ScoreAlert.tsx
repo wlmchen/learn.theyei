@@ -1,6 +1,13 @@
 import { EmojiHappyIcon, EmojiSadIcon } from '@heroicons/react/solid'
 
-export default function ScoreAlert({ score, totalPoints }) {
+import { MCQScore } from 'types';
+
+type ScoreAlertProps = {
+  score: MCQScore,
+  totalPoints: MCQScore 
+}
+
+export default function ScoreAlert({ score, totalPoints }: ScoreAlertProps) {
   const scorePercent = score / totalPoints
   return (
     <div

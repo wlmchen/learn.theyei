@@ -67,10 +67,10 @@ export default function Category({ post }) {
   useEffect(() => {
     setSectionType(slug[2])
 
-    console.log(chapters)
-    console.log(allKebabChapters)
-    console.log(slug[1])
-    console.log(allChapters[allKebabChapters.indexOf(slug[1])])
+    // console.log(chapters)
+    // console.log(allKebabChapters)
+    // console.log(slug[1])
+    // console.log(allChapters[allKebabChapters.indexOf(slug[1])])
   }, [router])
   return (
     <>

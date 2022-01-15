@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { AllCombinedData } from 'types';
+import { AllCombinedData } from 'types'
 import Dashboard from '@/components/dashboard/Dashboard'
 import DashboardSkeleton from '@/components/dashboard/DashboardSkeleton'
 import Layout from '@/components/global/Layout'
@@ -42,13 +42,13 @@ export default function dashboard() {
     auth.user ? [`/api/frqs/${auth.user.uid}`, auth.user.token] : null,
     fetcher
   )
-
-  let completedFRQData = []
-  let newFRQData = []
+  const completedFRQData = []
+  const newFRQData = []
   useEffect(() => {
+    console.log({ slideProgressData })
     if (slideProgressData && mcqScoreData && frqScoreData) {
       setCompletedSlides(
-        slideProgressData.progress?.filter((item) => {
+        slideProgressData.filter((item) => {
           return item.progress === 'completed'
         }) || []
       )
@@ -56,7 +56,8 @@ export default function dashboard() {
       setCompletedFRQs(frqScoreData?.score || [])
 
       frqs.forEach((category, index) => {
-        category.forEach((chapter, index2) => {
+        // Groups FRQs together that are in the same chapter
+        category.forEach((chapter) => {
           if (
             chapter.numberOfFRQs ===
             frqScoreData.score.filter(
@@ -117,29 +118,29 @@ export default function dashboard() {
       setCompletedFRQs(completedFRQData)
       setMutatedFRQData(newFRQData)
       setAllIndividualData([
-        ...slideProgressData.progress,
+        ...slideProgressData,
         ...mcqScoreData.score,
         ...frqScoreData.score, // each FRQ question (even if in the same chapter) are seperate
       ])
       setAllCombinedData({
-        slideData: [...slideProgressData.progress],
+        slideData: slideProgressData,
         mcqData: [...mcqScoreData.score],
         frqData: [...newFRQData], // difference is here. all indv FRQs are combined into one object per chapter
       })
     }
   }, [slideProgressData, mcqScoreData, frqScoreData])
 
-  useEffect(() => {
-    if (!auth.user) {
-      router.push('/')
-    }
-  }, [auth])
+  // useEffect(() => {
+  //   if (!auth.user) {
+  //     router.push('/')
+  //   }
+  // }, [auth])
   return (
     <>
       {auth.user && {
         allIndividualData,
         mutatedFRQData,
-        allCombinedData
+        allCombinedData,
       } ? (
         <Layout title="Dashboard" page="dashboard" showNav contentLoaded>
           <div className="w-full">

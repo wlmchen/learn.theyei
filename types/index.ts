@@ -18,10 +18,16 @@ type Chapter =
   | 'Monetary Policy'
   | 'International Trade'
 
-type MCQUserChoice = 0 | 1 | 2 | 3
-type MCQScore = 0 | 1 | 2 | 3 | 4 | 5
+type Module = 'slides' | 'mcq-practice' | 'frq-practice'
 
-type MCQQuestion = {
+export type MCQUserChoice = 0 | 1 | 2 | 3
+export type MCQScore = 0 | 1 | 2 | 3 | 4 | 5
+
+export type Slug = [Category, Chapter, Module?]
+
+
+
+export type MCQQuestion = {
   category: string
   question: string
   a: string
@@ -43,6 +49,15 @@ export type ScoreData = {
   mcqScoreData: MCQ[]
   frqScoreData: FRQ[]
 }
+
+export type SlideWithoutType = {
+  category: Category
+  chapter: string
+  createdAt: string
+  progress: 'not-started' | 'in-progress' | 'completed'
+  userId: string
+}
+
 
 export type Slide = {
   type: 'slide'
@@ -79,9 +94,9 @@ export type FRQ = {
   chapter: string
   createdAt: string
   id: string
-  num: Number
+  num: number
   score: string
-  totalPoints: Number
+  totalPoints: number
   userId: string
 }
 
