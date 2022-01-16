@@ -5,7 +5,7 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
-    "lint": "eslint --ext .ts,.tsx"
+    "lint": "next lint"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -25,7 +25,7 @@
     "image-size": "^1.0.0",
     "js-cookie": "^3.0.0",
     "mdx-bundler": "^6.0.2",
-    "next": "^11.1.0",
+    "next": "^12.0.8",
     "next-mdx-remote": "^3.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -49,9 +49,11 @@
     "autoprefixer": "^10.1.0",
     "esbuild": "^0.12.20",
     "eslint": "^8.6.0",
+    "eslint-config-next": "12.0.8",
     "eslint-plugin-react": "^7.28.0",
     "formik": "^2.2.9",
     "husky": "^7.0.4",
+    "lint-staged": "^12.1.7",
     "postcss": "^8.2.1",
     "prettier": "^2.3.2",
     "pretty-quick": "^3.1.3",
