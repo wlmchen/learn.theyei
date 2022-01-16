@@ -85,14 +85,18 @@ function MCQuiz({ slug }: { slug: Slug }) {
         setFilteredMcqs(mcqScoreData.score[0].mcqContent)
         setUserChoices(mcqScoreData.score[0].userChoices)
       }
+    }
+  }, [mcqScoreData])
 
+  useEffect(() => {
+    if (filteredMcqs.length === 5) {
       userChoices.forEach(
         (item, index) =>
           (userScore +=
             item === letterToNum(filteredMcqs[index].correct) ? 1 : 0)
       )
     }
-  }, [mcqScoreData])
+  }, [filteredMcqs])
 
   const onCreateMCQScore = () => {
     const newScore: MCQ = {
