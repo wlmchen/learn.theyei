@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import * as Yup from 'yup'
 
 import { ErrorMessage, Field, Form, Formik } from 'formik'
@@ -170,6 +171,7 @@ export default function Signup() {
                             style={{ marginTop: '2px' }}
                             src="./img/logos/google.svg"
                             width="20"
+                            alt="Google icon"
                           />
                           Sign up with Google
                         </button>

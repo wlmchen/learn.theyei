@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import { CheckIcon, InformationCircleIcon } from '@heroicons/react/outline'
-import { MCQ, MCQScore, Slug } from 'types'
-import React, { useEffect, useState } from 'react'
+import { MCQ, Slug } from 'types'
+import React, { useEffect, useMemo, useState } from 'react'
 import { createMCQScore, removeMCQScore } from '@/lib/db'
 import { kebabCase, letterToNum } from '@/lib/utils'
 import { kebabCategories, kebabChapters } from '@/data/routes'
@@ -39,7 +40,7 @@ function MCQuiz({ slug }: { slug: Slug }) {
       : null,
     fetcher
   )
-  const randomSeq = []
+  const randomSeq = useMemo(() => [], [])
   const sortedMcqs = mcq.slice().filter((item) => {
     return (
       kebabCase(item.category.substring(0, item.category.length - 2)) ===
@@ -57,7 +58,7 @@ function MCQuiz({ slug }: { slug: Slug }) {
     setFilteredMcqs(
       sortedMcqs.sort((item) => randomSeq[sortedMcqs.indexOf(item)]).slice(0, 5)
     )
-  }, [])
+  }, [randomSeq, sortedMcqs])
 
   const [userChoices, setUserChoices] = useState<UserChoices>([
     null,
@@ -75,7 +76,6 @@ function MCQuiz({ slug }: { slug: Slug }) {
     newUserChoices[questionNumber] = letterIndex
     setUserChoices(newUserChoices)
   }
-  let userScore: MCQScore = 0
 
   useEffect(() => {
     if (mcqScoreData) {
@@ -88,22 +88,14 @@ function MCQuiz({ slug }: { slug: Slug }) {
     }
   }, [mcqScoreData])
 
-  useEffect(() => {
-    if (filteredMcqs.length === 5) {
-      userChoices.forEach(
-        (item, index) =>
-          (userScore +=
-            item === letterToNum(filteredMcqs[index].correct) ? 1 : 0)
-      )
-    }
-  }, [filteredMcqs])
-
   const onCreateMCQScore = () => {
     const newScore: MCQ = {
       category: slug[0],
       chapter: slug[1],
       userChoices: userChoices,
-      score: userScore,
+      score: userChoices.filter(
+        (item, index) => item === letterToNum(filteredMcqs[index].correct)
+      ).length,
       totalPoints: 5,
       mcqContent: filteredMcqs,
       createdAt: new Date().toISOString(),
@@ -203,7 +195,7 @@ function MCQuiz({ slug }: { slug: Slug }) {
                           A
                         </div>
                         {questionsAreImages && typeof a !== 'number' ? (
-                          <img src={a} width="300" />
+                          <img src={a} width="300" alt="Question A" />
                         ) : (
                           a
                         )}
@@ -231,7 +223,7 @@ function MCQuiz({ slug }: { slug: Slug }) {
                           B
                         </div>
                         {questionsAreImages && typeof b !== 'number' ? (
-                          <img src={b} width="300" />
+                          <img src={b} width="300" alt="Question B" />
                         ) : (
                           b
                         )}
@@ -259,7 +251,7 @@ function MCQuiz({ slug }: { slug: Slug }) {
                           C
                         </div>
                         {questionsAreImages && typeof c !== 'number' ? (
-                          <img src={c} width="300" />
+                          <img src={c} width="300" alt="Question C" />
                         ) : (
                           c
                         )}
@@ -287,7 +279,7 @@ function MCQuiz({ slug }: { slug: Slug }) {
                           D
                         </div>
                         {questionsAreImages && typeof d !== 'number' ? (
-                          <img src={d} width="300" />
+                          <img src={d} width="300" alt="Question D" />
                         ) : (
                           d
                         )}
@@ -309,7 +301,7 @@ function MCQuiz({ slug }: { slug: Slug }) {
                           A
                         </div>
                         {questionsAreImages && typeof a !== 'number' ? (
-                          <img src={a} width="300" />
+                          <img src={a} width="300" alt="Question A" />
                         ) : (
                           a
                         )}
@@ -328,7 +320,7 @@ function MCQuiz({ slug }: { slug: Slug }) {
                           B
                         </div>
                         {questionsAreImages && typeof b !== 'number' ? (
-                          <img src={b} width="300" />
+                          <img src={b} width="300" alt="Question B" />
                         ) : (
                           b
                         )}
@@ -347,7 +339,7 @@ function MCQuiz({ slug }: { slug: Slug }) {
                           C
                         </div>
                         {questionsAreImages && typeof c !== 'number' ? (
-                          <img src={c} width="300" />
+                          <img src={c} width="300" alt="Question C" />
                         ) : (
                           c
                         )}
@@ -366,7 +358,7 @@ function MCQuiz({ slug }: { slug: Slug }) {
                           D
                         </div>
                         {questionsAreImages && typeof d !== 'number' ? (
-                          <img src={d} width="300" />
+                          <img src={d} width="300" alt="Question D" />
                         ) : (
                           d
                         )}
@@ -398,7 +390,15 @@ function MCQuiz({ slug }: { slug: Slug }) {
                   >
                     Redo?
                   </button>
-                  <ScoreAlert score={userScore} totalPoints={5} />
+                  <ScoreAlert
+                    score={
+                      userChoices.filter(
+                        (item, index) =>
+                          item === letterToNum(filteredMcqs[index].correct)
+                      ).length
+                    }
+                    totalPoints={5}
+                  />
                 </div>
               ) : (
                 <button

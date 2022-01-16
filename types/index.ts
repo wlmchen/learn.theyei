@@ -21,7 +21,6 @@ type Chapter =
 type Module = 'slides' | 'mcq-practice' | 'frq-practice'
 
 export type MCQUserChoice = 0 | 1 | 2 | 3
-export type MCQScore = 0 | 1 | 2 | 3 | 4 | 5
 
 export type Slug = [Category, Chapter, Module?] | []
 
@@ -78,8 +77,8 @@ export type MCQ = {
   category: Category
   chapter: Chapter
   userChoices: MCQUserChoice[]
-  score: MCQScore
-  totalPoints: MCQScore
+  score: number
+  totalPoints: number
   mcqContent: MCQQuestion[]
   createdAt: string
   userId: string

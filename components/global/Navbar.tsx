@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { ChevronDownIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import React, { Fragment } from 'react'
@@ -25,7 +26,6 @@ function classNames(...classes) {
 
 export default function Navbar({ page }) {
   const auth = useAuth()
-  const router = useRouter()
   return (
     <>
       <Disclosure as="nav" className="bg-white z-50">
@@ -43,12 +43,10 @@ export default function Navbar({ page }) {
                       }`}
                       passHref
                     >
-                      <Image
-                        className="h-10 w-full"
+                      <img
+                        className="h-10 w-auto"
                         src="/img/logos/yei-training-logo.svg"
                         alt="YEI Logo"
-                        layout="fill"
-                        objectFit="contain"
                       />
                     </Link>
                   </div>

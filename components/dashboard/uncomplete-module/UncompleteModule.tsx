@@ -26,7 +26,7 @@ function UncompleteModule({
           (a, b) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         )
-        .filter((item) => (item.progress === 'in-progress'))
+        .filter((item) => item.progress === 'in-progress')
 
       const incompleteMCQs = mcqData
         .sort(
@@ -85,7 +85,7 @@ function UncompleteModule({
     <>
       {suggestion && (
         <>
-          {suggestion.type === "slide" ? (
+          {suggestion.type === 'slide' ? (
             <div className="mb-8 rounded-md bg-blue-50 p-4">
               <div className="flex">
                 <div className="flex-shrink-0">
@@ -111,6 +111,7 @@ function UncompleteModule({
                   <p className="mt-3 text-sm md:mt-0 md:ml-6">
                     <Link
                       href={`/category/${suggestion.category}/${suggestion.chapter}/slides`}
+                      passHref
                     >
                       <span className="cursor-pointer whitespace-nowrap font-medium text-blue-700 hover:text-blue-600">
                         Sure! <span aria-hidden="true">&rarr;</span>
@@ -123,7 +124,7 @@ function UncompleteModule({
           ) : (
             ''
           )}
-          {suggestion.type === "mcq" ? (
+          {suggestion.type === 'mcq' ? (
             <div className="mb-8 rounded-md bg-blue-50 p-4 ">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
@@ -151,6 +152,7 @@ function UncompleteModule({
                   <p className="mt-3 text-sm md:mt-0 md:ml-6">
                     <Link
                       href={`/category/${suggestion.category}/${suggestion.chapter}/mcq-practice`}
+                      passHref
                     >
                       <span className="cursor-pointer whitespace-nowrap font-medium text-blue-700 hover:text-blue-600">
                         Sure! <span aria-hidden="true">&rarr;</span>
@@ -163,7 +165,7 @@ function UncompleteModule({
           ) : (
             ''
           )}
-          {suggestion.type === "frq-chapter" ? (
+          {suggestion.type === 'frq-chapter' ? (
             <div className="mb-8 rounded-md bg-blue-50 p-4 ">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
@@ -189,6 +191,7 @@ function UncompleteModule({
                   <p className="mt-3 text-sm md:mt-0 md:ml-6">
                     <Link
                       href={`/category/${suggestion.category}/${suggestion.chapter}/frq-practice`}
+                      passHref
                     >
                       <span className="cursor-pointer whitespace-nowrap font-medium text-blue-700 hover:text-blue-600">
                         Sure! <span aria-hidden="true">&rarr;</span>

@@ -72,7 +72,7 @@ export default function Category({ post }) {
     // console.log(allKebabChapters)
     // console.log(slug[1])
     // console.log(allChapters[allKebabChapters.indexOf(slug[1])])
-  }, [router])
+  }, [slug])
   return (
     <>
       <Head>

@@ -19,7 +19,6 @@ export default function IndexPage() {
   }
   return (
     <>
-      {auth.user !== true}
       <div>
         <Head>
           <title>Home | YEI Learn</title>

@@ -1,12 +1,12 @@
 import { BanIcon, FireIcon } from '@heroicons/react/outline'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 
 function Streak({ allIndividualData }) {
   const [streak, setStreak] = useState(0)
-  let streakCount = 0
-  let dates = []
+  let dates = useMemo(() => [], [])
 
   useEffect(() => {
+    let streakCount = 0
     if (allIndividualData) {
       allIndividualData.forEach((item) => {
         const item_date = new Date(item.createdAt)
@@ -32,10 +32,10 @@ function Streak({ allIndividualData }) {
           // counts up consecutive numbers to create a streak
           streakCount += item === streakCount ? 1 : 0
         })
-      
+
       setStreak(streakCount)
     }
-  }, [allIndividualData])
+  }, [allIndividualData, dates])
   return (
     <>
       {allIndividualData && streak && streak !== 0 ? (

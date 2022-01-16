@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import {
   ArrowLeftIcon,
   ChevronRightIcon,
@@ -5,7 +6,7 @@ import {
 } from '@heroicons/react/outline'
 import { Dialog, Disclosure, Transition } from '@headlessui/react'
 import { HomeIcon, XIcon } from '@heroicons/react/solid'
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useMemo, useState } from 'react'
 import routes, { categories, kebabCategories, modules } from '@/data/routes'
 
 import GroupSelect from './GroupSelect'
@@ -20,13 +21,13 @@ function classNames(...classes) {
 export default function Sidebar({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const router = useRouter()
-  const slug = router.query.slug || []
+  const slug = useMemo(() => router.query.slug || [], [router.query.slug])
   const [categoryIndex, setCategoryIndex] = useState(-1)
 
   useEffect(() => {
     setCategoryIndex(kebabCategories.indexOf(slug[0]))
     setSidebarOpen(false)
-  }, [router])
+  }, [router, slug])
   return (
     <>
       {categoryIndex !== -1 && categoryIndex !== undefined ? (
@@ -82,7 +83,7 @@ export default function Sidebar({ children }) {
                   </Transition.Child>
                   <div className="flex-1 flex flex-col pt-5">
                     <div className="flex py-5 justify-center flex-shrink-0 px-4">
-                      <Link href="/dashboard">
+                      <Link href="/dashboard" passHref>
                         <img
                           className="w-44 cursor-pointer"
                           src="/img/logos/yei-training-logo.svg"
@@ -146,6 +147,7 @@ export default function Sidebar({ children }) {
                                         )}/${kebabCase(item)}/${kebabCase(
                                           subItem
                                         )}`}
+                                        passHref
                                       >
                                         <span
                                           className={`cursor-pointer group w-full flex items-center pl-10 pr-2 py-2 text-sm font-medium  rounded-md hover:text-gray-900 hover:bg-gray-50 ${
@@ -168,12 +170,15 @@ export default function Sidebar({ children }) {
                       </nav>
                     </div>
                   </div>
-                  <Link href="/dashboard">
+                  <Link href="/dashboard" passHref>
                     <div className="border-t hover:bg-gray-100 bg-white border-gray-300 text-sm text-gray-500 py-4 px-5 cursor-pointer">
                       <span className="flex items-center font-semibold">
-                      <ArrowLeftIcon className="h-4 w-4 mr-2" style={{marginTop: '2px'}} />
-                      Return Home
-                    </span>
+                        <ArrowLeftIcon
+                          className="h-4 w-4 mr-2"
+                          style={{ marginTop: '2px' }}
+                        />
+                        Return Home
+                      </span>
                     </div>
                   </Link>
                 </div>
@@ -191,7 +196,7 @@ export default function Sidebar({ children }) {
               <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
                 <div className="flex-1 flex flex-col pt-5">
                   <div className="flex py-5 justify-center flex-shrink-0 px-4">
-                    <Link href="/dashboard">
+                    <Link href="/dashboard" passHref>
                       <img
                         className="w-48 cursor-pointer"
                         src="/img/logos/yei-training-logo.svg"
@@ -255,6 +260,7 @@ export default function Sidebar({ children }) {
                                       )}/${kebabCase(item)}/${kebabCase(
                                         subItem
                                       )}`}
+                                      passHref
                                     >
                                       <span
                                         className={`cursor-pointer group w-full flex items-center pl-10 pr-2 py-2 text-sm font-medium  rounded-md hover:text-gray-900 hover:bg-gray-50 ${
@@ -277,10 +283,13 @@ export default function Sidebar({ children }) {
                     </nav>
                   </div>
                 </div>
-                <Link href="/dashboard">
+                <Link href="/dashboard" passHref>
                   <div className="border-t hover:bg-gray-100 bg-white border-gray-300 text-sm text-gray-500 py-4 px-5 cursor-pointer">
                     <span className="flex items-center font-semibold">
-                      <ArrowLeftIcon className="h-4 w-4 mr-2" style={{marginTop: '2px'}} />
+                      <ArrowLeftIcon
+                        className="h-4 w-4 mr-2"
+                        style={{ marginTop: '2px' }}
+                      />
                       Return Home
                     </span>
                   </div>

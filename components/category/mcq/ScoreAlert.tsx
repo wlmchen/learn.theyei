@@ -1,10 +1,8 @@
 import { EmojiHappyIcon, EmojiSadIcon } from '@heroicons/react/solid'
 
-import { MCQScore } from 'types';
-
 type ScoreAlertProps = {
-  score: MCQScore,
-  totalPoints: MCQScore 
+  score: number
+  totalPoints: number
 }
 
 export default function ScoreAlert({ score, totalPoints }: ScoreAlertProps) {

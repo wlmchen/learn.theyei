@@ -72,7 +72,7 @@ function Pathway({
       >
         <h2 className="text-2xl mb-2">Chapters</h2>
         <p className="text-sm text-gray-500">
-          Here's the pathway in order to complete the {title} section.
+          Here&apos;s the pathway in order to complete the {title} section.
         </p>
       </div>
       <div className="m-auto w-auto">
@@ -107,6 +107,7 @@ function Pathway({
                     href={`/category/${kebabCase(title)}/${kebabCase(
                       item
                     )}/slides`}
+                    passHref
                   >
                     <h3 className="text-xl font-medium cursor-pointer">
                       {item}
@@ -118,6 +119,7 @@ function Pathway({
                         href={`/category/${kebabCase(title)}/${kebabCase(
                           item
                         )}/slides`}
+                        passHref
                       >
                         <div className="flex items-center ">
                           {slideDataNamesOnly.indexOf(
@@ -142,6 +144,7 @@ function Pathway({
                         href={`/category/${kebabCase(title)}/${kebabCase(
                           item
                         )}/mcq-practice`}
+                        passHref
                       >
                         <div className="flex items-center ">
                           {mcqDataNamesOnly.indexOf(
@@ -162,6 +165,7 @@ function Pathway({
                         href={`/category/${kebabCase(title)}/${kebabCase(
                           item
                         )}/frq-practice`}
+                        passHref
                       >
                         <div className="flex items-center ">
                           {frqDataNamesOnly.indexOf(

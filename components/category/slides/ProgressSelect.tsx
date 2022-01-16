@@ -41,7 +41,7 @@ options.forEach((item) => {
   kebabOptionsNames.push(kebabCase(item.name))
 })
 
-export default function SlideSelect({ slug }: {slug: Slug}) {
+export default function SlideSelect({ slug }: { slug: Slug }) {
   const auth = useAuth()
   const { data: slideProgressData } = useSWR(
     auth.user
@@ -66,7 +66,6 @@ export default function SlideSelect({ slug }: {slug: Slug}) {
   }
 
   const [selected, setSelected] = useState(options[0])
-  let lastChoice = ''
 
   useEffect(() => {
     if (slideProgressData) {
@@ -77,16 +76,12 @@ export default function SlideSelect({ slug }: {slug: Slug}) {
           )
         ]
       )
-      lastChoice = slideProgressData[0]?.progress || 'not-started'
     }
   }, [slideProgressData])
 
   const handleChange = (value) => {
-    if (kebabCase(value.name) !== lastChoice) {
-      setSelected(value)
-      lastChoice = kebabCase(value.name)
-      onCreateSlideProgress(kebabCase(value.name))
-    }
+    setSelected(value)
+    onCreateSlideProgress(kebabCase(value.name))
   }
 
   return (

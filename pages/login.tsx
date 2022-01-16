@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import * as Yup from 'yup'
 
 import { ErrorMessage, Field, Form, Formik } from 'formik'
@@ -117,7 +118,7 @@ export default function Login() {
                     <FocusError />
                   </Form>
 
-                  <Link href="/forgotPassword">
+                  <Link href="/forgotPassword" passHref>
                     <span className="w-full appearance-none text-sm text-center text-yei-primary-main font-semibold pt-4">
                       Forgot your password?
                     </span>
@@ -154,6 +155,7 @@ export default function Login() {
                             style={{ marginTop: '2px' }}
                             src="./img/logos/google.svg"
                             width="20"
+                            alt="Google icon"
                           />
                           Sign in with Google
                         </button>
