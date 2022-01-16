@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
 
+import Image from 'next/image'
+
 function Hero() {
   return (
     <main className="mt-16 mx-auto max-w-6xl px-4">
@@ -16,7 +18,7 @@ function Hero() {
           </h1>
           <p className="m-auto max-w-xl mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg">
             <span className="whitespace-nowrap text-yei-primary-main">
-              YEI's Learning Portal{` `}
+              YEI&apos;s Learning Portal{` `}
             </span>
             provides practice resources for the AP Economics exams, National
             Economics Challenge, EconBowl, EconOlympiad, and more.
@@ -30,7 +32,14 @@ function Hero() {
           </div>
         </div>
         <div className=" lg:col-span-6 mt-12 lg:mt-0 mx-auto min-w-auto max-w-2xl">
-          <img src="./img/others/home/heroImage.png" className="w-full" />
+          <div className="w-full">
+            <Image
+              src="/img/others/home/heroImage.png"
+              alt="Hero image"
+              width={665}
+              height={570}
+            />
+          </div>
         </div>
       </div>
     </main>
