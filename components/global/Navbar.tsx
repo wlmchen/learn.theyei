@@ -41,11 +41,14 @@ export default function Navbar({ page }) {
                           ? '/'
                           : '/dashboard'
                       }`}
+                      passHref
                     >
-                      <img
-                        className="h-10 w-auto"
+                      <Image
+                        className="h-10 w-full"
                         src="/img/logos/yei-training-logo.svg"
                         alt="YEI Logo"
+                        layout="fill"
+                        objectFit="contain"
                       />
                     </Link>
                   </div>

@@ -127,6 +127,7 @@ export default function Footer() {
                 target="_blank"
                 href={link.href}
                 className="trans-300 text-gray-400 hover:text-gray-300"
+                rel="noreferrer"
               >
                 <span className="sr-only">{link.name}</span>
                 <FontAwesomeIcon icon={link.icon} className="w-5 h-5" />

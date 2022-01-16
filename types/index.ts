@@ -23,9 +23,7 @@ type Module = 'slides' | 'mcq-practice' | 'frq-practice'
 export type MCQUserChoice = 0 | 1 | 2 | 3
 export type MCQScore = 0 | 1 | 2 | 3 | 4 | 5
 
-export type Slug = [Category, Chapter, Module?]
-
-
+export type Slug = [Category, Chapter, Module?] | []
 
 export type MCQQuestion = {
   category: string
@@ -57,7 +55,6 @@ export type SlideWithoutType = {
   progress: 'not-started' | 'in-progress' | 'completed'
   userId: string
 }
-
 
 export type Slide = {
   type: 'slide'

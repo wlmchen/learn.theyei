@@ -1,4 +1,9 @@
-import { CheckIcon, PencilAltIcon, PresentationChartBarIcon } from '@heroicons/react/outline'
+/* eslint-disable @next/next/no-img-element */ // Right now we are ignoring this issue. It shall be fixed later.
+import {
+  CheckIcon,
+  PencilAltIcon,
+  PresentationChartBarIcon,
+} from '@heroicons/react/outline'
 
 export default function PageTypes() {
   return (
@@ -21,9 +26,9 @@ export default function PageTypes() {
                 </h2>
                 <p className="mt-4 text-lg text-gray-500">
                   Learn or review AP Microeconomics and Macroeconomics concepts
-                  with the YEI's slideshows. Covering all fundamental economics
-                  concepts, as well as everything on the AP Microeconomics and
-                  Macroeconomics exams.
+                  with the YEI&apos;s slideshows. Covering all fundamental
+                  economics concepts, as well as everything on the AP
+                  Microeconomics and Macroeconomics exams.
                 </p>
               </div>
             </div>

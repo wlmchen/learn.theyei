@@ -20,6 +20,7 @@ import SignInReminder from '@/components/global/SignInReminder'
 import { kebabCase } from '@/lib/utils'
 import { useAuth } from '@/lib/auth'
 import { useRouter } from 'next/router'
+import { Slug } from 'types'
 
 export async function getStaticPaths() {
   const posts = await getFiles('content')
@@ -60,11 +61,11 @@ export default function Category({ post }) {
   const auth = useAuth()
   const { mdxSource, frontMatter } = post
   const router = useRouter()
-  const slug = router.query.slug || []
-
+  const slug = router.query.slug
   const [sectionType, setSectionType] = useState('')
 
   useEffect(() => {
+    console.log(slug)
     setSectionType(slug[2])
 
     // console.log(chapters)

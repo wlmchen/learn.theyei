@@ -8,7 +8,7 @@ import Layout from '@/components/global/Layout'
 import router from 'next/router'
 import { useAuth } from '@/lib/auth'
 
-export default function forgotPassword() {
+export default function ForgotPassword() {
   const auth = useAuth()
 
   if (auth.user) {
@@ -18,7 +18,12 @@ export default function forgotPassword() {
   const [submissionLoading, setSubmissionLoading] = useState(false)
 
   return (
-    <Layout title="Forgot Password" page="forgot-password" showNav contentLoaded>
+    <Layout
+      title="Forgot Password"
+      page="forgot-password"
+      showNav
+      contentLoaded
+    >
       <Formik
         initialValues={{
           email: '',
@@ -48,8 +53,8 @@ export default function forgotPassword() {
                 </h3>
                 <div className="mt-2 max-w-xl text-sm text-gray-500">
                   <p>
-                    Enter your email below and we'll send you a password reset
-                    form to your inbox.
+                    Enter your email below and we&apos;ll send you a password
+                    reset form to your inbox.
                   </p>
                 </div>
 

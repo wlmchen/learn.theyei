@@ -1,6 +1,10 @@
 import { getAllFRQScores } from '@/lib/db-admin'
+import { NextApiRequest, NextApiResponse } from 'next'
 
-export default async (req, res) => {
+export default async function slidesApi(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   try {
     const path =
       req.query.slug.length === 5

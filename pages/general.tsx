@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { AllCombinedData } from 'types'
 import Dashboard from '@/components/category/dashboard/Dashboard'
@@ -12,7 +12,7 @@ import { kebabCategories } from '@/data/routes'
 import { useAuth } from '@/lib/auth'
 import useSWR from 'swr'
 
-export default function general() {
+export default function General() {
   const auth = useAuth()
 
   const { data: slideProgressData } = useSWR(
@@ -34,7 +34,6 @@ export default function general() {
   const [completedMCQs, setCompletedMCQs] = useState([])
   const [completedFRQs, setCompletedFRQs] = useState([])
 
-
   const [allCombinedData, setAllCombinedData] = useState<AllCombinedData>({
     slideData: [],
     mcqData: [],
@@ -42,11 +41,11 @@ export default function general() {
   })
 
   const [mutatedFRQData, setMutatedFRQData] = useState([])
-  const completedFRQData = []
-  const newFRQData = []
+  const completedFRQData = useMemo(() => [], [])
+  const newFRQData = useMemo(() => [], [])
   useEffect(() => {
     if (slideProgressData && mcqScoreData && frqScoreData) {
-      console.log({slideProgressData})
+      console.log({ slideProgressData })
       setCompletedSlides(
         slideProgressData.filter((item) => {
           return item.progress === 'completed'
@@ -92,14 +91,20 @@ export default function general() {
       })
       setCompletedFRQs(completedFRQData)
       setMutatedFRQData(newFRQData)
-      
+
       setAllCombinedData({
         slideData: slideProgressData,
         mcqData: [...mcqScoreData.score],
         frqData: [...newFRQData], // difference is here. all indv FRQs are combined into one object per chapter
       })
     }
-  }, [slideProgressData, mcqScoreData, frqScoreData])
+  }, [
+    slideProgressData,
+    mcqScoreData,
+    frqScoreData,
+    completedFRQData,
+    newFRQData,
+  ])
   return (
     <>
       <SignInReminder condition={auth.user}>

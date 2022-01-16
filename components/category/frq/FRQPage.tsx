@@ -1,8 +1,14 @@
 import routes, { kebabCategories, kebabChapters } from '@/data/routes'
-import { kebabCase } from '@/lib/utils'
-import React from 'react'
 
-function FRQPage({ slug, children }) {
+import React from 'react'
+import { Slug } from 'types'
+
+type FRQPageProps = {
+  slug: string | string[]
+  children: JSX.Element
+}
+
+function FRQPage({ slug, children }: FRQPageProps) {
   const kebabChaptersSelection = kebabChapters[kebabCategories.indexOf(slug[0])]
   return (
     <div className="w-full frqpage-main">

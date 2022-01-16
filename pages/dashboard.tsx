@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { AllCombinedData } from 'types'
 import Dashboard from '@/components/dashboard/Dashboard'
@@ -12,7 +12,7 @@ import { useAuth } from '@/lib/auth'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 
-export default function dashboard() {
+export default function DashboardPage() {
   const auth = useAuth()
   const router = useRouter()
   const slug = router.query.slug || []
@@ -42,8 +42,8 @@ export default function dashboard() {
     auth.user ? [`/api/frqs/${auth.user.uid}`, auth.user.token] : null,
     fetcher
   )
-  const completedFRQData = []
-  const newFRQData = []
+  const completedFRQData = useMemo(() => [], [])
+  const newFRQData = useMemo(() => [], [])
   useEffect(() => {
     console.log({ slideProgressData })
     if (slideProgressData && mcqScoreData && frqScoreData) {
@@ -128,7 +128,13 @@ export default function dashboard() {
         frqData: [...newFRQData], // difference is here. all indv FRQs are combined into one object per chapter
       })
     }
-  }, [slideProgressData, mcqScoreData, frqScoreData])
+  }, [
+    slideProgressData,
+    mcqScoreData,
+    frqScoreData,
+    completedFRQData,
+    newFRQData,
+  ])
 
   // useEffect(() => {
   //   if (!auth.user) {

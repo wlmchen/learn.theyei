@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { AllCombinedData } from 'types'
 import Dashboard from '@/components/category/dashboard/Dashboard'
@@ -10,10 +10,9 @@ import frqs from '@/data/frqs'
 import { kebabCase } from '@/lib/utils'
 import { kebabCategories } from '@/data/routes'
 import { useAuth } from '@/lib/auth'
-import { useRouter } from 'next/router'
 import useSWR from 'swr'
 
-export default function micro() {
+export default function Micro() {
   const auth = useAuth()
 
   const { data: slideProgressData } = useSWR(
@@ -40,8 +39,8 @@ export default function micro() {
   })
 
   const [mutatedFRQData, setMutatedFRQData] = useState([])
-  let completedFRQData = []
-  let newFRQData = []
+  const completedFRQData = useMemo(() => [], [])
+  const newFRQData = useMemo(() => [], [])
   useEffect(() => {
     if (slideProgressData && mcqScoreData && frqScoreData) {
       setCompletedSlides(
@@ -96,7 +95,13 @@ export default function micro() {
         frqData: [...newFRQData], // difference is here. all indv FRQs are combined into one object per chapter
       })
     }
-  }, [slideProgressData, mcqScoreData, frqScoreData])
+  }, [
+    slideProgressData,
+    mcqScoreData,
+    frqScoreData,
+    completedFRQData,
+    newFRQData,
+  ])
   return (
     <>
       <SignInReminder condition={auth.user}>

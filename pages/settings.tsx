@@ -23,7 +23,7 @@ export async function getStaticProps() {
   return { props: { allUserIds } }
 }
 
-function settings({ allUserIds }) {
+export default function Settings({ allUserIds }) {
   const auth = useAuth()
   const router = useRouter()
   const [openConfirmDelete, setOpenConfirmDelete] = useState(false)
@@ -65,7 +65,8 @@ function settings({ allUserIds }) {
                     </div>
                     <div className="ml-3 flex-1 md:flex md:justify-between">
                       <p className="text-sm text-blue-700">
-                        You can't change your password with a Google account.
+                        You can&apos;t change your password with a Google
+                        account.
                       </p>
                     </div>
                   </div>
@@ -118,5 +119,3 @@ function settings({ allUserIds }) {
     </>
   )
 }
-
-export default settings

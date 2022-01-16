@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { AllCombinedData } from 'types'
 import Dashboard from '@/components/category/dashboard/Dashboard'
@@ -10,16 +10,13 @@ import frqs from '@/data/frqs'
 import { kebabCase } from '@/lib/utils'
 import { kebabCategories } from '@/data/routes'
 import { useAuth } from '@/lib/auth'
-import { useRouter } from 'next/router'
 import useSWR from 'swr'
 
-export default function macro() {
+export default function Macro() {
   const auth = useAuth()
 
   const { data: slideProgressData } = useSWR(
-    auth.user
-      ? [`/api/slides/macro/${auth.user.uid}`, auth.user.token]
-      : null,
+    auth.user ? [`/api/slides/macro/${auth.user.uid}`, auth.user.token] : null,
     fetcher
   )
   const { data: mcqScoreData } = useSWR(
@@ -42,8 +39,9 @@ export default function macro() {
   })
 
   const [mutatedFRQData, setMutatedFRQData] = useState([])
-  let completedFRQData = []
-  let newFRQData = []
+  let completedFRQData = useMemo(() => [], [])
+  let newFRQData = useMemo(() => [], [])
+  const hi = 'hi'
   useEffect(() => {
     if (slideProgressData && mcqScoreData && frqScoreData) {
       setCompletedSlides(
@@ -55,7 +53,7 @@ export default function macro() {
       setCompletedFRQs(frqScoreData?.score || [])
 
       frqs.forEach((category, index) => {
-        category.forEach((chapter, index2) => {
+        category.forEach((chapter) => {
           if (
             chapter.numberOfFRQs ===
             frqScoreData.score.filter(
@@ -98,7 +96,13 @@ export default function macro() {
         frqData: [...newFRQData], // difference is here. all indv FRQs are combined into one object per chapter
       })
     }
-  }, [slideProgressData, mcqScoreData, frqScoreData])
+  }, [
+    slideProgressData,
+    mcqScoreData,
+    frqScoreData,
+    completedFRQData,
+    newFRQData,
+  ])
   return (
     <>
       <SignInReminder condition={auth.user}>
