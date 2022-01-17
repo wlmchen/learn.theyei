@@ -10,7 +10,7 @@ type Chapter =
   | 'Monopoly'
   | 'Imperfect Competition'
   | 'Factor Markets'
-  | 'Effeciency'
+  | 'Social Effeciency'
   | 'A Healthy Economy'
   | 'Inflation and CPI'
   | 'Aggregate Supply and Demand'

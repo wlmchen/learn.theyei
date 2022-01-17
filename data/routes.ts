@@ -19,7 +19,7 @@ const routes: any[] = [
       'Monopoly',
       'Imperfect Competition',
       'Factor Markets',
-      'Effeciency',
+      'Social Effeciency',
     ],
   },
   {

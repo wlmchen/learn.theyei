@@ -2,11 +2,11 @@ const frqs = [
   [
     {
       title: 'Basic Economics Concepts',
-      numberOfFRQs: 6,
+      numberOfFRQs: 7,
     },
     {
       title: 'Production',
-      numberOfFRQs: 4,
+      numberOfFRQs: 3,
     },
     {
       title: 'Supply and Demand',
@@ -14,29 +14,29 @@ const frqs = [
     },
     {
       title: 'Trade and Systems',
-      numberOfFRQs: 4,
+      numberOfFRQs: 1,
     },
   ],
   [
     {
       title: 'Elasticity and Consumer Choice',
-      numberOfFRQs: 4,
+      numberOfFRQs: 3,
     },
     {
       title: 'Costs',
-      numberOfFRQs: 4,
+      numberOfFRQs: 3,
     },
     {
       title: 'Perfect Competition',
-      numberOfFRQs: 4,
+      numberOfFRQs: 2,
     },
     {
       title: 'Monopoly',
-      numberOfFRQs: 4,
+      numberOfFRQs: 3,
     },
     {
       title: 'Imperfect Competition',
-      numberOfFRQs: 4,
+      numberOfFRQs: 1,
     },
     {
       title: 'Factor Markets',
@@ -44,17 +44,17 @@ const frqs = [
     },
     {
       title: 'Social Efficiency',
-      numberOfFRQs: 4,
+      numberOfFRQs: 6,
     },
   ],
   [
     {
       title: 'A Healthy Economy',
-      numberOfFRQs: 4,
+      numberOfFRQs: 3,
     },
     {
       title: 'Inflation and CPI',
-      numberOfFRQs: 4,
+      numberOfFRQs: 3,
     },
     {
       title: 'Aggregate Supply and Demand',
@@ -62,15 +62,15 @@ const frqs = [
     },
     {
       title: 'Fiscal Policy',
-      numberOfFRQs: 3,
+      numberOfFRQs: 4,
     },
     {
       title: 'Monetary Policy',
-      numberOfFRQs: 4,
+      numberOfFRQs: 5,
     },
     {
       title: 'International Trade',
-      numberOfFRQs: 4,
+      numberOfFRQs: 2,
     },
   ],
 ]
