@@ -1,6 +1,6 @@
 import routes, { categories } from '@/data/routes'
 
-import { CompletedData } from 'types';
+import { CompletedData } from 'types'
 import Link from 'next/link'
 import ProgressBar from './ProgressBar'
 import React from 'react'
@@ -11,9 +11,7 @@ function AllProgress({ completedData }: { completedData: CompletedData }) {
     <div className="mt-8">
       <h2 className="font-medium">Total Progress</h2>
       <div className="mt-4 p-4 border border-gray-200 rounded-2xl bg-gray-100 flex flex-col">
-        <ProgressBar
-          completedData={completedData}
-        />
+        <ProgressBar completedData={completedData} />
         <div className="flex items-center flex-col sm:flex-row mt-2">
           {categories.map((category, index) => {
             return (

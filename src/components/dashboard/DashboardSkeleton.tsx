@@ -11,7 +11,7 @@ function DashboardSkeleton() {
               {new Array(30).fill(null).map((item, index) => {
                 return (
                   <div
-                  key={index}
+                    key={index}
                     className="h-10 w-10 cursor-pointer rounded-md flex items-center justify-center text-center font-bold bg-gray-300 animate-pulse border"
                     style={{ margin: '3px' }}
                   ></div>

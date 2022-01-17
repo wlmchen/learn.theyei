@@ -7,8 +7,8 @@ import { kebabCase } from '@/lib/utils'
 
 type ProgressBarProps = {
   completedData: {
-    completedSlides: Slide[],
-    completedMCQs: MCQ[],
+    completedSlides: Slide[]
+    completedMCQs: MCQ[]
     completedFRQs: FRQ[]
   }
 }

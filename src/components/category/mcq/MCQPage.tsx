@@ -4,7 +4,7 @@ import MCQuiz from './MCQuiz'
 import React from 'react'
 import { Slug } from 'types'
 
-function MCQPage({ slug }: {slug: Slug}) {
+function MCQPage({ slug }: { slug: Slug }) {
   const kebabChaptersSelection = kebabChapters[kebabCategories.indexOf(slug[0])]
   return (
     <div className="w-full">

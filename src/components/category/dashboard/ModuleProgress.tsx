@@ -9,7 +9,6 @@ type ModuleProgressProps = {
   completedData: CompletedData
 }
 
-
 function ModuleProgress({
   title,
   completedData: { completedSlides, completedMCQs, completedFRQs },

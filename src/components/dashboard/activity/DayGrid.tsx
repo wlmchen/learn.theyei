@@ -25,8 +25,7 @@ function DayGrid({
           return (
             new Date(item.createdAt).getDate() === mydate.getDate() &&
             new Date(item.createdAt).getMonth() === mydate.getMonth() &&
-            new Date(item.createdAt).getFullYear() ===
-              mydate.getFullYear()
+            new Date(item.createdAt).getFullYear() === mydate.getFullYear()
           )
         })
       )
@@ -45,8 +44,7 @@ function DayGrid({
             return (
               new Date(item.createdAt).getDate() === mydate.getDate() &&
               new Date(item.createdAt).getMonth() === mydate.getMonth() &&
-              new Date(item.createdAt).getFullYear() ===
-                mydate.getFullYear()
+              new Date(item.createdAt).getFullYear() === mydate.getFullYear()
             )
           }).length
           return (
