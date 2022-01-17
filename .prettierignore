@@ -36,3 +36,4 @@ yarn-error.log*
 *.mdx
 
 firebase-debug.log
+tsconfig.tsbuildinfo
