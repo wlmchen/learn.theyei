@@ -110,8 +110,8 @@ function FRQ({ num, totalPoints, children }) {
             <div className="w-36 sm:w-56 h-full flex rounded-md shadow-sm">
               <input
                 type="number"
-                name="company-website"
-                id="company-website"
+                name="points"
+                id="points"
                 min="0"
                 max={totalPoints.toString()}
                 value={points}
