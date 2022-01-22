@@ -34,7 +34,7 @@ const tokenClassNames = {
 }
 
 export function getFiles(type) {
-  const prefixPaths = path.join(root, 'data', type)
+  const prefixPaths = path.join(root, 'src', 'data', type)
   const files = getAllFilesRecursively(prefixPaths)
   // Only want to return blog/path and ignore root, replace is needed to work on Windows
   return files.map((file) =>
