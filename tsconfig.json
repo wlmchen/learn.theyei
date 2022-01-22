@@ -19,7 +19,8 @@
       "@/lib/*": ["src/lib/*"],
       "@/styles/*": ["src/styles/*"],
       "@/data/*": ["src/data/*"],
-      "@/utils/*": ["src/utils/*"]
+      "@/utils/*": ["src/utils/*"],
+      "@/types/*": ["src/types/*"]
     },
     "incremental": true
   },

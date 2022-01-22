@@ -6,7 +6,7 @@ import {
 } from '@heroicons/react/solid'
 import { Fragment, useEffect, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
-import { Slide, SlideWithoutType, Slug } from 'types'
+import { Slide, SlideWithoutType, Slug } from '@/types/index'
 
 import { createSlideProgress } from '@/lib/db'
 import fetcher from '@/utils/fetcher'

@@ -1,7 +1,7 @@
 import routes, { kebabCategories, kebabChapters } from '@/data/routes'
 
 import React from 'react'
-import { Slug } from 'types'
+import { Slug } from '@/types/index'
 
 type FRQPageProps = {
   slug: string | string[]

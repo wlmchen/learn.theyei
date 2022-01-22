@@ -1,4 +1,4 @@
-import { FRQ, MCQ, Slide } from 'types'
+import { FRQ, MCQ, Slide } from '@/types/index'
 import routes, { kebabCategories } from '@/data/routes'
 
 import React from 'react'

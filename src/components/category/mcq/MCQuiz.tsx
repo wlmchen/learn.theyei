@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { CheckIcon, InformationCircleIcon } from '@heroicons/react/outline'
-import { MCQ, Slug } from 'types'
+import { MCQ, Slug } from '@/types/index'
 import React, { useEffect, useMemo, useState } from 'react'
 import { createMCQScore, removeMCQScore } from '@/lib/db'
 import { kebabCase, letterToNum } from '@/lib/utils'

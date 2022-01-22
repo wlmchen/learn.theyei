@@ -1,6 +1,6 @@
 import routes, { kebabCategories } from '@/data/routes'
 
-import { CompletedData } from 'types'
+import { CompletedData } from '@/types/index'
 import React from 'react'
 import { kebabCase } from '@/lib/utils'
 

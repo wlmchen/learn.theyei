@@ -20,7 +20,7 @@ import SignInReminder from 'src/components/global/SignInReminder'
 import { kebabCase } from '@/lib/utils'
 import { useAuth } from '@/lib/auth'
 import { useRouter } from 'next/router'
-import { Slug } from 'types'
+import { Slug } from '@/types/index'
 
 export async function getStaticPaths() {
   const posts = await getFiles('content')

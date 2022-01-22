@@ -1,5 +1,5 @@
 import { BookOpenIcon, CheckIcon, XIcon } from '@heroicons/react/outline'
-import { FRQChapter, MCQ, ScoreData, Slide } from 'types'
+import { FRQChapter, MCQ, ScoreData, Slide } from '@/types/index'
 import React, { useEffect } from 'react'
 import routes, { kebabCategories } from '@/data/routes'
 

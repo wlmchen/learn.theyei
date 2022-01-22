@@ -2,7 +2,7 @@ import routes, { kebabCategories, kebabChapters } from '@/data/routes'
 
 import MCQuiz from './MCQuiz'
 import React from 'react'
-import { Slug } from 'types'
+import { Slug } from '@/types/index'
 
 function MCQPage({ slug }: { slug: Slug }) {
   const kebabChaptersSelection = kebabChapters[kebabCategories.indexOf(slug[0])]

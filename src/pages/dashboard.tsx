@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 
-import { AllCombinedData } from 'types'
+import { AllCombinedData } from '@/types/index'
 import Dashboard from 'src/components/dashboard/Dashboard'
 import DashboardSkeleton from 'src/components/dashboard/DashboardSkeleton'
 import Layout from 'src/components/global/Layout'

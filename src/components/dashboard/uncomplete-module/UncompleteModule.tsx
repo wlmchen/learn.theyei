@@ -1,4 +1,4 @@
-import { AllCombinedData, FRQChapter, MCQ, Slide } from 'types'
+import { AllCombinedData, FRQChapter, MCQ, Slide } from '@/types/index'
 import React, { useEffect, useState } from 'react'
 import {
   allChapters,

@@ -1,4 +1,4 @@
-import { AllCombinedData, AllIndividualData, CompletedData } from 'types'
+import { AllCombinedData, AllIndividualData, CompletedData } from '@/types/index'
 
 import Activity from './activity/Activity'
 import AllProgress from './all-progress/AllProgress'

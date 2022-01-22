@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { AllIndividualData } from 'types'
+import { AllIndividualData } from '@/types/index'
 import DayDetails from './DayDetails'
 import DayGrid from './DayGrid'
 import Streak from './Streak'

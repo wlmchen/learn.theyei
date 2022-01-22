@@ -1,4 +1,4 @@
-import {MCQUserChoice} from 'types'
+import {MCQUserChoice} from '@/types/index'
 
 export const numToLetter = (num: number) =>
   (num + 10).toString(36).toUpperCase()

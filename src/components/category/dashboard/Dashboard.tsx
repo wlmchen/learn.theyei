@@ -1,4 +1,4 @@
-import { AllCombinedData, CompletedData, ScoreData } from 'types'
+import { AllCombinedData, CompletedData, ScoreData } from '@/types/index'
 
 import ModuleProgress from './ModuleProgress'
 import Pathway from './Pathway'

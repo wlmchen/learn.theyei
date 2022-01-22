@@ -1,6 +1,6 @@
 import routes, { categories } from '@/data/routes'
 
-import { CompletedData } from 'types'
+import { CompletedData } from '@/types/index'
 import Link from 'next/link'
 import ProgressBar from './ProgressBar'
 import React from 'react'

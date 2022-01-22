@@ -1,4 +1,4 @@
-import {Slide} from 'types'
+import {Slide} from '@/types/index'
 import { db } from './firebase-admin'
 
 export async function getSlideProgress(slideId) {
