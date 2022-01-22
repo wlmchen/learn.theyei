@@ -53,8 +53,8 @@ export function dateSortDesc(a, b) {
 }
 
 export async function getFileBySlug(type, slug) {
-  const mdxPath = path.join(root, 'data', type, `${slug}.mdx`)
-  const mdPath = path.join(root, 'data', type, `${slug}.md`)
+  const mdxPath = path.join(root, 'src', 'data', type, `${slug}.mdx`)
+  const mdPath = path.join(root, 'src', 'data', type, `${slug}.md`)
   const source = fs.existsSync(mdxPath)
     ? fs.readFileSync(mdxPath, 'utf8')
     : fs.readFileSync(mdPath, 'utf8')
@@ -136,7 +136,7 @@ export async function getFileBySlug(type, slug) {
 }
 
 export async function getAllFilesFrontMatter(folder) {
-  const prefixPaths = path.join(root, 'data', folder)
+  const prefixPaths = path.join(root, 'src', 'data', folder)
 
   const files = getAllFilesRecursively(prefixPaths)
 
