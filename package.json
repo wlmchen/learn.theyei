@@ -62,8 +62,18 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && npm run lint"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint",
+      "prettier --write"
+    ],
+    "*.tsx": [
+      "eslint",
+      "prettier --write"
+    ]
   },
   "license": "MIT"
 }

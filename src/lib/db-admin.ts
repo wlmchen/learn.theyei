@@ -1,4 +1,4 @@
-import {Slide} from '@/types/index'
+import { Slide } from '@/types/index'
 import { db } from './firebase-admin'
 
 export async function getSlideProgress(slideId) {
@@ -61,11 +61,10 @@ export async function getAllSlideProgress(path, userId) {
     const snapshot = await ref.get()
     const progress: Slide[] = []
 
-    
     snapshot.forEach((doc) => {
       progress.push({ ...doc.data() })
     })
-    return (progress)
+    return progress
   } catch (error) {
     return { error }
   }
