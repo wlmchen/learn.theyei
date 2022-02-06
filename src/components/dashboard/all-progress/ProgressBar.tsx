@@ -25,9 +25,7 @@ function ProgressBar({
           (item) =>
             kebabCategories.indexOf(item.category) === categoryIndex &&
             kebabCase(chapter.title) === item.chapter
-        ).length +
-          1 ===
-        chapter.numberOfFRQs
+        ).length === chapter.numberOfFRQs
       ) {
         numberOfFRQsComplete++
       }
@@ -39,6 +37,8 @@ function ProgressBar({
     routes[1].children.length * 3 +
     routes[2].children.length * 3 +
     numberOfFRQs
+
+  console.log({ completedSlides, completedMCQs, numberOfFRQsComplete })
   return (
     <div
       className="bg-yei-primary-main px-4 h-10 sm:h-14 flex items-center rounded-lg text-2xl sm:text-3xl text-white font-black"
