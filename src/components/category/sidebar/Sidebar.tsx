@@ -104,23 +104,22 @@ export default function Sidebar({ children }) {
                     <div className="h-full relative overflow-y-auto ">
                       <nav className="w-full absolute flex-1 px-2 bg-white space-y-1">
                         {routes[categoryIndex].children.map((item) => (
-                          <Disclosure
-                            as="div"
-                            key={item}
-                            className="space-y-1"
-                            defaultOpen={
-                              kebabCase(item) === slug[1] && !currentClosed
-                                ? true
-                                : false
-                            }
-                          >
+                          <Disclosure as="div" key={item} className="space-y-1">
                             {({ open }) => (
                               <>
                                 <Disclosure.Button
                                   className={`${
                                     open
-                                      ? 'bg-gray-100 text-gray-900'
-                                      : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                                      ? `bg-gray-100  ${
+                                          kebabCase(item) === slug[1]
+                                            ? 'text-yei-primary-main'
+                                            : 'text-gray-900'
+                                        }`
+                                      : `bg-white  hover:bg-gray-50  ${
+                                          kebabCase(item) === slug[1]
+                                            ? 'text-yei-primary-main'
+                                            : 'text-gray-600 hover:text-gray-900 '
+                                        }`
                                   }
                       group w-full flex items-center justify-between px-2 py-2 text-left text-sm font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-yei-primary-main`}
                                   onClick={() =>
