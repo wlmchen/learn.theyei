@@ -5,7 +5,7 @@ type Chapter =
   | 'Supply and Demand'
   | 'Trade and Systems'
   | 'Elasticity and Consumer Choice'
-  | 'Costs'
+  | 'Costs of Production'
   | 'Perfect Competition'
   | 'Monopoly'
   | 'Imperfect Competition'

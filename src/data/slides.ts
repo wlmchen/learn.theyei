@@ -39,7 +39,7 @@ const slides: Slide[][] = [
         'https://docs.google.com/presentation/d/1-tdnh8gjcCBIY_NgMt_gu9SoxP3kAVYmbEG-j0LnM1w/embed?slide=id.g8c0244ce52_1_643',
     },
     {
-      title: 'Costs',
+      title: 'Costs of Production',
       desc: 'Short description of this chapter.',
       source:
         'https://docs.google.com/presentation/d/1rchkv8lSKdMxEAKsqqozJNEyIE2PW8SF9USM0SpTKHU/embed?slide=id.g8c0244ce52_1_643',

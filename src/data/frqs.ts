@@ -23,7 +23,7 @@ const frqs = [
       numberOfFRQs: 3,
     },
     {
-      title: 'Costs',
+      title: 'Costs of Production',
       numberOfFRQs: 3,
     },
     {

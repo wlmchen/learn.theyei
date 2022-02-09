@@ -14,7 +14,7 @@ const routes: any[] = [
     name: 'Micro',
     children: [
       'Elasticity and Consumer Choice',
-      'Costs',
+      'Costs of Production',
       'Perfect Competition',
       'Monopoly',
       'Imperfect Competition',
