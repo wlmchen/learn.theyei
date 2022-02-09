@@ -1,4 +1,10 @@
-const slides = [
+type Slide = {
+  title: string
+  desc: string
+  source: string
+}
+
+const slides: Slide[][] = [
   [
     {
       title: 'Basic Economics Concepts',
@@ -16,7 +22,7 @@ const slides = [
       title: 'Supply and Demand',
       desc: 'Short description of this chapter.',
       source:
-        'https://docs.google.com/presentation/d/iLaAezTPM4msZgAuZtGT8vm4z8LfRa3eKBDs_U/embed?slide=id.g8c0244ce52_1_643',
+        'https://docs.google.com/presentation/d/1hNOQ-iLaAezTPM4msZgAuZtGT8vm4z8LfRa3eKBDs_U/embed?slide=id.g8c0244ce52_1_643',
     },
     {
       title: 'Trade and Systems',
@@ -60,7 +66,7 @@ const slides = [
       title: 'Factor Markets',
       desc: 'Short description of this chapter.',
       source:
-        'https://docs.google.com/presentation/d/1arps6bJGty65NqOiCqGxFSGd2eK8ill0cGgxJUUCyv8/embed?slide=id.g8c0244ce52_1_643',
+        'https://docs.google.com/presentation/d/1YMcPeGK-hYfk6UZwv-Q3lJ4W2RJKvTTUQFdKUDyfpUU/embed?slide=id.g8c0244ce52_1_643',
     },
     {
       title: 'Social Efficiency',
@@ -92,13 +98,13 @@ const slides = [
       title: 'Fiscal Policy',
       desc: 'Short description of this chapter.',
       source:
-        'https://docs.google.com/presentation/d/1PbvuzDk_wPldPPTNP-HEXqY-KFpGNapWJzdvtjgI_js/embed?slide=id.g8c0244ce52_1_643',
+        'https://docs.google.com/presentation/d/1Mceukolasr978xHNOWdZnwjDawqY7EEQDCUunW4AeQk/embed?slide=id.g8c0244ce52_1_643',
     },
     {
       title: 'Monetary Policy',
       desc: 'Short description of this chapter.',
       source:
-        'https://docs.google.com/presentation/d/1ZE64wVp8yJnLpOgCx1VfT_ie5L0FI4SABd6nKY852kY/embed?slide=id.g8c0244ce52_1_643',
+        'https://docs.google.com/presentation/d/1PbvuzDk_wPldPPTNP-HEXqY-KFpGNapWJzdvtjgI_js/embed?slide=id.g8c0244ce52_1_643',
     },
     {
       title: 'International Trade',
