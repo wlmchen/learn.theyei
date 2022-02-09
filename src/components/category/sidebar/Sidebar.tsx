@@ -23,6 +23,7 @@ export default function Sidebar({ children }) {
   const router = useRouter()
   const slug = useMemo(() => router.query.slug || [], [router.query.slug])
   const [categoryIndex, setCategoryIndex] = useState(-1)
+  const [currentClosed, setCurrentClosed] = useState(false)
 
   useEffect(() => {
     setCategoryIndex(kebabCategories.indexOf(slug[0]))
@@ -108,7 +109,9 @@ export default function Sidebar({ children }) {
                             key={item}
                             className="space-y-1"
                             defaultOpen={
-                              kebabCase(item) === slug[1] ? true : false
+                              kebabCase(item) === slug[1] && !currentClosed
+                                ? true
+                                : false
                             }
                           >
                             {({ open }) => (
@@ -120,6 +123,11 @@ export default function Sidebar({ children }) {
                                       : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                                   }
                       group w-full flex items-center justify-between px-2 py-2 text-left text-sm font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-yei-primary-main`}
+                                  onClick={() =>
+                                    setCurrentClosed(
+                                      kebabCase(item) === slug[1] ? true : false
+                                    )
+                                  }
                                 >
                                   {item}
                                   <ChevronRightIcon
