@@ -51,7 +51,7 @@ export default function Footer() {
                 <FooterColumn
                   title="Programs"
                   links={[
-                    { href: '/programs/flip', name: 'FLIP' },
+                    { href: '/flip', name: 'FLIP' },
                     { href: '/programs/earn', name: 'EARN' },
                     { href: '/resources', name: 'Resources' },
                     { href: '/people/apply', name: 'YEI Hiring' },
