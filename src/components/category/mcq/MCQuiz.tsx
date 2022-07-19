@@ -12,6 +12,7 @@ import fetcher from '@/utils/fetcher'
 import mcq from '@/data/mcq'
 import { useAuth } from '@/lib/auth'
 import useSWR from 'swr'
+import { useCallback } from 'react'
 
 type IndexChoice = 0 | 1 | 2 | 3 | null
 
@@ -40,7 +41,7 @@ function MCQuiz({ slug }: { slug: Slug }) {
       : null,
     fetcher
   )
-  const randomSeq = useMemo(() => [], [])
+  const randomSeq = []
   const sortedMcqs = mcq.slice().filter((item) => {
     return (
       kebabCase(item.category.substring(0, item.category.length - 2)) ===
@@ -51,14 +52,15 @@ function MCQuiz({ slug }: { slug: Slug }) {
         kebabChaptersSelection.indexOf(slug[1]) + 1
     )
   })
-  useEffect(() => {
+
+  const shuffleQuestions = useCallback(() => {
     new Array(sortedMcqs.length).fill(null).forEach(() => {
       randomSeq.push(Math.random() - 0.5)
     })
     setFilteredMcqs(
       sortedMcqs.sort((item) => randomSeq[sortedMcqs.indexOf(item)]).slice(0, 5)
     )
-  }, [randomSeq, sortedMcqs])
+  }, [])
 
   const [userChoices, setUserChoices] = useState<UserChoices>([
     null,
@@ -79,14 +81,22 @@ function MCQuiz({ slug }: { slug: Slug }) {
 
   useEffect(() => {
     if (mcqScoreData) {
-      setAlreadyComplete(mcqScoreData.score[0]?.score !== undefined || false)
-      setShowAnswers(mcqScoreData.score[0]?.score !== undefined || false)
-      if (mcqScoreData.score[0]?.score) {
+      const completedAlready = mcqScoreData.score[0]?.score !== undefined
+
+      setAlreadyComplete(completedAlready)
+      setShowAnswers(completedAlready)
+      if (completedAlready) {
         setFilteredMcqs(mcqScoreData.score[0].mcqContent)
         setUserChoices(mcqScoreData.score[0].userChoices)
       }
     }
   }, [mcqScoreData])
+
+  useEffect(() => {
+    if (alreadyComplete !== undefined && !alreadyComplete) {
+      shuffleQuestions()
+    }
+  }, [alreadyComplete, shuffleQuestions])
 
   const onCreateMCQScore = () => {
     const newScore: MCQ = {
@@ -115,19 +125,15 @@ function MCQuiz({ slug }: { slug: Slug }) {
       setMissedProblems(userChoices.filter((item) => item === null).length)
     }
   }
-  const handleRedo = () => {
-    new Array(sortedMcqs.length).fill(null).forEach(() => {
-      randomSeq.push(Math.random() - 0.5)
-    })
 
-    setFilteredMcqs(
-      sortedMcqs.sort((item) => randomSeq[sortedMcqs.indexOf(item)]).slice(0, 5)
-    )
+  const handleRedo = () => {
+    shuffleQuestions()
     setShowAnswers(false)
     setAlreadyComplete(false)
     setUserChoices([null, null, null, null, null])
     removeMCQScore(mcqScoreData.score[0]?.id || newId)
   }
+
   return (
     <>
       {mcqScoreData && filteredMcqs.length !== 0 && (
