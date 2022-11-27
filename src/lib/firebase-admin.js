@@ -7,7 +7,7 @@ if (!admin.apps.length) {
       private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
       project_id: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
     }),
-    databaseURL: 'https://yei-training-portal.firebaseio.com',
+    databaseURL: 'https://learn-theyei.firebaseio.com',
   })
 }
 
