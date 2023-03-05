@@ -6,6 +6,7 @@ import { AppProps } from 'next/app'
 import { AuthProvider } from '@/lib/auth'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { Analytics } from '@vercel/analytics/react';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()
@@ -18,6 +19,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <AuthProvider>
         <Component {...pageProps} key={router.asPath} />
       </AuthProvider>
+      <Analytics />
     </>
   )
 }
